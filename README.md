@@ -34,6 +34,33 @@
 - Интеграция с системами аналитики
 - Блог с SEO-оптимизацией
 
+## 👨‍💻 Процесс Разработки
+
+1. **Основная разработка ведется в ветке `dev`**
+
+   ```bash
+   git checkout dev
+   git pull
+   # внесение изменений
+   git add .
+   git commit -m "описание изменений"
+   git push
+   ```
+
+2. **Деплой через Pull Request**
+
+   - Создание Pull Request из `dev` в `main` на GitHub
+   - Code Review и тестирование
+   - После одобрения - merge в `main`
+   - Автоматический деплой на Timeweb Cloud
+
+3. **Синхронизация веток**
+   ```bash
+   git checkout dev
+   git pull origin main
+   git push
+   ```
+
 ## 🛠 Установка и Запуск
 
 1. **Клонирование репозитория:**
@@ -116,6 +143,33 @@ A modern, fully SEO-optimized catalog website built with Next.js 14 using cuttin
 - Contact forms
 - Analytics systems integration
 - SEO-optimized blog
+
+## 👨‍💻 Development Process
+
+1. **Main development in `dev` branch**
+
+   ```bash
+   git checkout dev
+   git pull
+   # make changes
+   git add .
+   git commit -m "change description"
+   git push
+   ```
+
+2. **Deployment via Pull Request**
+
+   - Create Pull Request from `dev` to `main` on GitHub
+   - Code Review and testing
+   - After approval - merge to `main`
+   - Automatic deployment to Timeweb Cloud
+
+3. **Branch synchronization**
+   ```bash
+   git checkout dev
+   git pull origin main
+   git push
+   ```
 
 ## 🛠 Installation & Setup
 
