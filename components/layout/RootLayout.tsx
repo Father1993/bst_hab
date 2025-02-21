@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
+import { Metadata } from 'next'
 import Header from './Header'
 import Footer from './Footer'
-import { Metadata } from 'next'
 
 // Метаданные по умолчанию
 export const metadata: Metadata = {
@@ -60,9 +60,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <>
       <Header />
-      <main className='min-h-screen container mx-auto px-4 py-8'>
-        {children}
-      </main>
+      <main>{children}</main>
       <Footer />
     </>
   )
