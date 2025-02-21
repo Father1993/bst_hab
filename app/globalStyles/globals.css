@@ -26,6 +26,7 @@
   }
 }
 
+/* Базовые стили */
 body {
   color: var(--text-primary);
   background: var(--background);
@@ -33,45 +34,89 @@ body {
   padding-top: 140px;
 }
 
+/* Адаптивные отступы */
 @media (max-width: 1024px) {
   body {
     padding-top: 72px;
   }
 }
 
-/* Плавная прокрутка для всего сайта */
+/* Плавная прокрутка */
 html {
   scroll-behavior: smooth;
 }
 
-/* Стилизация выделения текста */
+/* Стилизация выделения */
 ::selection {
   background: var(--primary);
   color: var(--background);
 }
 
-/* Кастомные классы для повторяющихся элементов */
-.btn-primary {
-  @apply bg-[#FFD700] text-black px-6 py-2 rounded-lg hover:bg-[#FFD700]/90 transition-colors font-semibold;
+/* Утилиты */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
 }
 
-.btn-outline {
-  @apply border-2 border-[#FFD700] text-[#FFD700] px-6 py-2 rounded-lg hover:bg-[#FFD700] hover:text-black transition-colors font-semibold;
-}
+/* Компоненты */
+@layer components {
+  .container {
+    @apply px-4 md:px-6 lg:px-8 mx-auto max-w-7xl;
+  }
 
-.section-title {
-  @apply text-3xl font-bold mb-6;
-}
+  .btn-primary {
+    @apply bg-[#FFD700] text-black px-6 py-2 rounded-lg hover:bg-[#FFD700]/90 transition-colors font-semibold;
+  }
 
-.container-padding {
-  @apply px-4 md:px-6 lg:px-8;
+  .btn-outline {
+    @apply border-2 border-[#FFD700] text-[#FFD700] px-6 py-2 rounded-lg hover:bg-[#FFD700] hover:text-black transition-colors font-semibold;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6;
+  }
+
+  .section-padding {
+    @apply py-8 md:py-12 lg:py-16;
+  }
 }
 
 /* Анимации */
-.hover-scale {
-  @apply transition-transform duration-300 hover:scale-105;
+@layer utilities {
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .fade-in {
+    @apply transition-opacity duration-300 ease-in-out;
+  }
+
+  .slide-up {
+    @apply transition-all duration-300 transform translate-y-4 opacity-0;
+  }
+
+  .slide-up.show {
+    @apply translate-y-0 opacity-100;
+  }
 }
 
-.fade-in {
-  @apply transition-opacity duration-300 ease-in-out;
+/* Адаптивная типография */
+@layer base {
+  h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+  p {
+    @apply text-base md:text-lg;
+  }
 }
