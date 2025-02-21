@@ -6,21 +6,25 @@ import { Metadata } from 'next'
 // Метаданные по умолчанию
 export const metadata: Metadata = {
   title: {
-    default: 'BST Habitat - Современные решения для бизнеса',
-    template: '%s | BST Habitat',
+    default: 'BST HAB - Модульное строительство и аренда бытовок',
+    template: '%s | BST HAB - Производственная компания',
   },
   description:
-    'BST Habitat предлагает современные решения для развития вашего бизнеса. Профессиональная разработка, маркетинг и консультации.',
+    'BST HAB - производство и аренда модульных конструкций: бытовки, гаражи, строительные модули. Быстрое изготовление по типовым и индивидуальным проектам. Выгодные условия аренды.',
   keywords: [
-    'бизнес решения',
-    'разработка',
-    'маркетинг',
-    'консалтинг',
-    'BST Habitat',
+    'модульное строительство',
+    'бытовки',
+    'аренда бытовок',
+    'модульные гаражи',
+    'строительные бытовки',
+    'производство бытовок',
+    'аренда строительных модулей',
+    'быстровозводимые конструкции',
+    'BST HAB',
   ],
-  authors: [{ name: 'BST Habitat Team' }],
-  creator: 'BST Habitat',
-  publisher: 'BST Habitat',
+  authors: [{ name: 'BST HAB' }],
+  creator: 'BST HAB',
+  publisher: 'BST HAB',
   formatDetection: {
     email: false,
     address: false,
