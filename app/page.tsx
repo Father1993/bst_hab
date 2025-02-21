@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Hero from '@/components/sections/home/Hero/Hero'
 
 export const metadata: Metadata = {
   title: 'BST HAB - Производство и аренда модульных конструкций',
@@ -15,5 +16,9 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return <div>MAIN</div>
+  return (
+    <div className='flex flex-col'>
+      <Hero />
+    </div>
+  )
 }

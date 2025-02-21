@@ -3,19 +3,75 @@
 @tailwind utilities;
 
 :root {
+  /* Основные цвета */
+  --primary: #ffd700;
+  --primary-hover: #f4c800;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --accent: #ffd700;
+
+  /* Дополнительные цвета */
+  --text-primary: #3b3b3b;
+  --text-secondary: #666666;
+  --border: #e5e7eb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+    --border: #374151;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: var(--text-primary);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  padding-top: 140px;
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding-top: 72px;
+  }
+}
+
+/* Плавная прокрутка для всего сайта */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Стилизация выделения текста */
+::selection {
+  background: var(--primary);
+  color: var(--background);
+}
+
+/* Кастомные классы для повторяющихся элементов */
+.btn-primary {
+  @apply bg-[#FFD700] text-black px-6 py-2 rounded-lg hover:bg-[#FFD700]/90 transition-colors font-semibold;
+}
+
+.btn-outline {
+  @apply border-2 border-[#FFD700] text-[#FFD700] px-6 py-2 rounded-lg hover:bg-[#FFD700] hover:text-black transition-colors font-semibold;
+}
+
+.section-title {
+  @apply text-3xl font-bold mb-6;
+}
+
+.container-padding {
+  @apply px-4 md:px-6 lg:px-8;
+}
+
+/* Анимации */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.fade-in {
+  @apply transition-opacity duration-300 ease-in-out;
 }
