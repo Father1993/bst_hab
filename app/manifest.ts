@@ -1,40 +1,27 @@
 /* eslint-disable max-len */
 import { MetadataRoute } from 'next'
 
+export const dynamic = 'force-static'
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'BST HAB',
+    name: 'BST HAB - Производство и аренда модульных конструкций',
     short_name: 'BST HAB',
-    description: 'БСТ ХАБ',
+    description:
+      'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске',
     start_url: '/',
-    background_color: '#fff',
-    theme_color: '#fff',
-    lang: 'ru',
     display: 'standalone',
+    background_color: '#000000',
+    theme_color: '#000000',
     icons: [
       {
-        src: '/img/favicon-16x16.png',
-        sizes: '16x16',
-        type: 'image/png',
+        src: '/favicon.ico',
+        sizes: '64x64 32x32 24x24 16x16',
+        type: 'image/x-icon',
       },
       {
-        src: '/img/favicon-32x32.png',
-        sizes: '32x32',
-        type: 'image/png',
-      },
-      {
-        src: '/img/apple-touch-icon.png',
+        src: '/apple-touch-icon.png',
         sizes: '180x180',
-        type: 'image/png',
-      },
-      {
-        src: '/img/android-chrome-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        src: '/img/android-chrome-512x512.png',
-        sizes: '512x512',
         type: 'image/png',
       },
     ],

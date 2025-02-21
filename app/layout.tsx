@@ -11,38 +11,41 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bst-hab.ru'),
+  metadataBase: new URL('https://father1993-bst-hab-11c4.twc1.net'),
   title: {
     template: '%s | BST HAB',
-    default: 'BST HAB - Производство и аренда модульных конструкций',
+    default:
+      'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
   },
   description:
-    'Производство и аренда бытовок, модульных гаражей и строительных конструкций. Быстрое изготовление, доставка, монтаж. Типовые и индивидуальные проекты.',
+    'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. ✓ Быстрое изготовление ✓ Доставка и монтаж ✓ Типовые и индивидуальные проекты. Звоните: +7 (914) 203-91-97',
   keywords: [
     'бытовки Хабаровск',
-    'аренда бытовок',
-    'модульные гаражи',
+    'аренда бытовок Хабаровск',
+    'модульные гаражи Хабаровск',
     'строительные бытовки',
     'производство бытовок',
     'аренда строительных модулей',
     'быстровозводимые конструкции',
     'BST HAB',
+    'бытовки цена',
+    'купить бытовку в Хабаровске',
   ],
   alternates: {
-    canonical: '/',
+    canonical: 'https://father1993-bst-hab-11c4.twc1.net',
   },
   openGraph: {
-    title: 'BST HAB - Производство и аренда модульных конструкций',
+    title: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
     description:
-      'Производство и аренда бытовок, модульных гаражей и строительных конструкций. Быстрое изготовление, доставка, монтаж.',
-    url: 'https://bst-hab.ru',
+      'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. Быстрое изготовление, доставка, монтаж. ✓ Выгодные цены ✓ Собственное производство',
+    url: 'https://father1993-bst-hab-11c4.twc1.net',
     siteName: 'BST HAB',
     images: [
       {
-        url: '/img/og-image.jpg',
+        url: 'https://father1993-bst-hab-11c4.twc1.net/img/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'BST HAB - Производство и аренда модульных конструкций',
+        alt: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
       },
     ],
     locale: 'ru_RU',
@@ -50,14 +53,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BST HAB - Производство и аренда модульных конструкций',
+    title: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
     description:
-      'Производство и аренда бытовок, модульных гаражей и строительных конструкций. Быстрое изготовление, доставка, монтаж.',
-    images: ['/img/og-image.jpg'],
-  },
-  verification: {
-    yandex: 'ваш-код-верификации',
-    google: 'ваш-код-верификации',
+      'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. ✓ Быстрое изготовление ✓ Доставка и монтаж',
+    images: ['https://father1993-bst-hab-11c4.twc1.net/img/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -83,8 +82,41 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           type='image/png'
           sizes='180x180'
         />
-        <meta name='theme-color' content='#ffffff' />
-        <meta name='msapplication-TileColor' content='#ffffff' />
+        <meta name='theme-color' content='#000000' />
+        <meta name='msapplication-TileColor' content='#000000' />
+        <link rel='manifest' href='/manifest.json' />
+
+        {/* Микроразметка Schema.org */}
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'BST HAB',
+              url: 'https://father1993-bst-hab-11c4.twc1.net',
+              logo: 'https://father1993-bst-hab-11c4.twc1.net/img/logo/bst_hab-logo-black.png',
+              description:
+                'Производство и аренда модульных конструкций в Хабаровске',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'ул.Связная, 1Б',
+                addressLocality: 'Хабаровск',
+                addressRegion: 'Хабаровский край',
+                postalCode: '680000',
+                addressCountry: 'RU',
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+7-914-203-91-97',
+                contactType: 'customer service',
+                email: '252188@mail.ru',
+                availableLanguage: 'Russian',
+              },
+              sameAs: ['https://vk.com/bsthab', 'https://t.me/bsthab'],
+            }),
+          }}
+        />
       </head>
       <body>
         <RootLayout>{children}</RootLayout>
