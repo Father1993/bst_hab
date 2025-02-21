@@ -1,25 +1,25 @@
+import { Metadata } from 'next'
+import RootLayout from '@/components/layout/RootLayout'
 import './globalStyles/normalize.css'
 import './globalStyles/globals.css'
-import RootLayout from '@/components/layout/RootLayout'
-import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bst-habitat.ru'),
+  metadataBase: new URL('https://bst-hab.ru'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'BST Habitat - Современные решения для бизнеса',
+    title: 'BST HAB - Производство и аренда модульных конструкций',
     description:
-      'BST Habitat предлагает современные решения для развития вашего бизнеса. Профессиональная разработка, маркетинг и консультации.',
-    url: 'https://bst-habitat.ru',
-    siteName: 'BST Habitat',
+      'Производство и аренда бытовок, модульных гаражей и строительных конструкций. Быстрое изготовление, доставка, монтаж. Типовые и индивидуальные проекты.',
+    url: 'https://bst-hab.ru',
+    siteName: 'BST HAB',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'BST Habitat - Современные решения для бизнеса',
+        alt: 'BST HAB - Производство и аренда модульных конструкций',
       },
     ],
     locale: 'ru_RU',
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BST Habitat - Современные решения для бизнеса',
+    title: 'BST HAB - Производство и аренда модульных конструкций',
     description:
-      'BST Habitat предлагает современные решения для развития вашего бизнеса. Профессиональная разработка, маркетинг и консультации.',
+      'Производство и аренда бытовок, модульных гаражей и строительных конструкций. Быстрое изготовление, доставка, монтаж.',
     images: ['/og-image.jpg'],
   },
   verification: {

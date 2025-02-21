@@ -3,10 +3,17 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  title: 'Главная | BST Habitat - Современные решения для бизнеса',
+  title: 'BST HAB - Производство и аренда модульных конструкций',
   description:
-    'BST Habitat - ваш надежный партнер в развитии бизнеса. Предлагаем комплексные решения для роста и оптимизации вашего бизнеса.',
-  keywords: ['главная', 'бизнес решения', 'BST Habitat', 'развитие бизнеса'],
+    'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Москве и области. Быстрое изготовление, доставка, монтаж. ✓ Выгодные цены ✓ Собственное производство ✓ Гарантия качества',
+  keywords: [
+    'бытовки',
+    'аренда бытовок',
+    'модульные гаражи',
+    'строительные бытовки',
+    'BST HAB',
+    'производство бытовок москва',
+  ],
 }
 
 export default function Home() {
@@ -18,7 +25,7 @@ export default function Home() {
         <div className='absolute inset-0'>
           <Image
             src='/hero-bg.jpg'
-            alt='BST Habitat - Современные решения для бизнеса'
+            alt='BST HAB - Производство и аренда модульных конструкций'
             fill
             priority
             className='object-cover'
@@ -27,20 +34,28 @@ export default function Home() {
         </div>
         <div className='container mx-auto px-4 relative z-20 text-white'>
           <h1 className='text-4xl md:text-6xl font-bold mb-6'>
-            Современные решения
+            Производство и аренда
             <br />
-            для вашего бизнеса
+            модульных конструкций
           </h1>
           <p className='text-xl md:text-2xl mb-8 max-w-2xl'>
-            Мы помогаем компаниям расти и развиваться, предоставляя
-            инновационные решения и профессиональную поддержку
+            Быстровозводимые бытовки и гаражи по типовым и индивидуальным
+            проектам. Выгодные условия аренды строительных модулей.
           </p>
-          <Link
-            href='/contacts'
-            className='inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors'
-          >
-            Связаться с нами
-          </Link>
+          <div className='flex flex-wrap gap-4'>
+            <Link
+              href='/catalog'
+              className='inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors'
+            >
+              Каталог продукции
+            </Link>
+            <Link
+              href='/rent'
+              className='inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors'
+            >
+              Условия аренды
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -62,14 +77,14 @@ export default function Home() {
                   strokeLinecap='round'
                   strokeLinejoin='round'
                   strokeWidth={2}
-                  d='M13 10V3L4 14h7v7l9-11h-7z'
+                  d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
                 />
               </svg>
             </div>
-            <h3 className='text-xl font-semibold mb-2'>Быстрое внедрение</h3>
+            <h3 className='text-xl font-semibold mb-2'>Быстрое производство</h3>
             <p className='text-gray-600'>
-              Оперативно внедряем решения, которые начинают работать на ваш
-              бизнес уже сегодня
+              Изготовление модульных конструкций в кратчайшие сроки благодаря
+              собственному производству
             </p>
           </div>
           <div className='p-6 bg-white rounded-lg shadow-lg'>
@@ -90,8 +105,8 @@ export default function Home() {
             </div>
             <h3 className='text-xl font-semibold mb-2'>Гарантия качества</h3>
             <p className='text-gray-600'>
-              Предоставляем только проверенные решения с гарантией качества и
-              поддержкой
+              Все конструкции соответствуют строительным нормам и имеют
+              необходимые сертификаты
             </p>
           </div>
           <div className='p-6 bg-white rounded-lg shadow-lg'>
@@ -106,15 +121,58 @@ export default function Home() {
                   strokeLinecap='round'
                   strokeLinejoin='round'
                   strokeWidth={2}
-                  d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                  d='M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z'
                 />
               </svg>
             </div>
-            <h3 className='text-xl font-semibold mb-2'>24/7 поддержка</h3>
+            <h3 className='text-xl font-semibold mb-2'>Выгодные условия</h3>
             <p className='text-gray-600'>
-              Наша команда всегда на связи и готова помочь решить любые вопросы
-              в любое время
+              Гибкие условия оплаты, специальные предложения для постоянных
+              клиентов
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Основные услуги */}
+      <section className='bg-gray-50 py-16'>
+        <div className='container mx-auto px-4'>
+          <h2 className='text-3xl font-bold text-center mb-12'>Наши услуги</h2>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <div className='bg-white p-6 rounded-lg shadow-lg'>
+              <h3 className='text-2xl font-semibold mb-4'>
+                Производство модульных конструкций
+              </h3>
+              <ul className='space-y-3 text-gray-600'>
+                <li>✓ Строительные бытовки</li>
+                <li>✓ Модульные гаражи</li>
+                <li>✓ Пост охраны</li>
+                <li>✓ Индивидуальные проекты</li>
+              </ul>
+              <Link
+                href='/production'
+                className='mt-6 inline-block text-blue-600 font-semibold hover:text-blue-800'
+              >
+                Подробнее →
+              </Link>
+            </div>
+            <div className='bg-white p-6 rounded-lg shadow-lg'>
+              <h3 className='text-2xl font-semibold mb-4'>
+                Аренда строительных модулей
+              </h3>
+              <ul className='space-y-3 text-gray-600'>
+                <li>✓ Аренда бытовок</li>
+                <li>✓ Доставка и монтаж</li>
+                <li>✓ Гибкие условия</li>
+                <li>✓ Оперативное обслуживание</li>
+              </ul>
+              <Link
+                href='/rent'
+                className='mt-6 inline-block text-blue-600 font-semibold hover:text-blue-800'
+              >
+                Подробнее →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -123,17 +181,17 @@ export default function Home() {
       <section className='bg-blue-600 text-white py-16'>
         <div className='container mx-auto px-4 text-center'>
           <h2 className='text-3xl font-bold mb-4'>
-            Готовы начать работу с нами?
+            Нужна бытовка или модульное здание?
           </h2>
           <p className='text-xl mb-8 max-w-2xl mx-auto'>
-            Оставьте заявку прямо сейчас и получите бесплатную консультацию по
-            развитию вашего бизнеса
+            Оставьте заявку прямо сейчас и получите расчет стоимости и
+            консультацию специалиста
           </p>
           <Link
             href='/contacts'
             className='inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors'
           >
-            Оставить заявку
+            Получить расчет стоимости
           </Link>
         </div>
       </section>
