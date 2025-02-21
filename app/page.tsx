@@ -1,101 +1,142 @@
-import Image from "next/image";
+import { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'Главная | BST Habitat - Современные решения для бизнеса',
+  description:
+    'BST Habitat - ваш надежный партнер в развитии бизнеса. Предлагаем комплексные решения для роста и оптимизации вашего бизнеса.',
+  keywords: ['главная', 'бизнес решения', 'BST Habitat', 'развитие бизнеса'],
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className='space-y-16'>
+      {/* Hero секция */}
+      <section className='relative h-[600px] flex items-center -mx-4'>
+        <div className='absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/50 z-10' />
+        <div className='absolute inset-0'>
+          <Image
+            src='/hero-bg.jpg'
+            alt='BST Habitat - Современные решения для бизнеса'
+            fill
+            priority
+            className='object-cover'
+            sizes='100vw'
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className='container mx-auto px-4 relative z-20 text-white'>
+          <h1 className='text-4xl md:text-6xl font-bold mb-6'>
+            Современные решения
+            <br />
+            для вашего бизнеса
+          </h1>
+          <p className='text-xl md:text-2xl mb-8 max-w-2xl'>
+            Мы помогаем компаниям расти и развиваться, предоставляя
+            инновационные решения и профессиональную поддержку
+          </p>
+          <Link
+            href='/contacts'
+            className='inline-block bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors'
+          >
+            Связаться с нами
+          </Link>
+        </div>
+      </section>
+
+      {/* Преимущества */}
+      <section className='container mx-auto'>
+        <h2 className='text-3xl font-bold text-center mb-12'>
+          Наши преимущества
+        </h2>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+          <div className='p-6 bg-white rounded-lg shadow-lg'>
+            <div className='w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4'>
+              <svg
+                className='w-6 h-6 text-blue-600'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M13 10V3L4 14h7v7l9-11h-7z'
+                />
+              </svg>
+            </div>
+            <h3 className='text-xl font-semibold mb-2'>Быстрое внедрение</h3>
+            <p className='text-gray-600'>
+              Оперативно внедряем решения, которые начинают работать на ваш
+              бизнес уже сегодня
+            </p>
+          </div>
+          <div className='p-6 bg-white rounded-lg shadow-lg'>
+            <div className='w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4'>
+              <svg
+                className='w-6 h-6 text-green-600'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+                />
+              </svg>
+            </div>
+            <h3 className='text-xl font-semibold mb-2'>Гарантия качества</h3>
+            <p className='text-gray-600'>
+              Предоставляем только проверенные решения с гарантией качества и
+              поддержкой
+            </p>
+          </div>
+          <div className='p-6 bg-white rounded-lg shadow-lg'>
+            <div className='w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4'>
+              <svg
+                className='w-6 h-6 text-purple-600'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                />
+              </svg>
+            </div>
+            <h3 className='text-xl font-semibold mb-2'>24/7 поддержка</h3>
+            <p className='text-gray-600'>
+              Наша команда всегда на связи и готова помочь решить любые вопросы
+              в любое время
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Призыв к действию */}
+      <section className='bg-blue-600 text-white py-16'>
+        <div className='container mx-auto px-4 text-center'>
+          <h2 className='text-3xl font-bold mb-4'>
+            Готовы начать работу с нами?
+          </h2>
+          <p className='text-xl mb-8 max-w-2xl mx-auto'>
+            Оставьте заявку прямо сейчас и получите бесплатную консультацию по
+            развитию вашего бизнеса
+          </p>
+          <Link
+            href='/contacts'
+            className='inline-block bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors'
+          >
+            Оставить заявку
+          </Link>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
