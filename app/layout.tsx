@@ -11,11 +11,10 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://father1993-bst-hab-11c4.twc1.net'),
+  metadataBase: new URL('https://bst-hab.ru'),
   title: {
     template: '%s | BST HAB',
-    default:
-      'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
+    default: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
   },
   description:
     'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. ✓ Быстрое изготовление ✓ Доставка и монтаж ✓ Типовые и индивидуальные проекты. Звоните: +7 (914) 203-91-97',
@@ -32,17 +31,17 @@ export const metadata: Metadata = {
     'купить бытовку в Хабаровске',
   ],
   alternates: {
-    canonical: 'https://father1993-bst-hab-11c4.twc1.net',
+    canonical: 'https://bst-hab.ru',
   },
   openGraph: {
     title: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
     description:
       'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. Быстрое изготовление, доставка, монтаж. ✓ Выгодные цены ✓ Собственное производство',
-    url: 'https://father1993-bst-hab-11c4.twc1.net',
+    url: 'https://bst-hab.ru',
     siteName: 'BST HAB',
     images: [
       {
-        url: 'https://father1993-bst-hab-11c4.twc1.net/img/og-image.jpg',
+        url: 'https://bst-hab.ru/img/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
@@ -56,7 +55,7 @@ export const metadata: Metadata = {
     title: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
     description:
       'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. ✓ Быстрое изготовление ✓ Доставка и монтаж',
-    images: ['https://father1993-bst-hab-11c4.twc1.net/img/og-image.jpg'],
+    images: ['https://bst-hab.ru/img/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -94,10 +93,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'BST HAB',
-              url: 'https://father1993-bst-hab-11c4.twc1.net',
-              logo: 'https://father1993-bst-hab-11c4.twc1.net/img/logo/bst_hab-logo-black.png',
-              description:
-                'Производство и аренда модульных конструкций в Хабаровске',
+              url: 'https://bst-hab.ru',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://bst-hab.ru/img/logo/bst_hab-logo-black.png',
+                width: 180,
+                height: 60,
+              },
+              description: 'Производство и аренда модульных конструкций в Хабаровске',
               address: {
                 '@type': 'PostalAddress',
                 streetAddress: 'ул.Связная, 1Б',

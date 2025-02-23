@@ -103,6 +103,15 @@ html {
   .slide-up.show {
     @apply translate-y-0 opacity-100;
   }
+
+  /* Улучшенные анимации для Hero секции */
+  .hero-animation {
+    @apply transition-all duration-700 ease-out;
+  }
+
+  .hero-animation-delay {
+    @apply transition-all duration-700 ease-out delay-200;
+  }
 }
 
 /* Адаптивная типография */
