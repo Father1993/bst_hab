@@ -1,22 +1,28 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Включаем статическую генерацию
+  output: 'export', // Статическая генерация
   images: {
-    unoptimized: true, // Для статической генерации изображений
-    domains: ['father1993-bst-hab-11c4.twc1.net'], // Временный домен
+    unoptimized: true, // Для статической генерации
+    domains: ['bst-hab.ru', 'localhost'], // Разрешенные домены
+    formats: ['image/webp'], // Поддерживаемые форматы
   },
-  trailingSlash: true, // Добавляем слеш в конце URL для лучшей совместимости
-  // Отключаем использование папки .next в продакшене
+  trailingSlash: true, // Слеш в конце URL
   distDir: 'out',
-  basePath: '', // Базовый путь для всех страниц и ресурсов
-  assetPrefix: '', // Префикс для статических ресурсов
-  // Добавляем конфигурацию для статических маршрутов
-  generateStaticParams: async () => {
-    return {
-      '/manifest.webmanifest': {
-        dynamic: 'force-static',
-      },
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
+
+  // Оптимизация для продакшена
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: true,
+
+  // Настройка webpack для оптимизации
+  webpack: (config, { dev, isServer }) => {
+    // Оптимизация только для продакшена
+    if (!dev && !isServer) {
+      config.optimization.minimize = true
     }
+    return config
   },
 }
 
