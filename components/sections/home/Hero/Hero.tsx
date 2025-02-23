@@ -61,18 +61,15 @@ const Hero = () => {
                 решения для бизнеса
               </h1>
               <p className='text-lg sm:text-xl text-gray-300 max-w-xl'>
-                Производство и аренда модульных конструкций любой сложности. От
-                типовых бытовок до индивидуальных проектов под ключ.
+                Производство и аренда модульных конструкций любой сложности. От типовых бытовок до
+                индивидуальных проектов под ключ.
               </p>
             </div>
 
             {/* Преимущества */}
             <div className='grid grid-cols-2 gap-4'>
               {advantages.map((advantage, index) => (
-                <div
-                  key={index}
-                  className='flex items-center space-x-2 text-gray-300'
-                >
+                <div key={index} className='flex items-center space-x-2 text-gray-300'>
                   <svg
                     className='w-5 h-5 text-[#FFD700]'
                     fill='none'
@@ -98,9 +95,7 @@ const Hero = () => {
                 className='group relative px-8 py-4 bg-[#FFD700] text-black rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] hover:scale-105'
               >
                 <div className='absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500' />
-                <span className='relative font-bold text-lg'>
-                  Смотреть каталог
-                </span>
+                <span className='relative font-bold text-lg'>Смотреть каталог</span>
               </Link>
               <Link
                 href='/rent'
@@ -118,7 +113,7 @@ const Hero = () => {
           <div className='relative'>
             <div className='relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl'>
               <Image
-                src='/img/2.png'
+                src='/img/2.webp'
                 alt='Модульные конструкции BST HAB'
                 width={800}
                 height={600}
@@ -131,21 +126,15 @@ const Hero = () => {
               <div className='absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-sm rounded-xl p-4 border border-[#FFD700]/20'>
                 <div className='grid grid-cols-3 gap-4 text-center'>
                   <div>
-                    <div className='text-[#FFD700] text-2xl font-bold'>
-                      500+
-                    </div>
+                    <div className='text-[#FFD700] text-2xl font-bold'>500+</div>
                     <div className='text-gray-300 text-sm'>Проектов</div>
                   </div>
                   <div>
                     <div className='text-[#FFD700] text-2xl font-bold'>98%</div>
-                    <div className='text-gray-300 text-sm'>
-                      Довольных клиентов
-                    </div>
+                    <div className='text-gray-300 text-sm'>Довольных клиентов</div>
                   </div>
                   <div>
-                    <div className='text-[#FFD700] text-2xl font-bold'>
-                      24/7
-                    </div>
+                    <div className='text-[#FFD700] text-2xl font-bold'>24/7</div>
                     <div className='text-gray-300 text-sm'>Поддержка</div>
                   </div>
                 </div>
