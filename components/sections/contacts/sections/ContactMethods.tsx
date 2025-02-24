@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ICONS } from '@/components/shared/icon'
-import { CONTACT_METHODS, SOCIAL_LINKS } from '../constants'
+import { CONTACT_METHODS } from '../constants'
 
 const ContactMethods = () => {
   return (
