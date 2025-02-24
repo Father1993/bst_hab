@@ -70,7 +70,6 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'qwea9m2lHkkA0v9SAwRC0QfsALfcBlBUhstyEMx53Wo',
-    yandex: 'cc6ee10a7e894223',
   },
 }
 
@@ -79,6 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang='ru' className={montserrat.className}>
       <head>
         <meta charSet='UTF-8' />
+        <meta name='yandex-verification' content='cc6ee10a7e894223' />
         <link rel='icon' href='/favicon.ico' sizes='any' />
         <link
           rel='apple-touch-icon'
