@@ -1,0 +1,158 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { COMPANY_STATS } from '@/components/shared/constants'
+import { ICONS } from '@/components/shared/icon'
+
+const AboutHero = () => {
+  const stats = [
+    {
+      number: COMPANY_STATS.experience,
+      label: 'лет опыта',
+      icon: ICONS.clock,
+    },
+    {
+      number: COMPANY_STATS.projectsCount,
+      label: 'реализованных проектов',
+      icon: ICONS.building,
+    },
+    {
+      number: COMPANY_STATS.constructionTypes,
+      label: 'типа конструкций',
+      icon: ICONS.building,
+    },
+    {
+      number: COMPANY_STATS.support,
+      label: 'поддержка клиентов',
+      icon: ICONS.clock,
+    },
+  ]
+
+  const trustIndicators = [
+    { image: '/img/gaz.png', alt: 'Партнер 1' },
+    { image: '/img/nnk.jpg', alt: 'Партнер 2' },
+    { image: '/img/garant.png', alt: 'Партнер 3' },
+  ]
+
+  return (
+    <section className='pt-32 lg:pt-40 pb-16 md:pb-24 bg-black relative overflow-hidden'>
+      {/* Фоновый градиент */}
+      <div className='absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-black to-black' />
+
+      {/* Декоративные элементы */}
+      <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FFD700]/20 to-transparent' />
+      <div className='absolute inset-0 bg-[radial-gradient(#FFD700_1px,transparent_1px)] [background-size:40px_40px] opacity-5' />
+
+      <div className='container mx-auto px-4 relative'>
+        <div className='max-w-4xl mx-auto text-center mb-16'>
+          {/* Бейдж */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className='inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-[#FFD700]/10 bg-[#FFD700]/5'
+          >
+            <span className='text-[#FFD700] text-sm font-medium'>Работаем с 2013 года</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'
+          >
+            Производство <span className='text-[#FFD700]'>бытовок и модульных конструкций</span> в
+            Хабаровске
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className='text-xl text-gray-400 mb-12'
+          >
+            Изготавливаем каркасные бытовки, модули из сэндвич-панелей и переоборудуем контейнеры.
+            Стандартные решения и индивидуальные проекты любой сложности для бизнеса и частных
+            клиентов.
+          </motion.p>
+
+          {/* Статистика */}
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-8 mb-12'>
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                className='bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300'
+              >
+                {stat.icon}
+                <div className='text-3xl md:text-4xl font-bold text-[#FFD700] mb-2'>
+                  {stat.number}
+                </div>
+                <div className='text-gray-400 text-sm md:text-base'>{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Доверительные элементы */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className='flex flex-wrap items-center justify-center gap-8 mb-12'
+          >
+            <div className='text-gray-500 text-sm'>Нам доверяют:</div>
+            {trustIndicators.map((partner, index) => (
+              <Image
+                key={index}
+                src={partner.image}
+                alt={partner.alt}
+                width={120}
+                height={40}
+                className='opacity-50 hover:opacity-100 transition-opacity'
+              />
+            ))}
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            className='flex flex-col sm:flex-row gap-4 justify-center'
+          >
+            <a
+              href='#consultation'
+              className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'
+            >
+              <span>Рассчитать стоимость</span>
+              <svg
+                className='w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M17 8l4 4m0 0l-4 4m4-4H3'
+                />
+              </svg>
+            </a>
+            <a
+              href='#catalog'
+              className='inline-flex items-center justify-center px-8 py-4 border-2 border-[#FFD700] text-[#FFD700] rounded-lg font-semibold hover:bg-[#FFD700] hover:text-black transition-colors'
+            >
+              Смотреть каталог
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default AboutHero
