@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'BST HAB',
     images: [
       {
-        url: 'https://bst-hab.ru/img/og-image.jpg',
+        url: 'https://bst-hab.ru/img/favicons/android-chrome-512x512.png',
         width: 1200,
         height: 630,
         alt: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: 'BST HAB - Производство и аренда модульных конструкций в Хабаровске',
     description:
       'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске. ✓ Быстрое изготовление ✓ Доставка и монтаж',
-    images: ['https://bst-hab.ru/img/og-image.jpg'],
+    images: ['https://bst-hab.ru/img/favicons/android-chrome-512x512.png'],
   },
   robots: {
     index: true,
@@ -68,12 +68,17 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'qwea9m2lHkkA0v9SAwRC0QfsALfcBlBUhstyEMx53Wo',
+    yandex: 'cc6ee10a7e894223',
+  },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='ru' className={montserrat.className}>
       <head>
+        <meta charSet='UTF-8' />
         <link rel='icon' href='/favicon.ico' sizes='any' />
         <link
           rel='apple-touch-icon'

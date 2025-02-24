@@ -1,88 +1,82 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { ICONS } from '@/components/shared/icon'
 import { CONTACT_METHODS, SOCIAL_LINKS } from '../constants'
 
 const ContactMethods = () => {
   return (
-    <section className='py-16 md:py-24 bg-zinc-900'>
-      <div className='container mx-auto px-4'>
-        <div className='text-center mb-16'>
-          <motion.h2
+    <section className='py-12'>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className='text-center mb-12'
+      >
+        <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
+          Свяжитесь с <span className='text-[#FFD700]'>нами</span>
+        </h2>
+        <p className='text-gray-400 max-w-2xl mx-auto'>
+          Выберите удобный способ связи. Мы всегда на связи и готовы ответить на ваши вопросы
+        </p>
+      </motion.div>
+
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
+        {CONTACT_METHODS.map((method, index) => (
+          <motion.div
+            key={method.title}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className='text-3xl md:text-4xl font-bold text-white mb-4'
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className='group'
           >
-            Как с нами <span className='text-[#FFD700]'>связаться</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className='text-gray-400 max-w-2xl mx-auto'
-          >
-            Выберите удобный для вас способ связи. Мы всегда на связи и готовы ответить на ваши
-            вопросы
-          </motion.p>
-        </div>
-
-        {/* Методы связи */}
-        <div className='grid md:grid-cols-3 gap-8 mb-16'>
-          {CONTACT_METHODS.map((method, index) => (
-            <motion.a
-              key={index}
-              href={method.link}
-              target={method.icon === 'whatsapp' ? '_blank' : undefined}
-              rel={method.icon === 'whatsapp' ? 'noopener noreferrer' : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className='bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all group'
-            >
-              <div className='w-16 h-16 bg-[#FFD700]/10 rounded-lg flex items-center justify-center text-[#FFD700] mb-4 group-hover:bg-[#FFD700]/20 transition-colors'>
-                {ICONS[method.icon]}
-              </div>
-              <h3 className='text-xl font-semibold text-white mb-2'>{method.title}</h3>
-              <p className='text-gray-400 mb-4'>{method.description}</p>
-              <span className='inline-flex items-center text-[#FFD700] font-medium group-hover:gap-2 transition-all'>
-                {method.action}
-                <svg
-                  className='w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M9 5l7 7-7 7'
-                  />
-                </svg>
-              </span>
-            </motion.a>
-          ))}
-        </div>
-
-        {/* Социальные сети */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className='flex justify-center gap-6'
-        >
-          {SOCIAL_LINKS.map((social, index) => (
             <a
-              key={index}
-              href={social.url}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='w-12 h-12 bg-zinc-800/50 rounded-full flex items-center justify-center text-gray-400 hover:text-[#FFD700] hover:bg-zinc-700/50 transition-colors'
+              href={method.link}
+              className='block bg-zinc-800/50 backdrop-blur-sm rounded-2xl p-6 border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300'
             >
-              {ICONS[social.icon]}
+              {/* Иконка и время ответа */}
+              <div className='flex items-start justify-between mb-4'>
+                <div className='w-12 h-12 bg-[#FFD700]/10 rounded-xl flex items-center justify-center text-[#FFD700] group-hover:scale-110 transition-transform'>
+                  {ICONS[method.icon]}
+                </div>
+                <div className='text-right'>
+                  <div className='text-sm text-[#FFD700]'>Время ответа</div>
+                  <div className='text-gray-400'>{method.responseTime}</div>
+                </div>
+              </div>
+
+              {/* Основная информация */}
+              <h3 className='text-xl font-semibold text-white mb-2 group-hover:text-[#FFD700] transition-colors'>
+                {method.title}
+              </h3>
+              <p className='text-gray-400 mb-4'>{method.description}</p>
+
+              {/* Преимущества */}
+              <div className='space-y-2 mb-6'>
+                {method.benefits.map((benefit, i) => (
+                  <div key={i} className='flex items-center text-sm text-gray-400'>
+                    <div className='text-[#FFD700] mr-2'>{ICONS.check}</div>
+                    {benefit}
+                  </div>
+                ))}
+              </div>
+
+              {/* Время работы и кнопка действия */}
+              <div className='flex items-center justify-between'>
+                <div className='text-sm text-gray-400'>
+                  <div className='flex items-center'>
+                    {ICONS.clock}
+                    <span className='ml-1'>{method.availableHours}</span>
+                  </div>
+                </div>
+                <div className='flex items-center text-[#FFD700] group-hover:translate-x-2 transition-transform'>
+                  <span className='mr-2'>{method.action}</span>
+                  {ICONS.arrow}
+                </div>
+              </div>
             </a>
-          ))}
-        </motion.div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )
