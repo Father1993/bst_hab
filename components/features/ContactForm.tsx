@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { COMPANY_INFO, PRODUCT_TYPES } from '../shared/constants'
 import { ICONS } from '../shared/icon'
-import { SOCIAL_LINKS } from '../sections/contacts/constants'
 
 type FormData = {
   name: string
@@ -411,26 +410,6 @@ const ContactForm = () => {
           <span className='ml-3 text-white'>{COMPANY_INFO.address}</span>
         </div>
       </div>
-
-      {/* Социальные сети */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        className='flex justify-center gap-6'
-      >
-        {SOCIAL_LINKS.map((social, _) => (
-          <a
-            key={social.url}
-            href={social.url}
-            target='_blank'
-            rel='noopener noreferrer'
-            className='w-12 h-12 bg-zinc-800/50 rounded-full flex items-center justify-center text-gray-400 hover:text-[#FFD700] hover:bg-zinc-700/50 transition-colors'
-          >
-            {ICONS[social.icon]}
-          </a>
-        ))}
-      </motion.div>
     </div>
   )
 }
