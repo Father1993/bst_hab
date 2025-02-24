@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# company info
+company-info.txt
+
 # next.js
 /.next/
 /out/

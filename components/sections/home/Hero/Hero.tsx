@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Loader from '@/components/ui/Loader'
+import { COMPANY_FEATURES, COMPANY_STATS } from '@/components/shared/constants'
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false)
@@ -13,12 +14,7 @@ const Hero = () => {
     setIsMounted(true)
   }, [])
 
-  const advantages = [
-    '10+ лет опыта',
-    'Собственное производство',
-    'Быстрая доставка',
-    'Гарантия качества',
-  ]
+  const advantages = COMPANY_FEATURES.map(feature => feature.title)
 
   if (!isMounted) {
     return <Loader />
@@ -102,7 +98,7 @@ const Hero = () => {
                 className='group relative px-8 py-4 border-2 border-[#FFD700] text-[#FFD700] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.2)]'
               >
                 <div className='absolute inset-0 bg-[#FFD700] transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500' />
-                <span className='relative font-bold text-lg group-hover:text-black transition-colors duration-300'>
+                <span className='relative font-bold text-lg group-hover:text-white transition-colors duration-300'>
                   Арендовать
                 </span>
               </Link>
@@ -126,7 +122,9 @@ const Hero = () => {
               <div className='absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-sm rounded-xl p-4 border border-[#FFD700]/20'>
                 <div className='grid grid-cols-3 gap-4 text-center'>
                   <div>
-                    <div className='text-[#FFD700] text-2xl font-bold'>500+</div>
+                    <div className='text-[#FFD700] text-2xl font-bold'>
+                      {COMPANY_STATS.projectsCount}
+                    </div>
                     <div className='text-gray-300 text-sm'>Проектов</div>
                   </div>
                   <div>
@@ -134,7 +132,7 @@ const Hero = () => {
                     <div className='text-gray-300 text-sm'>Довольных клиентов</div>
                   </div>
                   <div>
-                    <div className='text-[#FFD700] text-2xl font-bold'>24/7</div>
+                    <div className='text-[#FFD700] text-2xl font-bold'>{COMPANY_STATS.support}</div>
                     <div className='text-gray-300 text-sm'>Поддержка</div>
                   </div>
                 </div>
