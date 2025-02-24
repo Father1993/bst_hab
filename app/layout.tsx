@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import RootLayout from '@/components/layout/RootLayout'
+import YandexMetrika from '@/components/shared/YandexMetrika'
 import './globalStyles/normalize.css'
 import './globalStyles/globals.css'
 
@@ -127,6 +128,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
       </head>
       <body>
+        <YandexMetrika />
         <RootLayout>{children}</RootLayout>
       </body>
     </html>
