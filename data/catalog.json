@@ -1,0 +1,239 @@
+{
+  "categories": [
+    {
+      "id": "residential",
+      "name": "Жилые модули",
+      "description": "Комфортные жилые помещения для временного проживания",
+      "items": [
+        {
+          "id": "basic-living",
+          "name": "Бытовой модуль «Стандарт»",
+          "slug": "bytovoj-modul-standart",
+          "description": "Комфортабельный жилой модуль с оптимальной планировкой для проживания рабочего персонала",
+          "features": [
+            "Усиленный металлический каркас",
+            "Качественная теплоизоляция",
+            "Надежная электропроводка",
+            "Противопожарная обработка"
+          ],
+          "specifications": {
+            "capacity": "до 6 чел.",
+            "dimensions": {
+              "length": 6250,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 15.25,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": ["2 спальных отсека", "Система освещения", "Розетки 220В", "Обогреватель"],
+          "images": {
+            "main": "/img/catalog/1.webp",
+            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
+            "blueprint": "/img/catalog/1.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 15000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 350000,
+              "currency": "RUB"
+            }
+          },
+          "isPopular": true,
+          "inStock": true
+        },
+        {
+          "id": "premium-living",
+          "name": "Бытовой модуль «Комфорт»",
+          "slug": "bytovoj-modul-komfort",
+          "description": "Улучшенный жилой модуль с повышенным уровнем комфорта и дополнительными удобствами",
+          "features": ["Усиленная теплоизоляция", "Кондиционер", "Санузел", "Мини-кухня"],
+          "specifications": {
+            "capacity": "до 4 чел.",
+            "dimensions": {
+              "length": 6250,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 15.25,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": ["Душевая кабина", "Кухонный уголок", "Шкафы для одежды", "Кондиционер"],
+          "images": {
+            "main": "/img/catalog/1.webp",
+            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
+            "blueprint": "/img/catalog/1.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 25000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 550000,
+              "currency": "RUB"
+            }
+          },
+          "isPopular": true,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "name": "Офисные модули",
+      "description": "Современные офисные помещения для комфортной работы",
+      "items": [
+        {
+          "id": "office-standard",
+          "name": "Офисный модуль «Бизнес»",
+          "slug": "ofisnyj-modul-biznes",
+          "description": "Профессиональное рабочее пространство с эргономичной планировкой",
+          "features": [
+            "Современное освещение",
+            "Качественная вентиляция",
+            "Интернет-подключение",
+            "Эргономичная мебель"
+          ],
+          "specifications": {
+            "capacity": "до 6 чел.",
+            "dimensions": {
+              "length": 6250,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 15.25,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "6 рабочих мест",
+            "Переговорная зона",
+            "Шкафы для документов",
+            "Кондиционер"
+          ],
+          "images": {
+            "main": "/img/catalog/1.webp",
+            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
+            "blueprint": "/img/catalog/1.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 20000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 450000,
+              "currency": "RUB"
+            }
+          },
+          "isPopular": true,
+          "inStock": true
+        }
+      ]
+    },
+    {
+      "id": "construction",
+      "name": "Строительные модули",
+      "description": "Надежные модули для строительных площадок",
+      "items": [
+        {
+          "id": "construction-standard",
+          "name": "Строительный модуль «Прораб»",
+          "slug": "stroitelnyj-modul-prorab",
+          "description": "Многофункциональный модуль для организации работы на строительной площадке",
+          "features": ["Прочная конструкция", "Усиленный пол", "Защита от влаги", "Надежная дверь"],
+          "specifications": {
+            "capacity": "до 6 чел.",
+            "dimensions": {
+              "length": 6250,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 15.25,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": ["Рабочий стол", "Шкафы для инструментов", "Электрощит", "Обогреватель"],
+          "images": {
+            "main": "/img/catalog/1.webp",
+            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
+            "blueprint": "/img/catalog/1.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 18000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 400000,
+              "currency": "RUB"
+            }
+          },
+          "isPopular": true,
+          "inStock": true
+        }
+      ]
+    }
+  ],
+  "filters": {
+    "purposes": ["Для проживания", "Для офиса", "Для строительства", "Для охраны", "Для склада"],
+    "features": ["С санузлом", "С кондиционером", "С мебелью", "С отоплением", "С усиленным полом"],
+    "capacity": ["2-4 человека", "4-6 человек", "6-8 человек", "8+ человек"]
+  },
+  "sorting": [
+    {
+      "id": "price-asc",
+      "name": "По цене (возрастание)"
+    },
+    {
+      "id": "price-desc",
+      "name": "По цене (убывание)"
+    },
+    {
+      "id": "popular",
+      "name": "По популярности"
+    },
+    {
+      "id": "area",
+      "name": "По площади"
+    }
+  ]
+}
