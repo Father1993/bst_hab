@@ -3,12 +3,27 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Product } from '@/types/catalog'
+import catalogData from '@/data/catalog.json'
 
 interface ProductCardProps {
   product: Product
+  viewType?: 'catalog' | 'rent'
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, viewType = 'catalog' }) => {
+  // Определяем URL в зависимости от типа страницы
+  const productUrl = viewType === 'rent' ? `/rent/${product.slug}` : `/catalog/${product.slug}`
+
+  // Безопасная проверка доступности
+  const isAvailableForCurrentView =
+    viewType === 'rent'
+      ? (product.availability?.forRent ?? true)
+      : (product.availability?.forSale ?? true)
+
+  if (!isAvailableForCurrentView) {
+    return null
+  }
+
   return (
     <div className='h-full flex flex-col bg-black/90 rounded-xl overflow-hidden hover:shadow-[0_0_30px_rgba(255,215,0,0.15)] transition-all duration-300'>
       {/* Изображение с меткой популярности */}
@@ -88,13 +103,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className='mt-auto space-y-4'>
           <div className='flex justify-between items-end'>
             <div>
-              <p className='text-sm text-gray-400'>Аренда от</p>
+              <p className='text-sm text-gray-400'>
+                {viewType === 'rent' ? 'Аренда от' : 'Стоимость'}
+              </p>
               <p className='text-2xl font-bold text-[#FFD700]'>
-                {product.pricing.rent.monthly.toLocaleString()} ₽
-                <span className='text-sm font-normal text-gray-400'>/мес</span>
+                {viewType === 'rent'
+                  ? `${product.pricing.rent.monthly.toLocaleString()} ₽`
+                  : `${product.pricing.sale.price.toLocaleString()} ₽`}
+                {viewType === 'rent' && (
+                  <span className='text-sm font-normal text-gray-400'>/мес</span>
+                )}
               </p>
             </div>
-            {product.inStock ? (
+            {product.availability?.inStock ? (
               <span className='text-green-400 text-sm'>В наличии</span>
             ) : (
               <span className='text-red-400 text-sm'>Под заказ</span>
@@ -103,18 +124,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <div className='grid grid-cols-2 gap-3'>
             <Link
-              href={`/catalog/${product.slug}`}
+              href={productUrl}
               className='bg-transparent border border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black transition-colors duration-300 text-center py-2 rounded-lg text-sm font-medium'
             >
               Подробнее
             </Link>
             <button
               onClick={() =>
-                (window.location.href = `https://wa.me/+79141234567?text=Здравствуйте! Интересует ${product.name}`)
+                (window.location.href = `https://wa.me/${catalogData.metadata.contacts.whatsapp}?text=Здравствуйте! Интересует ${product.name}`)
               }
               className='bg-[#FFD700] text-black hover:bg-[#FFD700]/90 transition-colors duration-300 py-2 rounded-lg text-sm font-medium'
             >
-              Арендовать
+              {viewType === 'rent' ? 'Арендовать' : 'Купить'}
             </button>
           </div>
         </div>
