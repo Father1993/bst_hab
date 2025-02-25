@@ -39,14 +39,24 @@ export interface Product {
       currency: string
     }
   }
+  availability: {
+    forRent: boolean
+    forSale: boolean
+    inStock: boolean
+  }
   isPopular: boolean
-  inStock: boolean
+  seo: {
+    title: string
+    description: string
+    keywords: string[]
+  }
 }
 
 export interface Category {
   id: string
   name: string
   description: string
+  slug: string
   items: Product[]
 }
 
@@ -61,10 +71,21 @@ export interface SortOption {
   name: string
 }
 
+export interface CatalogMetadata {
+  lastUpdated: string
+  version: string
+  contacts: {
+    phone: string
+    whatsapp: string
+    email: string
+  }
+}
+
 export interface CatalogData {
   categories: Category[]
   filters: CatalogFilters
   sorting: SortOption[]
+  metadata: CatalogMetadata
 }
 
 export interface FilterState {

@@ -4,6 +4,7 @@
       "id": "residential",
       "name": "Жилые модули",
       "description": "Комфортные жилые помещения для временного проживания",
+      "slug": "zhilye-moduli",
       "items": [
         {
           "id": "basic-living",
@@ -46,8 +47,17 @@
               "currency": "RUB"
             }
           },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
           "isPopular": true,
-          "inStock": true
+          "seo": {
+            "title": "Бытовой модуль «Стандарт» - Аренда в Хабаровске",
+            "description": "Комфортабельный жилой модуль для проживания рабочего персонала. Оптимальная планировка, все необходимые удобства.",
+            "keywords": ["бытовка стандарт", "жилой модуль аренда", "бытовка для рабочих"]
+          }
         },
         {
           "id": "premium-living",
@@ -90,8 +100,17 @@
               "currency": "RUB"
             }
           },
+          "availability": {
+            "forRent": true,
+            "forSale": false,
+            "inStock": true
+          },
           "isPopular": true,
-          "inStock": true
+          "seo": {
+            "title": "Бытовой модуль «Комфорт» - Аренда в Хабаровске",
+            "description": "Улучшенный жилой модуль с повышенным уровнем комфорта. Душевая кабина, кухонный уголок, кондиционер.",
+            "keywords": ["бытовка комфорт", "жилой модуль с санузлом", "бытовка с душем"]
+          }
         }
       ]
     },
@@ -99,6 +118,7 @@
       "id": "office",
       "name": "Офисные модули",
       "description": "Современные офисные помещения для комфортной работы",
+      "slug": "ofisnye-moduli",
       "items": [
         {
           "id": "office-standard",
@@ -146,8 +166,17 @@
               "currency": "RUB"
             }
           },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
           "isPopular": true,
-          "inStock": true
+          "seo": {
+            "title": "Офисный модуль «Бизнес» - Аренда в Хабаровске",
+            "description": "Профессиональное рабочее пространство для 6-8 человек. Кондиционер, мебель, переговорная зона.",
+            "keywords": ["офисный модуль", "модульный офис", "аренда офиса"]
+          }
         }
       ]
     },
@@ -155,6 +184,7 @@
       "id": "construction",
       "name": "Строительные модули",
       "description": "Надежные модули для строительных площадок",
+      "slug": "stroitelnye-moduli",
       "items": [
         {
           "id": "construction-standard",
@@ -197,8 +227,17 @@
               "currency": "RUB"
             }
           },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
           "isPopular": true,
-          "inStock": true
+          "seo": {
+            "title": "Строительный модуль «Прораб» - Аренда в Хабаровске",
+            "description": "Многофункциональный модуль для организации работы на строительной площадке. Усиленный пол, отопление, рабочая зона.",
+            "keywords": ["строительный модуль", "бытовка для прораба", "модуль для стройки"]
+          }
         }
       ]
     }
@@ -225,5 +264,14 @@
       "id": "area",
       "name": "По площади"
     }
-  ]
+  ],
+  "metadata": {
+    "lastUpdated": "2024-03-20",
+    "version": "1.0.0",
+    "contacts": {
+      "phone": "+79141234567",
+      "whatsapp": "+79141234567",
+      "email": "info@bst-hab.ru"
+    }
+  }
 }

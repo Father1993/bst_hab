@@ -139,7 +139,7 @@ const RentPage = () => {
               >
                 <div className='relative h-[200px]'>
                   <Image src={item.images.main} alt={item.name} fill className='object-cover' />
-                  {item.inStock && (
+                  {item.availability?.inStock && (
                     <span className='absolute top-4 right-4 bg-green-500 text-white text-sm px-3 py-1 rounded-full'>
                       В наличии
                     </span>

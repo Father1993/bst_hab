@@ -7,66 +7,6 @@ import { notFound } from 'next/navigation'
 import catalogData from '@/data/catalog.json'
 import ProductPage from '@/components/features/ProductPage/ProductPage'
 
-// Генерация метаданных для конкретной страницы
-export async function generateMetadata({ params }): Promise<Metadata> {
-  const { slug } = await params
-  const product = getProductData(slug)
-
-  if (!product) {
-    return {
-      title: 'Товар не найден | BST HAB',
-      description: 'Запрашиваемый товар не найден',
-    }
-  }
-
-  return {
-    title: `${product.name} - Аренда в Хабаровске | BST HAB`,
-    description:
-      product.description ||
-      'Аренда модульных зданий и строительных конструкций в Хабаровске. Выгодные цены, быстрая доставка, профессиональный монтаж.',
-    keywords: [
-      product.name,
-      'аренда модульных зданий',
-      'бытовки Хабаровск',
-      'аренда бытовок',
-      product.category.name,
-    ],
-    openGraph: {
-      title: `${product.name} - BST HAB`,
-      description: product.description,
-      type: 'website',
-      url: `https://bst-hab.ru/rent/${product.slug}`,
-      siteName: 'BST HAB',
-      locale: 'ru_RU',
-      images: product.images?.[0]
-        ? [
-            {
-              url: product.images[0],
-              width: 1200,
-              height: 630,
-              alt: product.name,
-            },
-          ]
-        : [],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${product.name} - BST HAB`,
-      description: product.description,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-  }
-}
-
 // Функция для получения данных продукта
 function getProductData(slug: string) {
   for (const category of catalogData.categories) {
@@ -82,6 +22,70 @@ function getProductData(slug: string) {
     }
   }
   return null
+}
+
+// Генерация метаданных для конкретной страницы
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { slug } = await params
+  const product = getProductData(slug)
+
+  if (!product) {
+    return {
+      title: 'Товар не найден | BST HAB',
+      description: 'Запрашиваемый товар не найден',
+    }
+  }
+
+  const priceText = product.pricing.rent.monthly
+    ? `от ${product.pricing.rent.monthly.toLocaleString()} ₽/мес`
+    : ''
+
+  return {
+    title: `${product.name} - ${priceText} | BST HAB`,
+    description: `${product.description} ✓ ${product.specifications.area.value} ${
+      product.specifications.area.units
+    } ✓ ${product.specifications.capacity} ✓ ${product.features.join(' ✓ ')}. Аренда в Хабаровске.`,
+    keywords: [
+      product.name,
+      'аренда модульных зданий',
+      'бытовки Хабаровск',
+      'аренда бытовок',
+      product.category.name,
+      ...product.features,
+    ],
+    openGraph: {
+      title: `${product.name} - BST HAB`,
+      description: product.description,
+      type: 'website',
+      url: `https://bst-hab.ru/catalog/${product.slug}`,
+      siteName: 'BST HAB',
+      locale: 'ru_RU',
+      images: [
+        {
+          url: product.images.main,
+          width: 1200,
+          height: 630,
+          alt: product.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${product.name} - BST HAB`,
+      description: product.description,
+      images: [product.images.main],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  }
 }
 
 // Генерация всех возможных путей при сборке
