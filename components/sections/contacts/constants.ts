@@ -9,7 +9,7 @@ export const MAIN_OFFICE: ContactOffice = {
   workHours: 'Пн-Пт: 9:00 - 18:00',
   coordinates: [48.480223, 135.071917], // Координаты Хабаровска
   features: [
-    'Шоурум с образцами продукции',
+    'Демонстрация продукции',
     'Комфортная переговорная',
     'Бесплатная парковка',
     'Удобная транспортная доступность',
@@ -25,7 +25,7 @@ export const CONTACT_METHODS: ContactMethod[] = [
     action: 'Позвонить сейчас',
     link: `tel:${COMPANY_INFO.phone}`,
     responseTime: 'Мгновенно',
-    availableHours: '9:00 - 18:00',
+    availableHours: '9:00 - 19:00',
     benefits: [
       'Быстрое решение вопросов',
       'Профессиональная консультация',
@@ -39,7 +39,7 @@ export const CONTACT_METHODS: ContactMethod[] = [
     action: 'Написать в WhatsApp',
     link: `https://wa.me/${COMPANY_INFO.whatsapp}`,
     responseTime: 'До 15 минут',
-    availableHours: '8:00 - 20:00',
+    availableHours: '9:00 - 19:00',
     benefits: ['Обмен фото и документами', 'История переписки', 'Быстрые ответы'],
   },
   {

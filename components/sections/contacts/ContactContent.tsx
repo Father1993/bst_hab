@@ -7,15 +7,24 @@ import ContactMap from './sections/ContactMap'
 import ContactForm from '@/components/features/ContactForm'
 import { TESTIMONIALS } from './constants'
 import { ICONS } from '@/components/shared/icon'
+import Image from 'next/image'
 
 const ContactContent = () => {
   return (
     <div className='min-h-screen bg-black relative overflow-hidden'>
-      {/* Фоновые элементы */}
-      <div className='absolute inset-0 bg-[radial-gradient(#FFD700_1px,transparent_1px)] [background-size:40px_40px] opacity-5' />
-      <div className='absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-black to-black' />
+      {/* Фоновое изображение */}
+      <div className='absolute inset-0 z-0'>
+        <Image
+          src='/img/catalog/bg-1.webp'
+          alt='Каталог модульных конструкций'
+          fill
+          priority
+          quality={70}
+        />
+        <div className='absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black' />
+      </div>
 
-      <div className='container mx-auto px-4 relative'>
+      <div className='container mx-auto px-4 relative z-10'>
         {/* Заголовок */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

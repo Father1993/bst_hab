@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import Creator from './Creator'
 
 const Footer = () => {
   return (
-    <footer className='bg-black text-white pt-16 pb-8'>
+    <footer className='bg-black text-white pt-16 pb-4'>
       <div className='container mx-auto px-4'>
         {/* Основной контент футера */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12'>
@@ -19,9 +20,8 @@ const Footer = () => {
               />
             </Link>
             <p className='text-gray-400 text-sm'>
-              Производство и аренда модульных конструкций: бытовки, гаражи,
-              строительные модули. Быстрое изготовление по типовым и
-              индивидуальным проектам.
+              Производство и аренда модульных конструкций: бытовки, гаражи, строительные модули.
+              Быстрое изготовление по типовым и индивидуальным проектам.
             </p>
             <div className='flex space-x-4'>
               <a
@@ -116,10 +116,7 @@ const Footer = () => {
             <h3 className='text-[#FFD700] font-semibold mb-6'>Услуги</h3>
             <ul className='space-y-4'>
               <li>
-                <Link
-                  href='/rent'
-                  className='text-gray-400 hover:text-[#FFD700] transition-colors'
-                >
+                <Link href='/rent' className='text-gray-400 hover:text-[#FFD700] transition-colors'>
                   Аренда бытовок
                 </Link>
               </li>
@@ -239,10 +236,10 @@ const Footer = () => {
         </div>
 
         {/* Нижняя часть футера */}
-        <div className='pt-8 border-t border-zinc-800'>
+        <div className='pt-8 border-t border-zinc-800 mb-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <p className='text-gray-400 text-sm'>
-              © {new Date().getFullYear()} BST HAB. Все права защищены.
+              © {new Date().getFullYear()} ООО "БСТ ХАБ". Все права защищены.
             </p>
             <div className='flex space-x-6 md:justify-end'>
               <Link
@@ -252,7 +249,7 @@ const Footer = () => {
                 Политика конфиденциальности
               </Link>
               <Link
-                href='/terms'
+                href='/privacy-policy'
                 className='text-gray-400 text-sm hover:text-[#FFD700] transition-colors'
               >
                 Условия использования
@@ -260,6 +257,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <Creator />
       </div>
     </footer>
   )
