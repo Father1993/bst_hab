@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Filters as FiltersType } from '@/types/catalog'
 
 interface FiltersProps {

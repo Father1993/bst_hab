@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ProductCard } from '@/components/catalog/ProductCard'
 import { Filters } from '@/components/catalog/Filters'
-import { CatalogData, Product } from '@/types/catalog'
+import { CatalogData } from '@/types/catalog'
 
 interface CatalogClientProps {
   catalogData: CatalogData
