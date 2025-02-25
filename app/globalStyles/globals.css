@@ -6,24 +6,14 @@
   /* Основные цвета */
   --primary: #ffd700;
   --primary-hover: #f4c800;
-  --background: #ffffff;
-  --foreground: #000000;
+  --background: #000000;
+  --foreground: #ffffff;
   --accent: #ffd700;
 
   /* Дополнительные цвета */
-  --text-primary: #3b3b3b;
-  --text-secondary: #666666;
-  --border: #e5e7eb;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-    --text-primary: #ffffff;
-    --text-secondary: #9ca3af;
-    --border: #374151;
-  }
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --border: #374151;
 }
 
 /* Базовые стили */
