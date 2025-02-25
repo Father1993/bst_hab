@@ -1,10 +1,23 @@
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const DeliveryHero = () => {
   return (
     <section className='py-16 md:py-24 bg-black relative overflow-hidden'>
-      <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px] opacity-10' />
-      <div className='container mx-auto px-4 relative'>
+      {/* Фоновое изображение */}
+      <div className='absolute inset-0 z-0'>
+        <Image
+          src='/img/catalog/bg-3.webp'
+          alt='Каталог модульных конструкций'
+          fill
+          className='object-cover'
+          priority
+          quality={70}
+        />
+        <div className='absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black' />
+      </div>
+
+      <div className='container mx-auto px-4 relative z-10'>
         <div className='max-w-4xl mx-auto text-center'>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

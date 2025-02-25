@@ -1,7 +1,11 @@
-import { ReactNode } from 'react'
+'use client'
+
+import { ReactNode, useEffect, useState } from 'react'
 import { Metadata } from 'next'
 import Header from './Header'
 import Footer from './Footer'
+import CookieAlert from '@/components/features/CookieAlert/CookieAlert'
+import { Toaster } from 'react-hot-toast'
 
 // Метаданные по умолчанию
 export const metadata: Metadata = {
@@ -57,13 +61,24 @@ interface RootLayoutProps {
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {
+  const [cookieAlertOpen, setCookieAlertOpen] = useState(false)
+
+  useEffect(() => {
+    const cookie = document.cookie.match(/^(.*;)?\s*CookieBy\s*=\s*[^;]+(.*)?$/)
+    if (!cookie) {
+      setCookieAlertOpen(true)
+    }
+  }, [])
+
   return (
     <>
       <Header />
-      <main className='min-h-screen pt-[70px] lg:pt-[70px] md:pt-[70px] sm:pt-[72px] container mx-auto px-4'>
+      <main className='pt-[70px] lg:pt-[70px] md:pt-[70px] sm:pt-[72px] container mx-auto px-4'>
         {children}
       </main>
       <Footer />
+      <Toaster position='bottom-center' />
+      {cookieAlertOpen && <CookieAlert setCookieAlertOpen={setCookieAlertOpen} />}
     </>
   )
 }

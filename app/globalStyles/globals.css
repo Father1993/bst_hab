@@ -119,3 +119,40 @@ html {
     @apply text-base md:text-lg;
   }
 }
+
+/* Cookie Alert */
+.cookie-popup__container {
+  @apply fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-t border-[#FFD700]/20 p-4 md:p-6;
+}
+
+.cookie-popup__text {
+  @apply text-sm text-gray-400 mb-4 md:mb-0;
+}
+
+.cookie-popup__close {
+  @apply absolute top-4 right-4 w-6 h-6 text-gray-400 hover:text-white transition-colors;
+}
+
+.cookie-popup__close::before,
+.cookie-popup__close::after {
+  content: '';
+  @apply absolute top-1/2 left-0 w-full h-0.5 bg-current transform;
+}
+
+.cookie-popup__close::before {
+  @apply -rotate-45;
+}
+
+.cookie-popup__close::after {
+  @apply rotate-45;
+}
+
+.cookie-popup__accept {
+  @apply bg-[#FFD700] text-black px-6 py-2 rounded-lg hover:bg-[#FFD700]/90 transition-colors font-semibold text-sm;
+}
+
+@media (min-width: 768px) {
+  .cookie-popup__container {
+    @apply flex items-center justify-between;
+  }
+}

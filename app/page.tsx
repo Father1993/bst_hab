@@ -29,6 +29,50 @@ export const metadata: Metadata = {
     'аренда модульных зданий',
     'строительные модули',
   ],
+  openGraph: {
+    title: 'BST HAB - Лидер в производстве модульных конструкций',
+    description:
+      'Производство и аренда бытовок, модульных гаражей и строительных конструкций в Хабаровске с гарантией качества',
+    type: 'website',
+    url: 'https://bst-hab.ru',
+    images: [
+      {
+        url: '/img/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'BST HAB - Модульные конструкции в Хабаровске',
+      },
+    ],
+    locale: 'ru_RU',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BST HAB - Модульные конструкции в Хабаровске',
+    description: 'Производство и аренда бытовок, модульных гаражей и строительных конструкций',
+    images: '/img/og-image.jpg',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'verification_token',
+    yandex: 'verification_token',
+  },
+  alternates: {
+    canonical: 'https://bst-hab.ru',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export default function Home() {

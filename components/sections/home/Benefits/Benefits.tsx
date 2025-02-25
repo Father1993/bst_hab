@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { PRODUCTION_BENEFITS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
+import Image from 'next/image'
 
 const Benefits = () => {
   const ref = useRef(null)
@@ -11,10 +12,21 @@ const Benefits = () => {
 
   return (
     <section className='py-16 md:py-24 bg-gradient-to-b from-zinc-900 to-black relative overflow-hidden'>
-      <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px] opacity-10' />
+      {/* Фоновое изображение */}
+      <div className='absolute inset-0 z-0'>
+        <Image
+          src='/img/catalog/bg-1.webp'
+          alt='Каталог модульных конструкций'
+          fill
+          className='object-cover'
+          priority
+          quality={70}
+        />
+        <div className='absolute inset-0 bg-gradient-to-b from-black via-black/70 to-black' />
+      </div>
 
-      <div className='container mx-auto px-4'>
-        <div className='text-center mb-16'>
+      <div className='container mx-auto px-4 relative z-10'>
+        <div className='max-w-4xl mx-auto text-center'>
           <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
             Преимущества <span className='text-[#FFD700]'>модульного строительства</span>
           </h2>

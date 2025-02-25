@@ -11,12 +11,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className='bg-black/90 rounded-xl overflow-hidden hover:shadow-[0_0_30px_rgba(255,215,0,0.15)] transition-all duration-300'
-    >
+    <div className='h-full flex flex-col bg-black/90 rounded-xl overflow-hidden hover:shadow-[0_0_30px_rgba(255,215,0,0.15)] transition-all duration-300'>
       {/* Изображение с меткой популярности */}
       <div className='relative aspect-[4/3] group'>
         <Image
@@ -34,15 +29,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Основная информация */}
-      <div className='p-6 border-t border-[#FFD700]/10'>
-        <h3 className='text-xl font-bold text-white mb-2'>{product.name}</h3>
+      <div className='flex flex-col flex-grow p-6 border-t border-[#FFD700]/10'>
+        <h3 className='text-xl font-bold text-white mb-2 line-clamp-2'>{product.name}</h3>
         <p className='text-gray-400 text-sm line-clamp-2 mb-4'>{product.description}</p>
 
         {/* Характеристики */}
         <div className='grid grid-cols-2 gap-4 mb-6'>
           <div className='flex items-center gap-2'>
             <svg
-              className='w-5 h-5 text-[#FFD700]'
+              className='w-5 h-5 text-[#FFD700] shrink-0'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -60,7 +55,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
           <div className='flex items-center gap-2'>
             <svg
-              className='w-5 h-5 text-[#FFD700]'
+              className='w-5 h-5 text-[#FFD700] shrink-0'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -77,7 +72,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Ключевые особенности */}
-        <div className='mb-6'>
+        <div className='mb-6 flex-grow'>
           <div className='flex flex-wrap gap-2'>
             {product.features.slice(0, 3).map((feature, index) => (
               <span
@@ -91,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Цена и кнопки */}
-        <div className='space-y-4'>
+        <div className='mt-auto space-y-4'>
           <div className='flex justify-between items-end'>
             <div>
               <p className='text-sm text-gray-400'>Аренда от</p>
@@ -125,6 +120,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }
