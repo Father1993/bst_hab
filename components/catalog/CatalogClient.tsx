@@ -18,11 +18,14 @@ export const CatalogClient: React.FC<CatalogClientProps> = ({ catalogData }) => 
   // Получаем все продукты из всех категорий
   const allProducts = catalogData.categories.flatMap(category => category.items)
 
-  // Фильтруем продукты по назначению
+  // Фильтруем продукты по назначению и доступности для типа страницы (каталог - продажа)
   const filteredProducts =
     activeFilter === 'all'
-      ? allProducts
-      : allProducts.filter(product => product.features.includes(activeFilter))
+      ? allProducts.filter(product => product.availability?.forSale !== false)
+      : allProducts.filter(
+          product =>
+            product.features.includes(activeFilter) && product.availability?.forSale !== false
+        )
 
   return (
     <main className='min-h-screen bg-black'>
@@ -175,18 +178,32 @@ export const CatalogClient: React.FC<CatalogClientProps> = ({ catalogData }) => 
 
             {/* Сетка с карточками */}
             {filteredProducts.length > 0 ? (
-              <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-12 relative'>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative'>
                 <div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#FFD700,_transparent_70%)] opacity-5 blur-3xl -z-10' />
                 {filteredProducts.map((product, index) => (
                   <motion.div
                     key={product.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className='h-full'
                   >
                     <ProductCard product={product} />
                   </motion.div>
                 ))}
+                {/* Добавляем пустые элементы для выравнивания сетки */}
+                {[...Array(3 - (filteredProducts.length % 3 || 3))].map(
+                  (_, index) =>
+                    filteredProducts.length % 3 !== 0 && (
+                      <div key={`empty-${index}`} className='hidden lg:block' />
+                    )
+                )}
+                {[...Array(2 - (filteredProducts.length % 2 || 2))].map(
+                  (_, index) =>
+                    filteredProducts.length % 2 !== 0 && (
+                      <div key={`empty-md-${index}`} className='hidden md:block lg:hidden' />
+                    )
+                )}
               </div>
             ) : (
               <div className='text-center py-16 bg-black/90 rounded-lg border border-[#FFD700]/20'>
