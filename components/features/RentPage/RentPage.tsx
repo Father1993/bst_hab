@@ -3,12 +3,15 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import catalogData from '@/data/catalog.json'
 import ContactForm from '@/components/features/ContactForm'
+import { ProductCard } from '@/components/catalog/ProductCard'
 
 const RentPage = () => {
   const [activeCategory, setActiveCategory] = useState(catalogData.categories[0])
+
+  // Фильтруем товары в выбранной категории по доступности для аренды
+  const filteredItems = activeCategory.items.filter(item => item.availability?.forRent !== false)
 
   return (
     <main className='min-h-screen bg-black'>
@@ -128,58 +131,31 @@ const RentPage = () => {
           </div>
 
           {/* Товары выбранной категории */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {activeCategory.items.map(item => (
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className='bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800'
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className='h-full'
               >
-                <div className='relative h-[200px]'>
-                  <Image src={item.images.main} alt={item.name} fill className='object-cover' />
-                  {item.availability?.inStock && (
-                    <span className='absolute top-4 right-4 bg-green-500 text-white text-sm px-3 py-1 rounded-full'>
-                      В наличии
-                    </span>
-                  )}
-                </div>
-                <div className='p-6'>
-                  <h3 className='text-xl font-bold text-white mb-2'>{item.name}</h3>
-                  <p className='text-zinc-400 text-sm mb-4'>{item.description}</p>
-                  <div className='flex flex-wrap gap-2 mb-4'>
-                    {item.features.map(feature => (
-                      <span
-                        key={feature}
-                        className='text-xs bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full'
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  <div className='flex items-center justify-between'>
-                    <div>
-                      <p className='text-sm text-zinc-400'>Стоимость аренды:</p>
-                      <p className='text-xl font-bold text-white'>
-                        {item.pricing.rent.monthly.toLocaleString()} ₽/мес
-                      </p>
-                    </div>
-                    <Link href={`/rent/${item.slug}`}>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className='px-4 py-2 bg-gradient-to-r from-orange-500 to-yellow-500 
-                        text-white rounded-lg font-medium transition-all duration-300
-                        hover:shadow-orange-500/20'
-                      >
-                        Подробнее
-                      </motion.button>
-                    </Link>
-                  </div>
-                </div>
+                <ProductCard product={item} viewType='rent' />
               </motion.div>
             ))}
+            {/* Добавляем пустые элементы для выравнивания сетки */}
+            {[...Array(3 - (filteredItems.length % 3 || 3))].map(
+              (_, index) =>
+                filteredItems.length % 3 !== 0 && (
+                  <div key={`empty-${index}`} className='hidden lg:block' />
+                )
+            )}
+            {[...Array(2 - (filteredItems.length % 2 || 2))].map(
+              (_, index) =>
+                filteredItems.length % 2 !== 0 && (
+                  <div key={`empty-md-${index}`} className='hidden md:block lg:hidden' />
+                )
+            )}
           </div>
         </div>
       </section>

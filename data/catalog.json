@@ -32,9 +32,13 @@
           },
           "includes": ["2 спальных отсека", "Система освещения", "Розетки 220В", "Обогреватель"],
           "images": {
-            "main": "/img/catalog/1.webp",
-            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
-            "blueprint": "/img/catalog/1.webp"
+            "main": "/img/catalog/new/dom.webp",
+            "gallery": [
+              "/img/catalog/new/dom.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom2.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
           },
           "pricing": {
             "rent": {
@@ -85,9 +89,13 @@
           },
           "includes": ["Душевая кабина", "Кухонный уголок", "Шкафы для одежды", "Кондиционер"],
           "images": {
-            "main": "/img/catalog/1.webp",
-            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
-            "blueprint": "/img/catalog/1.webp"
+            "main": "/img/catalog/new/dom3.webp",
+            "gallery": [
+              "/img/catalog/new/dom3.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom4.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
           },
           "pricing": {
             "rent": {
@@ -110,6 +118,146 @@
             "title": "Бытовой модуль «Комфорт» - Аренда в Хабаровске",
             "description": "Улучшенный жилой модуль с повышенным уровнем комфорта. Душевая кабина, кухонный уголок, кондиционер.",
             "keywords": ["бытовка комфорт", "жилой модуль с санузлом", "бытовка с душем"]
+          }
+        },
+        {
+          "id": "premium-home",
+          "name": "Модульный дом «Премиум»",
+          "slug": "modulnyj-dom-premium",
+          "description": "Просторный модульный дом с высококачественной отделкой и всеми удобствами для комфортного проживания",
+          "features": [
+            "Для проживания",
+            "С санузлом",
+            "С мебелью",
+            "С кондиционером",
+            "4-6 человек"
+          ],
+          "specifications": {
+            "capacity": "4-6 человек",
+            "dimensions": {
+              "length": 9200,
+              "width": 5000,
+              "height": 2800,
+              "units": "мм"
+            },
+            "area": {
+              "value": 46,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "Раздельные спальни",
+            "Полностью оборудованная кухня",
+            "Душевая и санузел",
+            "Система кондиционирования"
+          ],
+          "images": {
+            "main": "/img/catalog/new/dom5.webp",
+            "gallery": [
+              "/img/catalog/new/dom5.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom4.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 45000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 980000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
+          "isPopular": true,
+          "seo": {
+            "title": "Модульный дом «Премиум» - Аренда и продажа в Хабаровске",
+            "description": "Просторный модульный дом с высококачественной отделкой. Идеальное решение для комфортного проживания.",
+            "keywords": [
+              "модульный дом",
+              "модульное жилье",
+              "бытовка премиум класса",
+              "аренда дома"
+            ]
+          }
+        },
+        {
+          "id": "two-story-module",
+          "name": "Двухэтажный модуль «Дуплекс»",
+          "slug": "dvuhetazhnyj-modul-dupleks",
+          "description": "Инновационное двухэтажное модульное решение, созданное из двух 20-футовых контейнеров для максимальной вместимости",
+          "features": ["Для проживания", "Двухэтажный", "С санузлом", "С мебелью", "8+ человек"],
+          "specifications": {
+            "capacity": "8-12 человек",
+            "dimensions": {
+              "length": 6250,
+              "width": 4880,
+              "height": 5400,
+              "units": "мм"
+            },
+            "area": {
+              "value": 60.5,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "4 спальных отсека",
+            "2 санузла",
+            "Общая кухня",
+            "Лестничный марш",
+            "Система климат-контроля"
+          ],
+          "images": {
+            "main": "/img/catalog/new/dom-2-etaja.webp",
+            "gallery": [
+              "/img/catalog/new/dom-2-etaja.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 65000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 1450000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": false
+          },
+          "isPopular": true,
+          "seo": {
+            "title": "Двухэтажный модуль «Дуплекс» - Инновационное решение",
+            "description": "Двухэтажный модульный комплекс из контейнеров для размещения большого количества людей. Комфорт и функциональность.",
+            "keywords": [
+              "двухэтажный модуль",
+              "модульный дом контейнер",
+              "модульный дуплекс",
+              "двухэтажная бытовка"
+            ]
           }
         }
       ]
@@ -151,9 +299,13 @@
             "Кондиционер"
           ],
           "images": {
-            "main": "/img/catalog/1.webp",
-            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
-            "blueprint": "/img/catalog/1.webp"
+            "main": "/img/catalog/new/dom2.webp",
+            "gallery": [
+              "/img/catalog/new/dom2.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
           },
           "pricing": {
             "rent": {
@@ -176,6 +328,69 @@
             "title": "Офисный модуль «Бизнес» - Аренда в Хабаровске",
             "description": "Профессиональное рабочее пространство для 6-8 человек. Кондиционер, мебель, переговорная зона.",
             "keywords": ["офисный модуль", "модульный офис", "аренда офиса"]
+          }
+        },
+        {
+          "id": "office-premium",
+          "name": "Офисный модуль «VIP»",
+          "slug": "ofisnyj-modul-vip",
+          "description": "Премиальный офисный модуль с дизайнерской отделкой и повышенным комфортом для руководителей",
+          "features": ["Для офиса", "С кондиционером", "С мебелью", "С санузлом", "2-4 человека"],
+          "specifications": {
+            "capacity": "2-4 человека",
+            "dimensions": {
+              "length": 6250,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 15.25,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "Рабочий кабинет директора",
+            "Зона отдыха",
+            "Мини-кухня",
+            "Отдельный санузел",
+            "Система климат-контроля"
+          ],
+          "images": {
+            "main": "/img/catalog/new/dom4.webp",
+            "gallery": [
+              "/img/catalog/new/dom4.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom5.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 35000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 750000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": false
+          },
+          "isPopular": false,
+          "seo": {
+            "title": "Офисный модуль «VIP» - Премиальное решение для руководителей",
+            "description": "Премиальный офисный модуль с дизайнерской отделкой. Идеальное решение для руководящего состава.",
+            "keywords": ["офис премиум", "vip офис", "офис для руководителя", "модульный кабинет"]
           }
         }
       ]
@@ -212,9 +427,13 @@
           },
           "includes": ["Рабочий стол", "Шкафы для инструментов", "Электрощит", "Обогреватель"],
           "images": {
-            "main": "/img/catalog/1.webp",
-            "gallery": ["/img/catalog/1.webp", "/img/catalog/1.webp", "/img/catalog/1.webp"],
-            "blueprint": "/img/catalog/1.webp"
+            "main": "/img/catalog/new/dom.webp",
+            "gallery": [
+              "/img/catalog/new/dom.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom3.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
           },
           "pricing": {
             "rent": {
@@ -238,14 +457,365 @@
             "description": "Многофункциональный модуль для организации работы на строительной площадке. Усиленный пол, отопление, рабочая зона.",
             "keywords": ["строительный модуль", "бытовка для прораба", "модуль для стройки"]
           }
+        },
+        {
+          "id": "construction-workers",
+          "name": "Бытовка для рабочих «Бригада»",
+          "slug": "bytovka-dlya-rabochih-brigada",
+          "description": "Просторный модуль для размещения строительной бригады с местами для отдыха и приема пищи",
+          "features": ["Для строительства", "С отоплением", "С мебелью", "8+ человек"],
+          "specifications": {
+            "capacity": "8-12 человек",
+            "dimensions": {
+              "length": 9000,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 22,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "Спальные места",
+            "Столовая зона",
+            "Шкафы для одежды",
+            "Эффективное отопление"
+          ],
+          "images": {
+            "main": "/img/catalog/new/dom2.webp",
+            "gallery": [
+              "/img/catalog/new/dom2.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom3.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 22000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 480000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": false,
+            "inStock": true
+          },
+          "isPopular": false,
+          "seo": {
+            "title": "Бытовка для рабочих «Бригада» - Вместительное решение",
+            "description": "Просторный модуль для размещения строительной бригады. Комфортные условия для отдыха и работы.",
+            "keywords": [
+              "бытовка для бригады",
+              "модуль для рабочих",
+              "строительная бытовка",
+              "вместительная бытовка"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "garage",
+      "name": "Модульные гаражи",
+      "description": "Функциональные и надежные гаражные конструкции",
+      "slug": "modulnye-garazhi",
+      "items": [
+        {
+          "id": "garage-standard",
+          "name": "Модульный гараж «Стандарт»",
+          "slug": "modulnyj-garazh-standart",
+          "description": "Надежный гараж для хранения автомобиля и инструментов с достаточным пространством для обслуживания техники",
+          "features": ["Для хранения", "С усиленным полом", "Для 1 авто"],
+          "specifications": {
+            "capacity": "1 автомобиль",
+            "dimensions": {
+              "length": 6250,
+              "width": 3000,
+              "height": 2800,
+              "units": "мм"
+            },
+            "area": {
+              "value": 18.75,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": ["Усиленный пол", "Рольставни", "Электрика", "Стеллажи для инструментов"],
+          "images": {
+            "main": "/img/catalog/new/garage1.webp",
+            "gallery": ["/img/catalog/new/garage1.webp", "/img/catalog/new/garage_schema.webp"],
+            "blueprint": "/img/catalog/new/garage_schema.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 12000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 280000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
+          "isPopular": true,
+          "seo": {
+            "title": "Модульный гараж «Стандарт» - Надежное решение для автомобиля",
+            "description": "Надежный гараж для хранения автомобиля и инструментов. Усиленный пол, электрика, стеллажи.",
+            "keywords": [
+              "модульный гараж",
+              "быстровозводимый гараж",
+              "гараж для авто",
+              "блок-контейнер гараж"
+            ]
+          }
+        },
+        {
+          "id": "garage-triple",
+          "name": "Модульный гараж «Тройной»",
+          "slug": "modulnyj-garazh-trojnoj",
+          "description": "Просторный гаражный комплекс для хранения и обслуживания нескольких транспортных средств с рабочей зоной",
+          "features": ["Для хранения", "С усиленным полом", "Для 3 авто", "С рабочей зоной"],
+          "specifications": {
+            "capacity": "3 автомобиля",
+            "dimensions": {
+              "length": 12000,
+              "width": 6000,
+              "height": 3200,
+              "units": "мм"
+            },
+            "area": {
+              "value": 72,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "3 секции для авто",
+            "Рабочая зона с верстаком",
+            "Система хранения инструментов",
+            "Усиленный пол",
+            "Электрическая система"
+          ],
+          "images": {
+            "main": "/img/catalog/new/garage-3-auto.webp",
+            "gallery": [
+              "/img/catalog/new/garage-3-auto.webp",
+              "/img/catalog/new/garage-3.webp",
+              "/img/catalog/new/garage_schema.webp"
+            ],
+            "blueprint": "/img/catalog/new/garage_schema.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 35000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 850000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": false
+          },
+          "isPopular": false,
+          "seo": {
+            "title": "Модульный гараж «Тройной» - Для нескольких автомобилей",
+            "description": "Просторный гаражный комплекс для хранения и обслуживания нескольких транспортных средств с рабочей зоной.",
+            "keywords": [
+              "гараж для 3 авто",
+              "большой модульный гараж",
+              "гаражный комплекс",
+              "многоместный гараж"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "name": "Специальные модули",
+      "description": "Модульные решения для специализированных задач",
+      "slug": "specialnye-moduli",
+      "items": [
+        {
+          "id": "security-post",
+          "name": "Пост охраны «Безопасность»",
+          "slug": "post-ohrany-bezopasnost",
+          "description": "Компактный и функциональный пост охраны для обеспечения безопасности объектов любого типа",
+          "features": ["Для охраны", "С отоплением", "1-2 человека"],
+          "specifications": {
+            "capacity": "1-2 человека",
+            "dimensions": {
+              "length": 3000,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 7.32,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "Рабочее место охранника",
+            "Система видеонаблюдения",
+            "Эффективное отопление",
+            "Панорамное остекление"
+          ],
+          "images": {
+            "main": "/img/catalog/new/dom4.webp",
+            "gallery": ["/img/catalog/new/dom4.webp", "/img/catalog/new/v-razreze-bitovka.webp"],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 9000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 180000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
+          "isPopular": false,
+          "seo": {
+            "title": "Пост охраны «Безопасность» - Надежная защита объектов",
+            "description": "Компактный и функциональный пост охраны. Современные системы для обеспечения безопасности.",
+            "keywords": ["пост охраны", "охранная будка", "КПП модульный", "блок-пост"]
+          }
+        },
+        {
+          "id": "storage-module",
+          "name": "Складской модуль «Хранилище»",
+          "slug": "skladskoj-modul-hranilische",
+          "description": "Специализированный модуль для временного хранения материалов, оборудования и товаров различного назначения",
+          "features": ["Для склада", "С усиленным полом", "С системой хранения"],
+          "specifications": {
+            "capacity": "До 5 тонн груза",
+            "dimensions": {
+              "length": 6250,
+              "width": 2440,
+              "height": 2630,
+              "units": "мм"
+            },
+            "area": {
+              "value": 15.25,
+              "units": "м²"
+            },
+            "temperature": {
+              "min": -55,
+              "max": 45,
+              "units": "°C"
+            }
+          },
+          "includes": [
+            "Усиленный пол",
+            "Стеллажные системы",
+            "Защита от взлома",
+            "Грузовая дверь с пандусом"
+          ],
+          "images": {
+            "main": "/img/catalog/new/dom3.webp",
+            "gallery": [
+              "/img/catalog/new/dom3.webp",
+              "/img/catalog/new/v-razreze-bitovka.webp",
+              "/img/catalog/new/dom2.webp"
+            ],
+            "blueprint": "/img/catalog/new/v-razreze-bitovka.webp"
+          },
+          "pricing": {
+            "rent": {
+              "monthly": 14000,
+              "currency": "RUB",
+              "period": "месяц"
+            },
+            "sale": {
+              "price": 320000,
+              "currency": "RUB"
+            }
+          },
+          "availability": {
+            "forRent": true,
+            "forSale": true,
+            "inStock": true
+          },
+          "isPopular": false,
+          "seo": {
+            "title": "Складской модуль «Хранилище» - Надежное хранение",
+            "description": "Специализированный модуль для временного хранения материалов и оборудования. Усиленная конструкция, стеллажи.",
+            "keywords": [
+              "модульный склад",
+              "блок-контейнер для хранения",
+              "мобильный склад",
+              "складской модуль"
+            ]
+          }
         }
       ]
     }
   ],
   "filters": {
-    "purposes": ["Для проживания", "Для офиса", "Для строительства", "Для охраны", "Для склада"],
-    "features": ["С санузлом", "С кондиционером", "С мебелью", "С отоплением", "С усиленным полом"],
-    "capacity": ["2-4 человека", "4-6 человек", "6-8 человек", "8+ человек"]
+    "purposes": [
+      "Для проживания",
+      "Для офиса",
+      "Для строительства",
+      "Для охраны",
+      "Для склада",
+      "Для хранения"
+    ],
+    "features": [
+      "С санузлом",
+      "С кондиционером",
+      "С мебелью",
+      "С отоплением",
+      "С усиленным полом",
+      "Двухэтажный",
+      "С рабочей зоной",
+      "Для 1 авто",
+      "Для 3 авто"
+    ],
+    "capacity": ["1-2 человека", "2-4 человека", "4-6 человек", "6-8 человек", "8+ человек"]
   },
   "sorting": [
     {
