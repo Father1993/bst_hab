@@ -102,6 +102,36 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <link rel='preload' href='/img/catalog/bg-1.webp' as='image' type='image/webp' />
         <link rel='preload' href='/img/rent-hero.webp' as='image' type='image/webp' />
 
+        {/* Предзагрузка видео на главной странице - значительно улучшает LCP */}
+        <link rel='preload' href='/img/video_bg.mp4' as='video' type='video/mp4' />
+        <link rel='preload' href='/img/2.webp' as='image' type='image/webp' fetchPriority='high' />
+
+        {/* Оптимизации для ускорения LCP */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          /* Заранее резервируем место для элементов Hero, чтобы уменьшить CLS */
+          h1.text-4xl {
+            text-rendering: optimizeSpeed;
+            content-visibility: auto;
+            contain-intrinsic-size: 0 250px;
+          }
+          
+          /* Заранее устанавливаем минимальную высоту для ключевых секций */
+          section.min-h-screen {
+            min-height: 100vh;
+            content-visibility: auto;
+          }
+          
+          /* Оптимизация CSS для ускорения отрисовки текста */
+          .font-bold {
+            font-display: swap;
+            text-rendering: optimizeSpeed;
+          }
+        `,
+          }}
+        />
+
         {/* Микроразметка Schema.org */}
         <script
           type='application/ld+json'
