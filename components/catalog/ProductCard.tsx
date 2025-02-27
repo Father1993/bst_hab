@@ -8,11 +8,27 @@ import catalogData from '@/data/catalog.json'
 interface ProductCardProps {
   product: Product
   viewType?: 'catalog' | 'rent'
+  onCallbackRequest?: () => void
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, viewType = 'catalog' }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  viewType = 'catalog',
+  onCallbackRequest,
+}) => {
   // Определяем URL в зависимости от типа страницы
   const productUrl = viewType === 'rent' ? `/rent/${product.slug}` : `/catalog/${product.slug}`
+
+  // Обработчик кнопки покупки/аренды
+  const handleAction = () => {
+    if (onCallbackRequest) {
+      // Если передан обработчик, вызываем форму
+      onCallbackRequest()
+    } else {
+      // По умолчанию открываем WhatsApp
+      window.location.href = `https://wa.me/${catalogData.metadata.contacts.whatsapp}?text=Здравствуйте! Интересует ${product.name}`
+    }
+  }
 
   return (
     <div className='h-full flex flex-col backdrop-blur-sm bg-gray-900/80 border border-gray-800/5 rounded-xl overflow-hidden hover:shadow-[0_0_30px_rgba(255,215,0,0.15)] transition-all duration-300 border border-gray-800/50'>
@@ -126,9 +142,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, viewType = 'c
               Подробнее
             </Link>
             <button
-              onClick={() =>
-                (window.location.href = `https://wa.me/${catalogData.metadata.contacts.whatsapp}?text=Здравствуйте! Интересует ${product.name}`)
-              }
+              onClick={handleAction}
               className='bg-[#FFD700] text-black hover:bg-[#FFD700]/90 transition-colors duration-300 py-2 rounded-lg text-xs font-medium'
             >
               {viewType === 'rent' ? 'Арендовать' : 'Купить'}

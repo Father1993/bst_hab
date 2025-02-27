@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { ProductCard } from '@/components/catalog/ProductCard'
 import { Filters } from '@/components/catalog/Filters'
 import { CatalogData } from '@/types/catalog'
+import CallbackForm from '@/components/features/CallbackForm'
 
 interface CatalogClientProps {
   catalogData: CatalogData
@@ -14,6 +15,17 @@ interface CatalogClientProps {
 export const CatalogClient: React.FC<CatalogClientProps> = ({ catalogData }) => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [isFiltersOpen, setIsFiltersOpen] = useState(false)
+  const [showCallbackForm, setShowCallbackForm] = useState(false)
+
+  // Обработчик открытия формы обратного звонка
+  const handleOpenCallbackForm = () => {
+    setShowCallbackForm(true)
+  }
+
+  // Обработчик закрытия формы обратного звонка
+  const handleCloseCallbackForm = () => {
+    setShowCallbackForm(false)
+  }
 
   // Получаем все продукты из всех категорий
   const allProducts = catalogData.categories.flatMap(category => category.items)
@@ -188,7 +200,7 @@ export const CatalogClient: React.FC<CatalogClientProps> = ({ catalogData }) => 
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     className='h-full'
                   >
-                    <ProductCard product={product} />
+                    <ProductCard product={product} onCallbackRequest={handleOpenCallbackForm} />
                   </motion.div>
                 ))}
                 {/* Добавляем пустые элементы для выравнивания сетки */}
@@ -257,14 +269,17 @@ export const CatalogClient: React.FC<CatalogClientProps> = ({ catalogData }) => 
               Позвонить
             </button>
             <button
-              onClick={() => (window.location.href = 'https://wa.me/+79141234567')}
+              onClick={handleOpenCallbackForm}
               className='px-8 py-3 bg-transparent border-2 border-[#FFD700] text-[#FFD700] rounded-lg font-medium hover:bg-[#FFD700] hover:text-black transition-colors duration-300 min-w-[200px]'
             >
-              WhatsApp
+              Заказать звонок
             </button>
           </div>
         </div>
       </section>
+
+      {/* Форма обратного звонка */}
+      <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
     </main>
   )
 }

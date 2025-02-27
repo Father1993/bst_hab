@@ -2,13 +2,24 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import catalogData from '@/data/catalog.json'
 import ContactForm from '@/components/features/ContactForm'
 import { ProductCard } from '@/components/catalog/ProductCard'
+import CallbackForm from '@/components/features/CallbackForm'
 
 const RentPage = () => {
   const [activeCategory, setActiveCategory] = useState(catalogData.categories[0])
+  const [showCallbackForm, setShowCallbackForm] = useState(false)
+
+  // Обработчик открытия формы обратного звонка
+  const handleOpenCallbackForm = () => {
+    setShowCallbackForm(true)
+  }
+
+  // Обработчик закрытия формы обратного звонка
+  const handleCloseCallbackForm = () => {
+    setShowCallbackForm(false)
+  }
 
   // Фильтруем товары в выбранной категории по доступности для аренды
   const filteredItems = activeCategory.items.filter(item => item.availability?.forRent !== false)
@@ -18,15 +29,7 @@ const RentPage = () => {
       {/* Hero секция */}
       <section className='relative h-[80vh] flex items-center justify-center overflow-hidden'>
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,#ffffff11_0,#00000099_100%)]' />
-        <div className='absolute inset-0'>
-          <Image
-            src='/img/rent-hero.webp'
-            alt='Аренда модульных зданий'
-            fill
-            className='object-cover opacity-30'
-            priority
-          />
-        </div>
+        <div className='absolute inset-0'></div>
         <div className='container mx-auto px-4 relative z-10'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -46,6 +49,7 @@ const RentPage = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={handleOpenCallbackForm}
               className='px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 
               text-white rounded-xl font-medium text-lg shadow-lg hover:shadow-orange-500/20
               transition-all duration-300'
@@ -140,7 +144,11 @@ const RentPage = () => {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 className='h-full'
               >
-                <ProductCard product={item} viewType='rent' />
+                <ProductCard
+                  product={item}
+                  viewType='rent'
+                  onCallbackRequest={handleOpenCallbackForm}
+                />
               </motion.div>
             ))}
             {/* Добавляем пустые элементы для выравнивания сетки */}
@@ -221,6 +229,9 @@ const RentPage = () => {
           <ContactForm />
         </div>
       </section>
+
+      {/* Форма обратного звонка */}
+      <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
     </main>
   )
 }

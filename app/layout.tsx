@@ -100,7 +100,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Предзагрузка важных ресурсов для уменьшения CLS */}
         <link rel='preload' href='/img/catalog/bg-1.webp' as='image' type='image/webp' />
-        <link rel='preload' href='/img/rent-hero.webp' as='image' type='image/webp' />
 
         {/* Предзагрузка видео на главной странице - значительно улучшает LCP */}
         <link rel='preload' href='/img/video_bg.mp4' as='video' type='video/mp4' />

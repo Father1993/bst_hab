@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContactForm from '@/components/features/ContactForm'
+import CallbackForm from '@/components/features/CallbackForm'
 
 interface ProductPageProps {
   product: any // В реальном проекте здесь должен быть правильный тип
@@ -13,6 +14,17 @@ interface ProductPageProps {
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(product.images.main)
+  const [showCallbackForm, setShowCallbackForm] = useState(false)
+
+  // Обработчик открытия формы обратного звонка
+  const handleOpenCallbackForm = () => {
+    setShowCallbackForm(true)
+  }
+
+  // Обработчик закрытия формы обратного звонка
+  const handleCloseCallbackForm = () => {
+    setShowCallbackForm(false)
+  }
 
   return (
     <main className='min-h-screen bg-black'>
@@ -157,6 +169,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={handleOpenCallbackForm}
                   className='w-full py-4 bg-gradient-to-r from-orange-500 to-yellow-500 
                   text-white rounded-xl font-medium text-lg shadow-lg hover:shadow-orange-500/20
                   transition-all duration-300'
@@ -199,6 +212,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
           <ContactForm />
         </div>
       </section>
+
+      {/* Форма обратного звонка */}
+      <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
     </main>
   )
 }

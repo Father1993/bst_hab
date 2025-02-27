@@ -1,10 +1,27 @@
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Creator from './Creator'
+import CallbackForm from '@/components/features/CallbackForm'
 
 const Footer = () => {
+  const [showCallbackForm, setShowCallbackForm] = useState(false)
+
+  // Обработчик открытия формы обратного звонка
+  const handleOpenCallbackForm = () => {
+    setShowCallbackForm(true)
+  }
+
+  // Обработчик закрытия формы обратного звонка
+  const handleCloseCallbackForm = () => {
+    setShowCallbackForm(false)
+  }
+
+  // Текущий год для копирайта
+  const currentYear = new Date().getFullYear()
+
   return (
-    <footer className='bg-black text-white pt-16 pb-4'>
+    <footer className='bg-black text-white pt-16 pb-4 lg:pb-4 md:pb-4 pb-[80px]'>
       <div className='container mx-auto px-4'>
         {/* Основной контент футера */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12'>
@@ -13,7 +30,7 @@ const Footer = () => {
             <Link href='/' className='block'>
               <Image
                 src='/img/logo/bst_hab-logo-black.png'
-                alt='BST HAB Logo'
+                alt='BST HAB - Модульные здания в Хабаровске'
                 width={170}
                 height={170}
                 className='object-contain mb-4'
@@ -21,13 +38,15 @@ const Footer = () => {
             </Link>
             <p className='text-gray-400 text-sm'>
               Производство и аренда модульных конструкций: бытовки, гаражи, строительные модули.
-              Быстрое изготовление по типовым и индивидуальным проектам.
+              Собственное производство в Хабаровске. Быстрое изготовление по типовым и
+              индивидуальным проектам.
             </p>
             <div className='flex space-x-4'>
               <a
                 href='https://vk.com'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='BST HAB ВКонтакте'
                 className='w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-[#FFD700] transition-colors group'
               >
                 <svg
@@ -43,6 +62,7 @@ const Footer = () => {
                 href='https://t.me'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='BST HAB Telegram'
                 className='w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-[#FFD700] transition-colors group'
               >
                 <svg
@@ -58,6 +78,7 @@ const Footer = () => {
                 href='https://wa.me/79142039197'
                 target='_blank'
                 rel='noopener noreferrer'
+                aria-label='BST HAB WhatsApp'
                 className='w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-[#FFD700] transition-colors group'
               >
                 <svg
@@ -72,52 +93,68 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Продукция */}
+          {/* Модульные конструкции - Каталог */}
           <div>
-            <h3 className='text-[#FFD700] font-semibold mb-6'>Продукция</h3>
+            <h3 className='text-[#FFD700] font-semibold mb-6'>Модульные решения</h3>
             <ul className='space-y-4'>
               <li>
                 <Link
-                  href='/catalog/bytovki'
+                  href='/catalog?category=residential'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Бытовки и блок-контейнеры
+                  Жилые модули и бытовки
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/catalog/garages'
+                  href='/catalog?category=office'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Модульные гаражи
+                  Офисные и административные здания
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/catalog/posts'
+                  href='/catalog?category=garage'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Посты охраны
+                  Модульные гаражи и автосервисы
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/catalog/special'
+                  href='/catalog?category=special'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Специальные конструкции
+                  Посты охраны и КПП
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/catalog?category=construction'
+                  className='text-gray-400 hover:text-[#FFD700] transition-colors'
+                >
+                  Строительные бытовки и вагончики
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/catalog'
+                  className='text-[#FFD700] hover:text-[#FFD700]/80 transition-colors font-medium'
+                >
+                  Весь каталог продукции →
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Услуги */}
+          {/* Услуги и популярные страницы */}
           <div>
-            <h3 className='text-[#FFD700] font-semibold mb-6'>Услуги</h3>
+            <h3 className='text-[#FFD700] font-semibold mb-6'>Услуги и информация</h3>
             <ul className='space-y-4'>
               <li>
                 <Link href='/rent' className='text-gray-400 hover:text-[#FFD700] transition-colors'>
-                  Аренда бытовок
+                  Аренда модульных зданий в Хабаровске
                 </Link>
               </li>
               <li>
@@ -125,24 +162,37 @@ const Footer = () => {
                   href='/delivery'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Доставка и монтаж
+                  Доставка и монтаж под ключ
+                </Link>
+              </li>
+              <li>
+                <Link href='/sale' className='text-gray-400 hover:text-[#FFD700] transition-colors'>
+                  Продажа модульных конструкций
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/individual'
+                  href='/about'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Индивидуальные проекты
+                  О компании BST HAB
                 </Link>
               </li>
               <li>
                 <Link
-                  href='/service'
+                  href='/projects'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
-                  Обслуживание
+                  Реализованные проекты
                 </Link>
+              </li>
+              <li>
+                <button
+                  onClick={handleOpenCallbackForm}
+                  className='text-gray-400 hover:text-[#FFD700] transition-colors'
+                >
+                  Заказать звонок специалиста
+                </button>
               </li>
             </ul>
           </div>
@@ -151,9 +201,9 @@ const Footer = () => {
           <div>
             <h3 className='text-[#FFD700] font-semibold mb-6'>Контакты</h3>
             <ul className='space-y-4'>
-              <li className='flex items-center space-x-3'>
+              <li className='flex items-start space-x-3'>
                 <svg
-                  className='w-5 h-5 text-gray-400'
+                  className='w-5 h-5 text-gray-400 mt-0.5 shrink-0'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
@@ -165,16 +215,21 @@ const Footer = () => {
                     d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'
                   />
                 </svg>
-                <a
-                  href='tel:+79142039197'
-                  className='text-gray-400 hover:text-[#FFD700] transition-colors'
-                >
-                  +7 (914) 203-91-97
-                </a>
+                <div>
+                  <a
+                    href='tel:+79142039197'
+                    className='text-gray-400 hover:text-[#FFD700] transition-colors block'
+                  >
+                    +7 (914) 203-91-97
+                  </a>
+                  <span className='text-xs text-gray-500'>
+                    Звонки 7 дней в неделю с 9:00 до 19:00
+                  </span>
+                </div>
               </li>
-              <li className='flex items-center space-x-3'>
+              <li className='flex items-start space-x-3'>
                 <svg
-                  className='w-5 h-5 text-gray-400'
+                  className='w-5 h-5 text-gray-400 mt-0.5 shrink-0'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
@@ -186,16 +241,19 @@ const Footer = () => {
                     d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
                   />
                 </svg>
-                <a
-                  href='mailto:252188@mail.ru'
-                  className='text-gray-400 hover:text-[#FFD700] transition-colors'
-                >
-                  252188@mail.ru
-                </a>
+                <div>
+                  <a
+                    href='mailto:252188@mail.ru'
+                    className='text-gray-400 hover:text-[#FFD700] transition-colors block'
+                  >
+                    252188@mail.ru
+                  </a>
+                  <span className='text-xs text-gray-500'>Ответ в течение 2 часов</span>
+                </div>
               </li>
-              <li className='flex items-center space-x-3'>
+              <li className='flex items-start space-x-3'>
                 <svg
-                  className='w-5 h-5 text-gray-400'
+                  className='w-5 h-5 text-gray-400 mt-0.5 shrink-0'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
@@ -207,11 +265,14 @@ const Footer = () => {
                     d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
                   />
                 </svg>
-                <span className='text-gray-400'>Пн-Сб: 9:00 - 19:00</span>
+                <div>
+                  <span className='text-gray-400 block'>Пн-Сб: 9:00 - 19:00</span>
+                  <span className='text-xs text-gray-500'>Вс: выходной</span>
+                </div>
               </li>
-              <li className='flex items-center space-x-3'>
+              <li className='flex items-start space-x-3'>
                 <svg
-                  className='w-5 h-5 text-gray-400'
+                  className='w-5 h-5 text-gray-400 mt-0.5 shrink-0'
                   fill='none'
                   stroke='currentColor'
                   viewBox='0 0 24 24'
@@ -229,19 +290,48 @@ const Footer = () => {
                     d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
                   />
                 </svg>
-                <span className='text-gray-400'>г. Хабаровск</span>
+                <div>
+                  <a
+                    href='https://yandex.ru/maps/org/bst_khab/225751482910/?ll=135.062871%2C48.575113&z=17.54'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-gray-400 hover:text-[#FFD700] transition-colors block'
+                  >
+                    г. Хабаровск, ул. Связная, 1Б
+                  </a>
+                  <span className='text-xs text-gray-500'>Производство и офис</span>
+                </div>
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* Дополнительная информация для SEO */}
+        <div className='mb-8 border-t border-zinc-800 pt-8'>
+          <h4 className='text-sm text-[#FFD700] mb-4'>
+            BST HAB - Модульные решения для бизнеса в Хабаровске
+          </h4>
+          <p className='text-xs text-gray-500 mb-2'>
+            Компания BST HAB предлагает комплексные модульные решения для бизнеса и частных лиц в
+            Хабаровске и Хабаровском крае. Мы производим, продаем и сдаем в аренду модульные здания
+            любого типа и сложности: от строительных бытовок и постов охраны до многоэтажных
+            административных комплексов.
+          </p>
+          <p className='text-xs text-gray-500'>
+            В нашем каталоге представлены: жилые модули и бытовки для проживания, офисные и
+            административные здания, модульные гаражи и боксы, строительные бытовки и вагончики,
+            модульные посты охраны и КПП. Оказываем услуги по доставке и монтажу модульных
+            конструкций под ключ. Работаем с 2015 года, реализовали более 500 проектов.
+          </p>
         </div>
 
         {/* Нижняя часть футера */}
         <div className='pt-8 border-t border-zinc-800 mb-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <p className='text-gray-400 text-sm'>
-              © {new Date().getFullYear()} ООО "БСТ ХАБ". Все права защищены.
+              © {currentYear} ООО "БСТ ХАБ". Все права защищены.
             </p>
-            <div className='flex space-x-6 md:justify-end'>
+            <div className='flex flex-wrap gap-4 md:justify-end'>
               <Link
                 href='/privacy'
                 className='text-gray-400 text-sm hover:text-[#FFD700] transition-colors'
@@ -249,16 +339,60 @@ const Footer = () => {
                 Политика конфиденциальности
               </Link>
               <Link
-                href='/privacy-policy'
+                href='/terms'
                 className='text-gray-400 text-sm hover:text-[#FFD700] transition-colors'
               >
                 Условия использования
               </Link>
+              <Link
+                href='/sitemap.xml'
+                className='text-gray-400 text-sm hover:text-[#FFD700] transition-colors'
+              >
+                Карта сайта
+              </Link>
             </div>
           </div>
         </div>
-        <Creator />
+        <div className='relative z-10'>
+          <Creator />
+        </div>
       </div>
+
+      {/* Форма обратного звонка */}
+      <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
+
+      {/* Микроразметка данных компании для SEO */}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'BST HAB',
+            url: 'https://bst-hab.ru',
+            logo: 'https://bst-hab.ru/img/logo/bst_hab-logo-black.png',
+            description:
+              'Производство, продажа и аренда модульных конструкций: бытовки, гаражи, строительные модули в Хабаровске',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'ул. Связная, 1Б',
+              addressLocality: 'Хабаровск',
+              addressRegion: 'Хабаровский край',
+              postalCode: '680000',
+              addressCountry: 'RU',
+            },
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+7-914-203-91-97',
+              contactType: 'customer service',
+              email: '252188@mail.ru',
+              areaServed: 'RU',
+              availableLanguage: 'Russian',
+            },
+            sameAs: ['https://vk.com/bsthab', 'https://t.me/bsthab'],
+          }),
+        }}
+      />
     </footer>
   )
 }

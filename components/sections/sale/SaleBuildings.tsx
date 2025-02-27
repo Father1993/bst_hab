@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ContactForm from '@/components/features/ContactForm'
+import CallbackForm from '@/components/features/CallbackForm'
 
 const categories = [
   {
@@ -11,7 +12,7 @@ const categories = [
     title: 'Модульные офисы',
     description:
       'Мобильные офисы продаж с возможностью возведения в 1 или 2 этажа, не требующие капитального фундамента.',
-    image: '/img/modules/office.jpg',
+    image: '/img/security.webp',
     features: ['Быстрый монтаж', 'Мобильность', 'Комфортные условия', 'Доступная цена'],
   },
   {
@@ -19,21 +20,21 @@ const categories = [
     title: 'АБК',
     description:
       'Административно-бытовые комплексы с полной инфраструктурой для строительных площадок и промышленных объектов.',
-    image: '/img/modules/abk.jpg',
+    image: '/img/abk.webp',
     features: ['Столовая', 'Медпункт', 'Санузлы', 'Склады'],
   },
   {
-    id: 'hostel',
-    title: 'Хостелы и гостиницы',
-    description: 'Быстровозводимые модульные гостиницы с возможностью поэтапного расширения.',
-    image: '/img/modules/hostel.jpg',
+    id: 'garage',
+    title: 'Модульны гаражи',
+    description: 'Быстровозводимые модульные гаражи с возможностью поэтапного расширения.',
+    image: '/img/garage-3.webp',
     features: ['Быстрый ввод', 'Масштабируемость', 'Комфорт', 'Экономичность'],
   },
   {
     id: 'cafe',
     title: 'Киоски и павильоны',
     description: 'Торговые помещения различной конфигурации для розничной торговли и общепита.',
-    image: '/img/modules/kiosk.jpg',
+    image: '/img/pavilion.webp',
     features: ['Зонирование', 'Мобильность', 'Функциональность', 'Современный дизайн'],
   },
 ]
@@ -63,6 +64,17 @@ const features = [
 
 const SaleBuildings = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0])
+  const [showCallbackForm, setShowCallbackForm] = useState(false)
+
+  // Обработчик открытия формы обратного звонка
+  const handleOpenCallbackForm = () => {
+    setShowCallbackForm(true)
+  }
+
+  // Обработчик закрытия формы обратного звонка
+  const handleCloseCallbackForm = () => {
+    setShowCallbackForm(false)
+  }
 
   return (
     <main className='min-h-screen bg-black'>
@@ -89,6 +101,7 @@ const SaleBuildings = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={handleOpenCallbackForm}
               className='px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 
               text-white rounded-xl font-medium text-lg shadow-lg hover:shadow-orange-500/20
               transition-all duration-300'
@@ -189,6 +202,16 @@ const SaleBuildings = () => {
                     </li>
                   ))}
                 </ul>
+                <div className='mt-8'>
+                  <button
+                    onClick={handleOpenCallbackForm}
+                    className='px-6 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 
+                    text-white rounded-lg font-medium shadow-lg hover:shadow-orange-500/20
+                    transition-all duration-300'
+                  >
+                    Узнать стоимость
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -210,6 +233,9 @@ const SaleBuildings = () => {
           <ContactForm />
         </div>
       </section>
+
+      {/* Форма обратного звонка */}
+      <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
     </main>
   )
 }
