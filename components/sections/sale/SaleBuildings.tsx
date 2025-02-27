@@ -39,29 +39,6 @@ const categories = [
   },
 ]
 
-const features = [
-  {
-    title: 'Быстрый монтаж',
-    description: 'Сборка здания занимает от 1 до 7 дней в зависимости от размера',
-    icon: '⚡',
-  },
-  {
-    title: 'Мобильность',
-    description: 'Возможность демонтажа и перемещения на новое место',
-    icon: '🚛',
-  },
-  {
-    title: 'Без фундамента',
-    description: 'Не требуется капитальный фундамент и разрешение на строительство',
-    icon: '🏗️',
-  },
-  {
-    title: 'Всесезонность',
-    description: 'Эксплуатация при температурах от -55°C до +45°C',
-    icon: '🌡️',
-  },
-]
-
 const SaleBuildings = () => {
   const [activeCategory, setActiveCategory] = useState(categories[0])
   const [showCallbackForm, setShowCallbackForm] = useState(false)
@@ -79,7 +56,7 @@ const SaleBuildings = () => {
   return (
     <main className='min-h-screen bg-black'>
       {/* Hero секция */}
-      <section className='relative h-screen flex items-center justify-center overflow-hidden'>
+      <section className='relative p-10 flex items-center justify-center overflow-hidden'>
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,#ffffff11_0,#00000099_100%)]' />
         <div className='container mx-auto px-4 relative z-10'>
           <motion.div
@@ -111,30 +88,6 @@ const SaleBuildings = () => {
           </motion.div>
         </div>
         <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-20' />
-      </section>
-
-      {/* Преимущества */}
-      <section className='py-20 bg-zinc-900'>
-        <div className='container mx-auto px-4'>
-          <h2 className='text-3xl md:text-4xl font-bold text-white text-center mb-16'>
-            Почему выбирают наши модульные здания
-          </h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className='bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800'
-              >
-                <div className='text-4xl mb-4'>{feature.icon}</div>
-                <h3 className='text-xl font-semibold text-white mb-2'>{feature.title}</h3>
-                <p className='text-zinc-400'>{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Категории */}
