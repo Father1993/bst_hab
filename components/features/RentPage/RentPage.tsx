@@ -27,7 +27,7 @@ const RentPage = () => {
   return (
     <main className='min-h-screen bg-black'>
       {/* Hero секция */}
-      <section className='relative h-[80vh] flex items-center justify-center overflow-hidden'>
+      <section className='relative p-10 flex items-center justify-center overflow-hidden'>
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,#ffffff11_0,#00000099_100%)]' />
         <div className='absolute inset-0'></div>
         <div className='container mx-auto px-4 relative z-10'>
@@ -59,51 +59,6 @@ const RentPage = () => {
           </motion.div>
         </div>
         <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-20' />
-      </section>
-
-      {/* Преимущества аренды */}
-      <section className='py-20 bg-zinc-900'>
-        <div className='container mx-auto px-4'>
-          <h2 className='text-3xl md:text-4xl font-bold text-white text-center mb-16'>
-            Почему выбирают аренду у нас
-          </h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-            {[
-              {
-                icon: '💰',
-                title: 'Без больших вложений',
-                description: 'Экономия на покупке и содержании модульных зданий',
-              },
-              {
-                icon: '🚚',
-                title: 'Быстрая доставка',
-                description: 'Доставка и монтаж в течение 1-2 дней',
-              },
-              {
-                icon: '🛠️',
-                title: 'Полное обслуживание',
-                description: 'Техническое обслуживание включено в стоимость',
-              },
-              {
-                icon: '📋',
-                title: 'Гибкие условия',
-                description: 'Возможность продления и изменения условий аренды',
-              },
-            ].map((advantage, index) => (
-              <motion.div
-                key={advantage.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className='bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-800'
-              >
-                <div className='text-4xl mb-4'>{advantage.icon}</div>
-                <h3 className='text-xl font-semibold text-white mb-2'>{advantage.title}</h3>
-                <p className='text-zinc-400'>{advantage.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Каталог */}
