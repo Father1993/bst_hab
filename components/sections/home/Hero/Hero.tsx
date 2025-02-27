@@ -1,31 +1,73 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Loader from '@/components/ui/Loader'
 import { COMPANY_FEATURES, COMPANY_STATS } from '@/components/shared/constants'
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
+    // Устанавливаем флаг монтирования сразу после первого рендера
     setIsMounted(true)
+
+    // Предварительно загружаем видео для ускорения
+    if (videoRef.current) {
+      // Если видео уже кэшировано или загружено, пометим его как загруженное
+      if (videoRef.current.readyState >= 3) {
+        setIsVideoLoaded(true)
+      }
+    }
+
+    // Добавляем предзагрузку изображения для ускорения LCP
+    const preloadImage = new window.Image()
+    preloadImage.src = '/img/2.webp'
+    preloadImage.onload = () => {
+      // Изображение загружено, можно использовать для ускорения LCP
+    }
   }, [])
 
   const advantages = COMPANY_FEATURES.map(feature => feature.title)
 
   if (!isMounted) {
-    return <Loader />
+    // Возвращаем упрощенную разметку вместо полного Loader для ускорения начальной отрисовки
+    return (
+      <section className='relative min-h-screen flex items-center bg-black text-white overflow-hidden'>
+        <div className='container mx-auto px-4 relative z-10'>
+          <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'>
+            <span className='text-[#FFD700]'>Современные</span> модульные
+            <br />
+            решения для бизнеса
+          </h1>
+        </div>
+      </section>
+    )
   }
 
   return (
     <section className='relative min-h-screen flex items-center bg-black text-white overflow-hidden'>
-      {/* Фоновый видеослайдер */}
+      {/* Фоновый видеослайдер с оптимизацией */}
       <div className='absolute inset-0 z-0'>
         <div className='relative w-full h-full'>
+          {/* Фоновое изображение для мгновенного показа до загрузки видео */}
+          <div
+            className={`absolute inset-0 bg-black ${isVideoLoaded ? 'opacity-0' : 'opacity-50'} transition-opacity duration-500`}
+          >
+            <Image
+              src='/img/2.webp'
+              alt='Фон'
+              fill
+              priority
+              className='object-cover opacity-50'
+              sizes='100vw'
+            />
+          </div>
+
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
@@ -34,6 +76,8 @@ const Hero = () => {
               isVideoLoaded ? 'opacity-50' : 'opacity-0'
             }`}
             onLoadedData={() => setIsVideoLoaded(true)}
+            preload='auto'
+            poster='/img/2.webp'
           >
             <source src='/img/video_bg.mp4' type='video/mp4' />
           </video>
@@ -51,7 +95,15 @@ const Hero = () => {
               <h2 className='inline-block bg-[#FFD700]/10 text-[#FFD700] px-4 py-2 rounded-full text-sm font-medium'>
                 Лидер рынка модульного строительства в г. Хабаровск
               </h2>
-              <h1 className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'>
+              <h1
+                className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'
+                // Добавляем свойство для ускорения отрисовки текста
+                style={{
+                  contentVisibility: 'auto',
+                  contain: 'layout paint style',
+                  paintOrder: 'paint',
+                }}
+              >
                 <span className='text-[#FFD700]'>Современные</span> модульные
                 <br />
                 решения для бизнеса
@@ -117,6 +169,11 @@ const Hero = () => {
                 quality={90}
                 className='object-cover w-full h-full'
                 sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px'
+                // Техника для уменьшения CLS
+                style={{
+                  contentVisibility: 'auto',
+                  containIntrinsicSize: '800px 600px',
+                }}
               />
               {/* Статистика */}
               <div className='absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-sm rounded-xl p-4 border border-[#FFD700]/20'>
