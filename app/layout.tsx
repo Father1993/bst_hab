@@ -9,6 +9,11 @@ import './globalStyles/globals.css'
 const montserrat = Montserrat({
   subsets: ['latin', 'cyrillic'],
   display: 'swap',
+  preload: true,
+  // Предварительная загрузка всех вариантов
+  weight: ['400', '500', '600', '700'],
+  // Задаём размеры заранее для уменьшения CLS
+  fallback: ['Arial', 'sans-serif'],
 })
 
 export const metadata: Metadata = {
@@ -71,10 +76,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'qwea9m2lHkkA0v9SAwRC0QfsALfcBlBUhstyEMx53Wo',
-    yandex: '82a57c3d2f51f418',
-    other: {
-      'yandex-verification': ['82a57c3d2f51f418'],
-    },
+    yandex: 'cc6ee10a7e894223',
   },
 }
 
@@ -83,7 +85,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang='ru' className={montserrat.className}>
       <head>
         <meta charSet='UTF-8' />
-        <meta name='yandex-verification' content='82a57c3d2f51f418' />
+        {/* Обновленный метатег Яндекса */}
+        <meta name='yandex-verification' content='cc6ee10a7e894223' />
         <link rel='icon' href='/favicon.ico' sizes='any' />
         <link
           rel='apple-touch-icon'
@@ -94,6 +97,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name='theme-color' content='#000000' />
         <meta name='msapplication-TileColor' content='#000000' />
         <link rel='manifest' href='/manifest.json' />
+
+        {/* Предзагрузка важных ресурсов для уменьшения CLS */}
+        <link rel='preload' href='/img/catalog/bg-1.webp' as='image' type='image/webp' />
+        <link rel='preload' href='/img/rent-hero.webp' as='image' type='image/webp' />
 
         {/* Микроразметка Schema.org */}
         <script

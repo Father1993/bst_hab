@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'verification_token',
-    yandex: 'verification_token',
+    yandex: 'cc6ee10a7e894223',
   },
   alternates: {
     canonical: 'https://bst-hab.ru',
@@ -96,9 +96,23 @@ export default function Home() {
       {/* 6. Ответы на возражения */}
       <FAQ />
 
-      {/* 7. Призыв к действию */}
-      <section className='py-16 md:py-24 bg-black relative overflow-hidden'>
-        <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px] opacity-10' />
+      {/* 7. Призыв к действию - оптимизирована для уменьшения CLS */}
+      <section
+        className='py-16 md:py-24 bg-black relative overflow-hidden min-h-[400px]'
+        style={{
+          // Определяем размеры секции заранее
+          containIntrinsicSize: '0 400px',
+          contentVisibility: 'auto',
+        }}
+      >
+        {/* Предзагружаем фоновую сетку заранее для предотвращения смещений */}
+        <div
+          className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px] opacity-10'
+          style={{
+            // Убеждаемся, что фоновый узор не вызовет смещений
+            contain: 'paint layout',
+          }}
+        />
         <div className='container mx-auto px-4 relative'>
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
