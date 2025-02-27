@@ -73,7 +73,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <>
       <Header />
-      <main className='pt-[70px] lg:pt-[70px] md:pt-[70px] sm:pt-[72px] container mx-auto px-4'>
+      <main className='pt-[70px] lg:pt-[70px] md:pt-[70px] sm:pt-[72px] pb-[80px] lg:pb-0 container mx-auto px-4'>
         {children}
       </main>
       <Footer />
