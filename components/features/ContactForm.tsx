@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { COMPANY_INFO, PRODUCT_TYPES } from '../shared/constants'
 import { ICONS } from '../shared/icon'
+import Link from 'next/link'
 
 type FormData = {
   name: string
@@ -11,6 +12,17 @@ type FormData = {
   email: string
   projectType: string
   message: string
+  privacyConsent: boolean
+}
+
+// Тип для ошибок валидации
+interface FormErrors {
+  name?: string
+  phone?: string
+  email?: string
+  projectType?: string
+  message?: string
+  privacyConsent?: string
 }
 
 const ContactForm = () => {
@@ -20,15 +32,17 @@ const ContactForm = () => {
     email: '',
     projectType: '',
     message: '',
+    privacyConsent: false,
   })
   const [step, setStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [errors, setErrors] = useState<Partial<FormData>>({})
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [submitClicked, setSubmitClicked] = useState(false)
 
   // Валидация полей
   const validateStep = (currentStep: number) => {
-    const newErrors: Partial<FormData> = {}
+    const newErrors: FormErrors = {}
 
     if (currentStep === 1) {
       if (!formData.name) newErrors.name = 'Введите ваше имя'
@@ -40,9 +54,15 @@ const ContactForm = () => {
 
     if (currentStep === 2) {
       if (!formData.projectType) newErrors.projectType = 'Выберите тип проекта'
-      if (!formData.email) newErrors.email = 'Введите email'
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         newErrors.email = 'Введите корректный email'
+      }
+    }
+
+    // Для 3 шага проверяем согласие на обработку персональных данных
+    if (currentStep === 3) {
+      if (!formData.privacyConsent) {
+        newErrors.privacyConsent = 'Необходимо дать согласие на обработку персональных данных'
       }
     }
 
@@ -53,8 +73,10 @@ const ContactForm = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    const { name, value, type } = e.target
+    const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+
+    setFormData(prev => ({ ...prev, [name]: val }))
     // Очищаем ошибку при вводе
     if (errors[name as keyof FormData]) {
       setErrors(prev => ({ ...prev, [name]: undefined }))
@@ -73,14 +95,32 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!validateStep(3)) return
+
+    // Выходим, если кнопка отправки не была нажата
+    if (!submitClicked) return
+
+    // Сбрасываем флаг нажатия кнопки
+    setSubmitClicked(false)
+
+    // Проверяем валидацию только текущего шага
+    if (!validateStep(step)) return
+
+    // Если мы не на последнем шаге, не отправляем форму
+    if (step !== 3) return
 
     setIsSubmitting(true)
     // Здесь будет логика отправки формы
     await new Promise(resolve => setTimeout(resolve, 1000))
     setIsSubmitting(false)
     setIsSuccess(true)
-    setFormData({ name: '', phone: '', email: '', projectType: '', message: '' })
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      projectType: '',
+      message: '',
+      privacyConsent: false,
+    })
     setStep(1)
     setTimeout(() => setIsSuccess(false), 3000)
   }
@@ -135,9 +175,8 @@ const ContactForm = () => {
               >
                 <div className='text-center mb-8'>
                   <h3 className='text-2xl md:text-3xl font-bold text-white mb-2'>
-                    Расскажите о себе
+                    Заполните основную информацию
                   </h3>
-                  <p className='text-gray-400'>Заполните основную информацию</p>
                 </div>
 
                 <div className='grid md:grid-cols-2 gap-6'>
@@ -229,7 +268,9 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label className='block text-gray-400 mb-2'>Email</label>
+                    <label className='block text-gray-400 mb-2'>
+                      Email <span className='text-gray-500'>(необязательно)</span>
+                    </label>
                     <div className='relative'>
                       <input
                         type='email'
@@ -270,7 +311,9 @@ const ContactForm = () => {
                 </div>
 
                 <div>
-                  <label className='block text-gray-400 mb-2'>Сообщение</label>
+                  <label className='block text-gray-400 mb-2'>
+                    Сообщение <span className='text-gray-500'>(необязательно)</span>
+                  </label>
                   <textarea
                     name='message'
                     value={formData.message}
@@ -279,6 +322,34 @@ const ContactForm = () => {
                     className='w-full bg-zinc-900/50 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#FFD700] transition-colors'
                     placeholder='Опишите ваш проект, укажите размеры, особые требования или задайте вопрос...'
                   />
+                </div>
+
+                {/* Согласие на обработку персональных данных */}
+                <div className='relative'>
+                  <div className='flex items-start'>
+                    <input
+                      type='checkbox'
+                      id='privacy-consent'
+                      name='privacyConsent'
+                      checked={formData.privacyConsent}
+                      onChange={handleChange}
+                      className='mt-1 h-4 w-4 rounded border-zinc-700 text-[#FFD700] focus:ring-[#FFD700]'
+                    />
+                    <label htmlFor='privacy-consent' className='ml-2 block text-sm text-gray-400'>
+                      Я даю согласие на обработку моих персональных данных в соответствии с{' '}
+                      <Link
+                        href='/privacy'
+                        className='text-[#FFD700]/80 hover:text-[#FFD700] underline'
+                      >
+                        политикой конфиденциальности
+                      </Link>
+                      . Вы можете отозвать своё согласие, направив запрос на email:{' '}
+                      {COMPANY_INFO.email}
+                    </label>
+                  </div>
+                  {errors.privacyConsent && (
+                    <span className='block text-red-500 text-sm mt-1'>{errors.privacyConsent}</span>
+                  )}
                 </div>
 
                 <div className='bg-zinc-900/30 rounded-lg p-4 text-sm text-gray-400'>
@@ -332,6 +403,7 @@ const ContactForm = () => {
               <button
                 type='submit'
                 disabled={isSubmitting}
+                onClick={() => setSubmitClicked(true)}
                 className='ml-auto flex items-center px-8 py-3 bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-black rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed'
               >
                 {isSubmitting ? (

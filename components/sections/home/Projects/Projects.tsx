@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { PROJECT_CATEGORIES, COMPLETED_PROJECTS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
+import Link from 'next/link'
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState('all')
@@ -15,7 +16,7 @@ const Projects = () => {
       : COMPLETED_PROJECTS.filter(project => project.category === activeTab)
 
   return (
-    <section className='py-16 md:py-24 bg-zinc-900'>
+    <section id='projects_co' className='py-16 md:py-24 bg-zinc-900'>
       <div className='container mx-auto px-4'>
         <div className='text-center mb-12'>
           <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
@@ -98,12 +99,27 @@ const Projects = () => {
         {/* CTA */}
         <div className='text-center mt-12'>
           <p className='text-gray-400 mb-6'>
-            Хотите реализовать похожий проект? Свяжитесь с нами для консультации
+            Хотите реализовать похожий проект? Свяжитесь с нами для консультации. Доступна аренда!
           </p>
-          <button className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'>
-            <span>Обсудить проект</span>
-            {ICONS.arrow}
-          </button>
+          <div className='flex flex-wrap justify-center gap-4'>
+            <Link
+              href={`https://wa.me/79142039197?text=${encodeURIComponent('Здравствуйте! Я с вашего сайта. Интересуют модульные решения и условия аренды. Можно консультацию?')}`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'
+            >
+              <span>Написать в WhatsApp</span>
+              {ICONS.arrow}
+            </Link>
+
+            <Link
+              href='tel:+79142039197'
+              className='inline-flex items-center justify-center px-8 py-4 bg-zinc-800 text-white rounded-lg font-semibold hover:bg-zinc-700 transition-colors'
+            >
+              {ICONS.phone || ICONS.call || '📞'}
+              <span className='ml-4'>Позвонить</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

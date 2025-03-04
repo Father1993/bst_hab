@@ -2,88 +2,173 @@
 
 import Link from 'next/link'
 
-const PrivacyPage = () => (
-  <section className='container mx-auto'>
-    <div className='max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-10'>
-      <div className='px-8 py-10'>
-        <h1 className='text-3xl font-bold text-gray-900 mb-8'>Политика конфиденциальности</h1>
+const PrivacyPage = () => {
+  const lastUpdated = '01.10.2023' // Дата последнего обновления политики
 
-        <div className='prose prose-lg max-w-none text-gray-700'>
+  return (
+    <section className='bg-black text-gray-300 py-16'>
+      <div className='container mx-auto px-4'>
+        <div className='max-w-4xl mx-auto'>
+          <h1 className='text-3xl md:text-4xl font-bold text-white mb-8 border-b border-zinc-800 pb-4'>
+            Политика конфиденциальности
+          </h1>
+
           <div className='space-y-6'>
-            <h2 className='text-2xl font-semibold text-gray-800'>
+            <p className='text-sm text-gray-500'>Последнее обновление: {lastUpdated}</p>
+
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>
               Что такое политика конфиденциальности?
             </h2>
             <p>
               Политика конфиденциальности — это заявление, в котором раскрываются способы сбора,
               использования и защиты персональных данных посетителей сайта ООО "БСТ ХАБ". Данная
-              политика соответствует требованиям законодательства РФ по защите конфиденциальности
-              наших клиентов.
+              политика разработана в соответствии с Федеральным законом от 27.07.2006 N 152-ФЗ "О
+              персональных данных" и другими нормативными актами РФ, регулирующими вопросы защиты
+              персональных данных.
             </p>
 
-            <h2 className='text-2xl font-semibold text-gray-800 mt-8'>
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>
+              Оператор персональных данных
+            </h2>
+            <p>
+              Оператором, осуществляющим обработку персональных данных, является Общество с
+              ограниченной ответственностью "БСТ ХАБ" (ООО "БСТ ХАБ").
+            </p>
+            <p className='bg-zinc-900/50 p-4 rounded-lg border border-zinc-800 mt-4'>
+              <strong className='text-[#FFD700]'>Полное название:</strong> ОБЩЕСТВО С ОГРАНИЧЕННОЙ
+              ОТВЕТСТВЕННОСТЬЮ "БСТ ХАБ"
+              <br />
+              <strong className='text-[#FFD700]'>Английское название:</strong> OOO "BST KHAB"
+              <br />
+              <strong className='text-[#FFD700]'>Юридический адрес:</strong> 680018, Хабаровский
+              кр., г. Хабаровск, ул. Белинского, д. 9Б
+              <br />
+              <strong className='text-[#FFD700]'>ИНН:</strong> 2722125309
+              <br />
+              <strong className='text-[#FFD700]'>КПП:</strong> 272201001
+              <br />
+              <strong className='text-[#FFD700]'>ОГРН:</strong> 1192724003713
+              <br />
+              <strong className='text-[#FFD700]'>Руководитель:</strong> Дементьев Владимир
+              Александрович, директор
+              <br />
+              <strong className='text-[#FFD700]'>E-mail:</strong> 252188@mail.ru
+              <br />
+              <strong className='text-[#FFD700]'>Телефон:</strong> +7 (914) 203-91-97
+            </p>
+
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>
               Какую информацию мы собираем?
             </h2>
             <p>Мы получаем, собираем и храним следующую информацию:</p>
-            <ul className='list-disc pl-6 space-y-2'>
-              <li>Личные данные (имя, email, телефон)</li>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
+              <li>Личные данные (имя, email, телефон, почтовый адрес)</li>
               <li>Платежные данные</li>
               <li>IP-адрес и информация о браузере</li>
               <li>История посещений и покупок</li>
               <li>Информация о взаимодействии с сайтом</li>
+              <li>Файлы cookie (подробнее в Политике использования файлов cookie)</li>
             </ul>
 
-            <h2 className='text-2xl font-semibold text-gray-800 mt-8'>
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>
               Как мы используем вашу информацию?
             </h2>
             <p>Мы используем собранные данные для следующих целей:</p>
-            <ul className='list-disc pl-6 space-y-2'>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
               <li>Предоставление услуг и обработка заказов</li>
               <li>Техническая поддержка клиентов</li>
               <li>Отправка важных уведомлений и обновлений</li>
               <li>Улучшение качества обслуживания</li>
               <li>Соблюдение законодательных требований</li>
+              <li>Маркетинговые исследования (с вашего согласия)</li>
             </ul>
 
-            <h2 className='text-2xl font-semibold text-gray-800 mt-8'>Защита данных</h2>
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>
+              Правовые основания обработки
+            </h2>
+            <p>Мы обрабатываем ваши персональные данные на следующих правовых основаниях:</p>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
+              <li>С вашего согласия, предоставленного при заполнении форм на сайте</li>
+              <li>Для исполнения договора, стороной которого вы являетесь</li>
+              <li>В целях соблюдения требований законодательства РФ</li>
+              <li>В целях защиты наших законных интересов</li>
+            </ul>
+
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>Сроки хранения данных</h2>
+            <p>
+              Мы храним ваши персональные данные не дольше, чем это необходимо для целей, для
+              которых они были собраны, включая соблюдение юридических или нормативных требований.
+              Конкретные сроки хранения:
+            </p>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
+              <li>
+                Данные профиля клиента — в течение всего срока действия договорных отношений и 5 лет
+                после их прекращения
+              </li>
+              <li>Данные для маркетинговых целей — до момента отзыва согласия на их обработку</li>
+              <li>
+                Данные о транзакциях — в соответствии с требованиями налогового и бухгалтерского
+                законодательства
+              </li>
+            </ul>
+
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>
+              Трансграничная передача данных
+            </h2>
+            <p>
+              ООО "БСТ ХАБ" не осуществляет трансграничную передачу ваших персональных данных. Все
+              серверы, на которых хранятся персональные данные, находятся на территории Российской
+              Федерации.
+            </p>
+
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>Защита данных</h2>
             <p>Мы принимаем все необходимые меры для защиты ваших персональных данных:</p>
-            <ul className='list-disc pl-6 space-y-2'>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
               <li>Использование защищенных серверов</li>
               <li>Шифрование данных при передаче</li>
               <li>Регулярное обновление систем безопасности</li>
               <li>Строгий контроль доступа к данным</li>
+              <li>Регулярное проведение внутреннего аудита систем безопасности</li>
+              <li>Обучение сотрудников принципам работы с персональными данными</li>
             </ul>
 
-            <h2 className='text-2xl font-semibold text-gray-800 mt-8'>Ваши права</h2>
-            <p>Вы имеете право:</p>
-            <ul className='list-disc pl-6 space-y-2'>
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>Ваши права</h2>
+            <p>В соответствии с ФЗ-152 "О персональных данных" вы имеете право:</p>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
               <li>Получить доступ к своим персональным данным</li>
               <li>Требовать исправления неточных данных</li>
               <li>Отозвать согласие на обработку данных</li>
               <li>Требовать удаления своих данных</li>
+              <li>Получить информацию, касающуюся обработки ваших персональных данных</li>
+              <li>Обжаловать действия или бездействие оператора</li>
             </ul>
 
-            <h2 className='text-2xl font-semibold text-gray-800 mt-8'>Обновления политики</h2>
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>Обновления политики</h2>
             <p>
               Мы оставляем за собой право обновлять данную политику конфиденциальности. Все
               изменения будут опубликованы на этой странице с указанием даты последнего обновления.
+              Рекомендуем периодически просматривать эту страницу для ознакомления с любыми
+              изменениями.
             </p>
 
-            <h2 className='text-2xl font-semibold text-gray-800 mt-8'>Контактная информация</h2>
+            <h2 className='text-2xl font-semibold text-[#FFD700] mt-8'>Контактная информация</h2>
             <p>
-              Если у вас возникли вопросы относительно нашей политики конфиденциальности,
-              пожалуйста, свяжитесь с нами:
+              Если у вас возникли вопросы относительно нашей политики конфиденциальности или
+              обработки ваших персональных данных, пожалуйста, свяжитесь с нашим ответственным за
+              обработку персональных данных:
             </p>
-            <ul className='list-disc pl-6 space-y-2'>
+            <ul className='list-disc pl-6 space-y-2 mt-4'>
               <li>Email: 252188@mail.ru</li>
               <li>Телефон: +7 (914) 203-91-97</li>
+              <li>Почтовый адрес: 680018, Хабаровский кр., г. Хабаровск, ул. Белинского, д. 9Б</li>
             </ul>
           </div>
 
-          <div className='flex justify-center mt-8'>
+          <div className='flex justify-center mt-12'>
             <Link
               href='/'
-              className='group inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white 
-              bg-black hover:bg-gray-900 rounded transition-all duration-200 
+              className='group inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-black 
+              bg-[#FFD700] hover:bg-[#FFD700]/90 rounded-lg transition-all duration-200 
               transform hover:-translate-y-0.5 hover:shadow-lg'
             >
               <svg
@@ -105,8 +190,8 @@ const PrivacyPage = () => (
           </div>
         </div>
       </div>
-    </div>
-  </section>
-)
+    </section>
+  )
+}
 
 export default PrivacyPage

@@ -3,9 +3,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Creator from './Creator'
 import CallbackForm from '@/components/features/CallbackForm'
+import useBreakpoint from '@/components/hooks/useBreakpoint'
 
 const Footer = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
+  const { isMobile } = useBreakpoint()
+  const logoSize = isMobile ? 230 : 170
 
   // Обработчик открытия формы обратного звонка
   const handleOpenCallbackForm = () => {
@@ -27,14 +30,16 @@ const Footer = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12'>
           {/* Информация о компании */}
           <div className='space-y-6'>
-            <Link href='/' className='block'>
-              <Image
-                src='/img/logo/bst_hab-logo-black.png'
-                alt='BST HAB - Модульные здания в Хабаровске'
-                width={170}
-                height={170}
-                className='object-contain mb-4'
-              />
+            <Link href='/' className='block text-center md:text-left'>
+              <div className='flex justify-center md:justify-start'>
+                <Image
+                  src='/img/logo/bst_hab-logo-black.png'
+                  alt='BST HAB - Модульные здания в Хабаровске'
+                  width={logoSize}
+                  height={logoSize}
+                  className='object-contain mb-4'
+                />
+              </div>
             </Link>
             <p className='text-gray-400 text-sm'>
               Производство и аренда модульных конструкций: бытовки, гаражи, строительные модули.
@@ -180,7 +185,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href='/projects'
+                  href='/#projects_co'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
                   Реализованные проекты
@@ -321,7 +326,7 @@ const Footer = () => {
             В нашем каталоге представлены: жилые модули и бытовки для проживания, офисные и
             административные здания, модульные гаражи и боксы, строительные бытовки и вагончики,
             модульные посты охраны и КПП. Оказываем услуги по доставке и монтажу модульных
-            конструкций под ключ. Работаем с 2015 года, реализовали более 500 проектов.
+            конструкций под ключ. Работаем с 2015 года, реализовали более 1000 проектов.
           </p>
         </div>
 
@@ -339,10 +344,10 @@ const Footer = () => {
                 Политика конфиденциальности
               </Link>
               <Link
-                href='/terms'
+                href='/privacy-policy'
                 className='text-gray-400 text-sm hover:text-[#FFD700] transition-colors'
               >
-                Условия использования
+                Политика использования cookie
               </Link>
               <Link
                 href='/sitemap.xml'

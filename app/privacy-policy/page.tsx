@@ -53,6 +53,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CookiePolicy() {
+export default function PrivacyCookiePage() {
   return <PrivacyPolicyPage />
 }

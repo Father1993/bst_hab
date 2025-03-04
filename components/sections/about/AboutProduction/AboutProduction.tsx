@@ -25,7 +25,7 @@ const AboutProduction = () => {
   const features: FeatureItem[] = [
     {
       icon: ICONS.building,
-      title: 'Три типа конструкций',
+      title: 'Все виды конструкций',
       description:
         'Производим каркасные бытовки, модули из сэндвич-панелей и переоборудуем морские контейнеры',
     },
@@ -45,12 +45,12 @@ const AboutProduction = () => {
 
   const stats: StatItem[] = [
     { number: COMPANY_STATS.projectsCount, label: 'готовых бытовок и модулей' },
-    { number: COMPANY_STATS.constructionTypes, label: 'типа конструкций' },
+    { number: COMPANY_STATS.constructionTypes, label: 'минимальные сроки' },
     { number: COMPANY_STATS.experience, label: 'лет опыта' },
   ]
 
   return (
-    <section className='py-16 md:py-24 bg-black relative overflow-hidden'>
+    <section className='py-8 md:py-12 bg-black relative overflow-hidden'>
       {/* Фоновые элементы */}
       <div className='absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-black to-black' />
       <div className='absolute inset-0 bg-[radial-gradient(#FFD700_1px,transparent_1px)] [background-size:40px_40px] opacity-5' />
@@ -95,7 +95,7 @@ const AboutProduction = () => {
           className='relative rounded-2xl overflow-hidden mb-16 aspect-[16/9]'
         >
           <Image
-            src='/img/about-page.webp'
+            src='/img/about/big-module.webp'
             alt='Производство BST HAB'
             fill
             className='object-cover'
@@ -176,17 +176,39 @@ const AboutProduction = () => {
           ))}
         </motion.div>
 
-        {/* Партнерство */}
+        {/* Преимущество компании */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.2 }}
           className='mt-16 text-center'
         >
-          <div className='inline-flex items-center justify-center px-6 py-3 rounded-full bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30'>
-            <span className='text-[#FFD700] mr-2'>★</span>
-            <span className='text-gray-400'>
-              Сотрудничаем с крупнейшими металлургическими заводами России
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-6'>
+            <div className='inline-flex flex-col md:flex-row items-center justify-center px-6 py-4 rounded-xl bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300'>
+              <span className='text-[#FFD700] text-xl mr-2 mb-2 md:mb-0'>★</span>
+              <span className='text-gray-300 font-medium text-center md:text-left'>
+                <span className='text-[#FFD700]'>100% клиентов</span> рекомендуют нас друзьям —
+                модульные решения, которые превосходят ожидания
+              </span>
+            </div>
+
+            <div className='inline-flex flex-col md:flex-row items-center justify-center px-6 py-4 rounded-xl bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300'>
+              <span className='text-[#FFD700] text-xl mr-2 mb-2 md:mb-0'>⚖️</span>
+              <span className='text-gray-300 font-medium text-center md:text-left'>
+                <span className='text-[#FFD700]'>Сниженный вес модулей</span> — экономичная
+                транспортировка и доставка в любую точку
+              </span>
+            </div>
+          </div>
+
+          <div className='inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300'>
+            <span className='text-gray-300 font-medium text-center mb-2'>
+              Стандартный размер модуля <span className='text-[#FFD700]'>2.44м × 6м × 2.52м</span> —
+              совместим с транспортными стандартами
+            </span>
+            <span className='text-gray-400 text-sm'>
+              Предлагаем гибкие финансовые инструменты: рассрочка, лизинг, аренда с выкупом на
+              индивидуальных условиях
             </span>
           </div>
         </motion.div>

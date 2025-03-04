@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { COMPANY_STATS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
+import Link from 'next/link'
 
 const AboutHero = () => {
   const stats = [
@@ -19,7 +20,7 @@ const AboutHero = () => {
     },
     {
       number: COMPANY_STATS.constructionTypes,
-      label: 'типа конструкций',
+      label: 'минимальные сроки',
       icon: ICONS.building,
     },
     {
@@ -70,12 +71,53 @@ const AboutHero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className='text-xl text-gray-400 mb-12'
+            className='text-xl text-gray-400 mb-8'
           >
             Изготавливаем каркасные бытовки, модули из сэндвич-панелей и переоборудуем контейнеры.
             Стандартные решения и индивидуальные проекты любой сложности для бизнеса и частных
             клиентов.
           </motion.p>
+
+          {/* Дополнительные преимущества */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className='bg-zinc-800/30 backdrop-blur-sm rounded-xl p-6 border border-zinc-700/30 max-w-3xl mx-auto mb-12'
+          >
+            <ul className='text-left space-y-3 text-gray-300'>
+              <li className='flex items-start gap-2'>
+                <span className='text-[#FFD700] mt-1'>✓</span>
+                <span>
+                  Стандартный размер модуля{' '}
+                  <span className='text-[#FFD700] font-medium'>2.44м × 6м × 2.52м</span> (20-футовый
+                  контейнер) — удобно в доставке и транспортировке
+                </span>
+              </li>
+              <li className='flex items-start gap-2'>
+                <span className='text-[#FFD700] mt-1'>✓</span>
+                <span>
+                  <span className='text-[#FFD700] font-medium'>Меньший вес</span> готовых модулей по
+                  сравнению с конкурентами — дешевле и удобнее в транспортировке
+                </span>
+              </li>
+              <li className='flex items-start gap-2'>
+                <span className='text-[#FFD700] mt-1'>✓</span>
+                <span>
+                  Гибкие условия: продажа, рассрочка, лизинг или аренда с выкупом на индивидуальных
+                  условиях
+                </span>
+              </li>
+              <li className='flex items-start gap-2'>
+                <span className='text-[#FFD700] mt-1'>✓</span>
+                <span>
+                  Широкий ассортимент: модули для ИТР (душ, туалет, кухня, спальня), блок-модули с
+                  тамбуром, бытовки, душевые, столовые, гаражи, автосервисы, посты охраны, КПП,
+                  общежития и дачные домики
+                </span>
+              </li>
+            </ul>
+          </motion.div>
 
           {/* Статистика */}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-8 mb-12'>
@@ -97,7 +139,7 @@ const AboutHero = () => {
           </div>
 
           {/* Доверительные элементы */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -114,7 +156,7 @@ const AboutHero = () => {
                 className='opacity-50 hover:opacity-100 transition-opacity'
               />
             ))}
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA */}
           <motion.div
@@ -123,11 +165,11 @@ const AboutHero = () => {
             transition={{ duration: 0.6, delay: 1 }}
             className='flex flex-col sm:flex-row gap-4 justify-center'
           >
-            <a
-              href='#consultation'
+            <Link
+              href='/rent'
               className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'
             >
-              <span>Рассчитать стоимость</span>
+              <span>Арендовать</span>
               <svg
                 className='w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform'
                 fill='none'
@@ -141,13 +183,13 @@ const AboutHero = () => {
                   d='M17 8l4 4m0 0l-4 4m4-4H3'
                 />
               </svg>
-            </a>
-            <a
-              href='#catalog'
+            </Link>
+            <Link
+              href='/catalog'
               className='inline-flex items-center justify-center px-8 py-4 border-2 border-[#FFD700] text-[#FFD700] rounded-lg font-semibold hover:bg-[#FFD700] hover:text-black transition-colors'
             >
               Смотреть каталог
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>

@@ -48,7 +48,7 @@ const Hero = () => {
   }
 
   return (
-    <section className='relative min-h-screen flex items-center bg-black text-white overflow-hidden'>
+    <section className='relative min-h-[80vh] flex items-center bg-black text-white overflow-hidden'>
       {/* Фоновый видеослайдер с оптимизацией */}
       <div className='absolute inset-0 z-0'>
         <div className='relative w-full h-full'>
@@ -161,7 +161,7 @@ const Hero = () => {
           <div className='relative'>
             <div className='relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl'>
               <Image
-                src='/img/2.webp'
+                src='/img/home.webp'
                 alt='Модульные конструкции BST HAB'
                 width={800}
                 height={600}
@@ -176,7 +176,7 @@ const Hero = () => {
                 }}
               />
               {/* Статистика */}
-              <div className='absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-sm rounded-xl p-4 border border-[#FFD700]/20'>
+              <div className='absolute bottom-6 left-6 right-6 bg-black/50 backdrop-blur-sm rounded-xl p-4 border border-[#FFD700]/20'>
                 <div className='grid grid-cols-3 gap-4 text-center'>
                   <div>
                     <div className='text-[#FFD700] text-2xl font-bold'>
