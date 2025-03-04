@@ -37,45 +37,12 @@ const Features = () => {
   return (
     <section className='py-16 md:py-24 bg-gradient-to-b from-black to-zinc-900'>
       <div className='container mx-auto px-4'>
-        {/* Преимущества */}
-        <motion.div
-          initial='hidden'
-          animate={isVisible ? 'visible' : 'hidden'}
-          variants={containerVariants}
-          className='mb-20'
-        >
-          <div className='text-center mb-12'>
-            <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-              Почему выбирают <span className='text-[#FFD700]'>BST HAB</span>
-            </h2>
-            <p className='text-gray-400 max-w-2xl mx-auto'>
-              Мы предлагаем полный комплекс услуг по производству и аренде модульных конструкций с
-              гарантией качества и индивидуальным подходом к каждому клиенту
-            </p>
-          </div>
-
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-            {COMPANY_FEATURES.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className='bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700/30 hover:border-[#FFD700]/30 transition-colors group'
-              >
-                <div className='w-16 h-16 bg-[#FFD700]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#FFD700]/20 transition-colors'>
-                  {ICONS[feature.icon]}
-                </div>
-                <h3 className='text-xl font-semibold text-white mb-2'>{feature.title}</h3>
-                <p className='text-gray-400'>{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Услуги */}
         <motion.div
           initial='hidden'
           animate={isVisible ? 'visible' : 'hidden'}
           variants={containerVariants}
+          className='mb-40'
         >
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
@@ -122,6 +89,39 @@ const Features = () => {
               <span>Смотреть весь каталог</span>
               {ICONS.arrow}
             </Link>
+          </div>
+        </motion.div>
+
+        {/* Преимущества */}
+        <motion.div
+          initial='hidden'
+          animate={isVisible ? 'visible' : 'hidden'}
+          variants={containerVariants}
+        >
+          <div className='text-center mb-12'>
+            <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
+              Почему выбирают <span className='text-[#FFD700]'>BST HAB</span>
+            </h2>
+            <p className='text-gray-400 max-w-2xl mx-auto'>
+              Мы предлагаем полный комплекс услуг по производству и аренде модульных конструкций с
+              гарантией качества и индивидуальным подходом к каждому клиенту
+            </p>
+          </div>
+
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+            {COMPANY_FEATURES.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className='bg-zinc-800/50 backdrop-blur-sm rounded-xl p-6 border border-zinc-700/30 hover:border-[#FFD700]/30 transition-colors group'
+              >
+                <div className='w-16 h-16 bg-[#FFD700]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#FFD700]/20 transition-colors'>
+                  {ICONS[feature.icon]}
+                </div>
+                <h3 className='text-xl font-semibold text-white mb-2'>{feature.title}</h3>
+                <p className='text-gray-400'>{feature.description}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

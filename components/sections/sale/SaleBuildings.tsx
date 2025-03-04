@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
+import FAQ from '../home/FAQ/FAQ'
 
 const categories = [
   {
@@ -189,6 +190,8 @@ const SaleBuildings = () => {
 
       {/* Форма обратного звонка */}
       <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
+
+      <FAQ />
     </main>
   )
 }

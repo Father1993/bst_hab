@@ -2,8 +2,9 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { WORK_PROCESS, COMPANY_INFO } from '@/components/shared/constants'
+import { WORK_PROCESS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
+import Link from 'next/link'
 
 const Process = () => {
   const ref = useRef(null)
@@ -44,7 +45,7 @@ const Process = () => {
                 {/* Контент */}
                 <div className='flex-1'>
                   <div className={`max-w-lg ${index % 2 === 0 ? 'ml-auto text-right' : 'mr-auto'}`}>
-                    <h3 className='text-2xl font-bold text-white mb-4'>{step.title}</h3>
+                    <h3 className='text-xl font-bold text-white mb-4'>{step.title}</h3>
                     <p className='text-gray-400'>{step.description}</p>
                   </div>
                 </div>
@@ -74,13 +75,15 @@ const Process = () => {
             transition={{ delay: WORK_PROCESS.length * 0.2 + 0.4 }}
             className='text-center mt-16'
           >
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
+            <Link
+              href={`https://wa.me/79142039197?text=${encodeURIComponent('Здравствуйте! Я с вашего сайта. Интересуют модульные решения и условия аренды. Можно консультацию?')}`}
+              target='_blank'
+              rel='noopener noreferrer'
               className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'
             >
               {ICONS.phone}
-              <span className='ml-2'>Заказать консультацию</span>
-            </a>
+              <span className='ml-2'>Бесплатная консультация</span>
+            </Link>
           </motion.div>
         </div>
       </div>

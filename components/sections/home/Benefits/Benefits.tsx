@@ -30,7 +30,7 @@ const Benefits = () => {
           <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
             Преимущества <span className='text-[#FFD700]'>модульного строительства</span>
           </h2>
-          <p className='text-gray-400 max-w-2xl mx-auto'>
+          <p className='text-gray-400 max-w-2xl mx-auto mb-10 mt-6'>
             Современный подход к строительству, который сочетает в себе скорость, качество и
             экономическую эффективность
           </p>

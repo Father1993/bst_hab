@@ -2,12 +2,22 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 
 // Тип для данных формы
 interface CallbackFormData {
   name: string
   phone: string
   time: string
+  privacyConsent: boolean
+}
+
+// Тип для ошибок валидации
+interface FormErrors {
+  name?: string
+  phone?: string
+  time?: string
+  privacyConsent?: string
 }
 
 // Типы для пропсов компонента
@@ -22,10 +32,11 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
     name: '',
     phone: '',
     time: '',
+    privacyConsent: false,
   })
 
   // Обработка ошибок
-  const [errors, setErrors] = useState<Partial<CallbackFormData>>({})
+  const [errors, setErrors] = useState<FormErrors>({})
 
   // Состояния процесса отправки
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -60,8 +71,10 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
 
   // Обработчик изменения полей формы
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    const { name, value, type } = e.target
+    const val = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+
+    setFormData(prev => ({ ...prev, [name]: val }))
 
     // Очищаем ошибку при вводе
     if (errors[name as keyof CallbackFormData]) {
@@ -71,12 +84,15 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
 
   // Валидация формы
   const validateForm = () => {
-    const newErrors: Partial<CallbackFormData> = {}
+    const newErrors: FormErrors = {}
 
     if (!formData.name.trim()) newErrors.name = 'Введите ваше имя'
     if (!formData.phone) newErrors.phone = 'Введите номер телефона'
     else if (!/^\+?[0-9]{10,}$/.test(formData.phone.replace(/\D/g, ''))) {
       newErrors.phone = 'Введите корректный номер телефона'
+    }
+    if (!formData.privacyConsent) {
+      newErrors.privacyConsent = 'Необходимо дать согласие на обработку персональных данных'
     }
 
     setErrors(newErrors)
@@ -100,7 +116,7 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
 
     // Сбрасываем форму и закрываем через 2 секунды
     setTimeout(() => {
-      setFormData({ name: '', phone: '', time: '' })
+      setFormData({ name: '', phone: '', time: '', privacyConsent: false })
       setIsSuccess(false)
       onClose()
     }, 2000)
@@ -270,6 +286,35 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
                     </select>
                   </div>
 
+                  {/* Согласие на обработку персональных данных */}
+                  <div className='mt-3'>
+                    <div className='flex items-start'>
+                      <input
+                        type='checkbox'
+                        id='privacy-consent-callback'
+                        name='privacyConsent'
+                        checked={formData.privacyConsent}
+                        onChange={handleChange}
+                        className='mt-1 h-4 w-4 rounded border-zinc-700 text-[#FFD700] focus:ring-[#FFD700]'
+                      />
+                      <label
+                        htmlFor='privacy-consent-callback'
+                        className='ml-2 block text-sm text-zinc-400'
+                      >
+                        Я даю согласие на обработку моих персональных данных в соответствии с{' '}
+                        <Link
+                          href='/privacy'
+                          className='text-[#FFD700]/80 hover:text-[#FFD700] underline'
+                        >
+                          политикой конфиденциальности
+                        </Link>
+                      </label>
+                    </div>
+                    {errors.privacyConsent && (
+                      <p className='mt-1 text-sm text-red-500'>{errors.privacyConsent}</p>
+                    )}
+                  </div>
+
                   {/* Кнопка отправки */}
                   <div className='pt-2'>
                     <button
@@ -305,14 +350,6 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
                       )}
                     </button>
                   </div>
-
-                  {/* Политика конфиденциальности */}
-                  <p className='text-xs text-zinc-500 text-center mt-4'>
-                    Нажимая кнопку, вы соглашаетесь с{' '}
-                    <a href='/privacy' className='text-[#FFD700]/80 hover:text-[#FFD700] underline'>
-                      политикой конфиденциальности
-                    </a>
-                  </p>
                 </>
               )}
             </form>
