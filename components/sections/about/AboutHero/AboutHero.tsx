@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import { COMPANY_STATS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 import Link from 'next/link'
@@ -30,11 +29,11 @@ const AboutHero = () => {
     },
   ]
 
-  const trustIndicators = [
-    { image: '/img/gaz.png', alt: 'Партнер 1' },
-    { image: '/img/nnk.jpg', alt: 'Партнер 2' },
-    { image: '/img/garant.png', alt: 'Партнер 3' },
-  ]
+  // const trustIndicators = [
+  //   { image: '/img/gaz.png', alt: 'Партнер 1' },
+  //   { image: '/img/nnk.jpg', alt: 'Партнер 2' },
+  //   { image: '/img/garant.png', alt: 'Партнер 3' },
+  // ]
 
   return (
     <section className='pt-32 lg:pt-40 pb-16 md:pb-24 bg-black relative overflow-hidden'>

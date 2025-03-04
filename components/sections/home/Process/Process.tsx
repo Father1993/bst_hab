@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { WORK_PROCESS, COMPANY_INFO } from '@/components/shared/constants'
+import { WORK_PROCESS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 import Link from 'next/link'
 
