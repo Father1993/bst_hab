@@ -1,6 +1,6 @@
+'use client'
+
 import { motion } from 'framer-motion'
-import { ICONS } from '@/components/shared/icon'
-import { DELIVERY_TYPES } from '../constants'
 
 const DeliveryTypes = () => {
   return (
@@ -13,40 +13,65 @@ const DeliveryTypes = () => {
       </div>
 
       <div className='container mx-auto px-4 relative z-10'>
+        {/* Информация о стоимости доставки */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className='text-center mb-12'
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className='bg-zinc-800/30 backdrop-blur-sm rounded-xl p-8 border border-zinc-700/30'
         >
-          <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-            Способы <span className='text-[#FFD700]'>доставки</span>
-          </h2>
-          <p className='text-gray-400 max-w-2xl mx-auto'>
-            Мы предлагаем различные способы доставки модульных конструкций, чтобы удовлетворить
-            потребности каждого клиента
-          </p>
-        </motion.div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8'>
-          {DELIVERY_TYPES.map((type, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className='group bg-zinc-800/30 backdrop-blur-sm rounded-xl p-6 border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300'
-            >
-              <div className='w-16 h-16 bg-[#FFD700]/10 rounded-xl flex items-center justify-center text-[#FFD700] mb-6 group-hover:scale-110 transition-transform duration-300'>
-                {ICONS[type.icon]}
+          <h3 className='text-2xl font-bold text-white mb-4'>
+            Стоимость <span className='text-[#FFD700]'>доставки</span>
+          </h3>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <div>
+              <p className='text-gray-400 mb-4'>
+                Стоимость доставки зависит от количества модулей, расстояния и выбранного способа
+                транспортировки:
+              </p>
+              <ul className='space-y-2'>
+                <li className='flex items-start gap-2'>
+                  <span className='text-[#FFD700] mt-1'>✓</span>
+                  <span className='text-gray-300'>
+                    <span className='font-medium text-white'>По городу Хабаровску:</span> от 6 000 -
+                    8 000 рублей (доставка автомобилем с краном-манипулятором)
+                  </span>
+                </li>
+                <li className='flex items-start gap-2'>
+                  <span className='text-[#FFD700] mt-1'>✓</span>
+                  <span className='text-gray-300'>
+                    <span className='font-medium text-white'>По Хабаровскому краю:</span>{' '}
+                    рассчитывается индивидуально в зависимости от расстояния (используются
+                    полуприцепы для перевозки 2-х модулей)
+                  </span>
+                </li>
+                <li className='flex items-start gap-2'>
+                  <span className='text-[#FFD700] mt-1'>✓</span>
+                  <span className='text-gray-300'>
+                    <span className='font-medium text-white'>Крупные заказы:</span> для организаций,
+                    заказывающих от 20-30 модулей, предлагаем специальные условия доставки
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className='text-gray-400 mb-4'>Процесс организации доставки:</p>
+              <ol className='space-y-2 list-decimal list-inside text-gray-300'>
+                <li>Заключаем договор с указанием всех условий доставки</li>
+                <li>Согласовываем сроки и способ доставки</li>
+                <li>После оплаты организуем транспорт и погрузку</li>
+                <li>Доставляем модули точно в срок</li>
+                <li>Выполняем разгрузку и, при необходимости, монтаж</li>
+              </ol>
+              <div className='mt-4 p-4 bg-[#FFD700]/10 rounded-lg'>
+                <p className='text-white font-medium'>
+                  Для получения точного расчета стоимости доставки, пожалуйста, свяжитесь с нашими
+                  менеджерами или заполните форму ниже.
+                </p>
               </div>
-              <h3 className='text-xl font-semibold text-white mb-3 group-hover:text-[#FFD700] transition-colors'>
-                {type.title}
-              </h3>
-              <p className='text-gray-400 text-sm leading-relaxed'>{type.description}</p>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

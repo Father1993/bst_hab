@@ -2,69 +2,73 @@ import { DeliveryType, DeliveryOption, DeliveryAdvantage, PaymentOption } from '
 
 export const DELIVERY_TYPES: DeliveryType[] = [
   {
-    icon: 'train',
-    title: 'Железнодорожный транспорт',
-    description: 'Оптимально для дальних расстояний',
+    icon: 'truck',
+    title: 'Автомобиль с краном',
+    description: 'Для доставки по городу Хабаровску (от 6 000 ₽)',
   },
   {
-    icon: 'truck',
-    title: 'Автотранспорт',
-    description: 'Для доставки в любую точку',
+    icon: 'truck-loading',
+    title: 'Полуприцеп',
+    description: 'Для перевозки 2-х модулей на дальние расстояния',
+  },
+  {
+    icon: 'train',
+    title: 'Железнодорожный транспорт',
+    description: 'Для доставки в отдаленные районы Дальнего Востока',
   },
   {
     icon: 'ship',
     title: 'Речной транспорт',
-    description: 'Доставка в труднодоступные районы',
-  },
-  {
-    icon: 'plane',
-    title: 'Авиатранспорт',
-    description: 'Для срочных перевозок',
+    description: 'Для доставки в труднодоступные районы в период навигации',
   },
 ]
 
 export const DELIVERY_OPTIONS: DeliveryOption[] = [
   {
-    title: 'В собранном виде',
-    description: 'На открытой платформе',
-    distance: 'удаление до 500 км',
-    icon: 'cube',
+    title: 'Доставка по городу',
+    description: 'Автомобилем с краном-манипулятором (воровайка)',
+    distance: 'от 6 000 до 8 000 ₽',
+    icon: 'city',
   },
   {
-    title: 'В разобранном виде',
-    description: 'В защищенных транспаках',
-    distance: 'удаление более 500 км',
-    icon: 'box',
+    title: 'Доставка по краю',
+    description: 'Полуприцепами для перевозки 2-х модулей',
+    distance: 'индивидуальный расчет',
+    icon: 'map',
   },
 ]
 
 export const DELIVERY_ADVANTAGES: DeliveryAdvantage[] = [
   {
-    icon: 'route',
-    title: 'Удобная логистика',
-    description: 'Вы можете выбрать подходящий для вас вариант доставки',
+    icon: 'shield-check',
+    title: 'Безопасная погрузка',
+    description:
+      'Используем специализированную технику и опытных специалистов для безопасной погрузки и разгрузки',
   },
   {
     icon: 'clock',
-    title: 'Доставим в срок',
-    description: 'Осуществим доставку точно в оговоренный срок и без задержек',
+    title: 'Точно в срок',
+    description:
+      'Осуществляем доставку точно в оговоренный срок и без задержек, что важно для строительных графиков',
   },
   {
-    icon: 'globe',
-    title: 'Доставим в любую точку',
-    description: 'Мы осуществляем доставку по всей территории России и стран СНГ',
+    icon: 'route',
+    title: 'Любая точка ДВ',
+    description:
+      'Доставляем модули в любую точку Хабаровска, Хабаровского края и всего Дальнего Востока',
   },
 ]
 
 export const PAYMENT_OPTIONS: PaymentOption[] = [
   {
     icon: 'cash',
-    title: 'Наличными',
-    description: 'Или банковской картой',
+    title: 'Наличный расчет',
+    description: 'Оплата наличными или банковской картой при заключении договора',
   },
   {
     icon: 'bank',
-    title: 'Банковский перевод',
-    description: 'По реквизитам организации (для юридических лиц)',
+    title: 'Безналичный расчет',
+    description:
+      'Оплата по счету для юридических лиц с предоставлением всех необходимых документов',
   },
 ]

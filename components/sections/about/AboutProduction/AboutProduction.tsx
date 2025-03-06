@@ -4,18 +4,13 @@ import React from 'react'
 import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
-import { COMPANY_STATS, PRODUCTION_CAPABILITIES } from '@/components/shared/constants'
+import { PRODUCTION_CAPABILITIES } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 
 interface FeatureItem {
   icon: React.ReactElement
   title: string
   description: string
-}
-
-interface StatItem {
-  number: string
-  label: string
 }
 
 const AboutProduction = () => {
@@ -41,12 +36,6 @@ const AboutProduction = () => {
       description:
         'Используем только сертифицированные материалы и проверенные технологии производства',
     },
-  ]
-
-  const stats: StatItem[] = [
-    { number: COMPANY_STATS.projectsCount, label: 'готовых бытовок и модулей' },
-    { number: COMPANY_STATS.constructionTypes, label: 'минимальные сроки' },
-    { number: COMPANY_STATS.experience, label: 'лет опыта' },
   ]
 
   return (
