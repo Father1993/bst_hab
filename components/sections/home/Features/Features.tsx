@@ -7,6 +7,17 @@ import { motion } from 'framer-motion'
 import { COMPANY_FEATURES, PRODUCT_TYPES } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 
+// Определяем тип для продукта
+interface ProductType {
+  id: string
+  name: string
+  description: string
+  image: string
+  images?: string[]
+  link: string
+  featured?: boolean
+}
+
 const Features = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState<Record<string, number>>({})
@@ -17,7 +28,7 @@ const Features = () => {
 
     // Инициализация индексов изображений для каждой карточки
     const initialIndices: Record<string, number> = {}
-    PRODUCT_TYPES.forEach(product => {
+    PRODUCT_TYPES.forEach((product: ProductType) => {
       if (product.images && product.images.length > 0) {
         initialIndices[product.id] = 0
       }
@@ -25,13 +36,13 @@ const Features = () => {
     setCurrentImageIndex(initialIndices)
 
     // Настройка интервалов для слайдеров
-    PRODUCT_TYPES.forEach(product => {
+    PRODUCT_TYPES.forEach((product: ProductType) => {
       if (product.images && product.images.length > 1) {
         intervalRefs.current[product.id] = setInterval(
           () => {
             setCurrentImageIndex(prev => ({
               ...prev,
-              [product.id]: (prev[product.id] + 1) % product.images!.length,
+              [product.id]: (prev[product.id] + 1) % (product.images?.length || 1),
             }))
           },
           3000 + Math.random() * 2000
@@ -39,9 +50,12 @@ const Features = () => {
       }
     })
 
+    // Сохраняем текущие интервалы для очистки
+    const currentIntervals = { ...intervalRefs.current }
+
     return () => {
       // Очистка интервалов при размонтировании
-      Object.values(intervalRefs.current).forEach(interval => {
+      Object.values(currentIntervals).forEach(interval => {
         clearInterval(interval)
       })
     }
@@ -88,7 +102,7 @@ const Features = () => {
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {PRODUCT_TYPES.map((service, index) => (
+            {PRODUCT_TYPES.map((service: ProductType, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -97,7 +111,9 @@ const Features = () => {
                 }`}
               >
                 <Link href={service.link}>
-                  <div className='relative aspect-[4/3]'>
+                  <div
+                    className={`relative ${service.featured ? 'aspect-[16/9] md:aspect-[16/9]' : 'aspect-[4/3]'}`}
+                  >
                     {service.images && service.images.length > 0 ? (
                       <>
                         {service.images.map((img, imgIndex) => (
@@ -110,7 +126,7 @@ const Features = () => {
                               currentImageIndex[service.id] === imgIndex
                                 ? 'opacity-100'
                                 : 'opacity-0'
-                            } ${service.featured ? 'lg:object-cover' : ''}`}
+                            }`}
                             sizes={
                               service.featured
                                 ? '(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw'
@@ -124,9 +140,7 @@ const Features = () => {
                         src={service.image}
                         alt={service.name}
                         fill
-                        className={`object-cover transition-transform duration-500 group-hover:scale-110 ${
-                          service.featured ? 'lg:object-cover' : ''
-                        }`}
+                        className='object-cover transition-transform duration-500 group-hover:scale-110'
                         sizes={
                           service.featured
                             ? '(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw'
@@ -172,6 +186,24 @@ const Features = () => {
                             <span>Душевые и туалетные модули</span>
                           </li>
                         </ul>
+                        <div className='mt-4'>
+                          <span className='inline-flex items-center text-[#FFD700] font-medium'>
+                            Подробнее
+                            <svg
+                              className='w-4 h-4 ml-1'
+                              fill='none'
+                              viewBox='0 0 24 24'
+                              stroke='currentColor'
+                            >
+                              <path
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                strokeWidth={2}
+                                d='M9 5l7 7-7 7'
+                              />
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                     )}
                   </div>

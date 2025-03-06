@@ -58,7 +58,7 @@ const videoReviews = [
 const VideoReviews = () => {
   const [activeVideo, setActiveVideo] = useState(videoReviews[0])
   const [isMounted, setIsMounted] = useState(false)
-  const [activeVideoIndex, setActiveVideoIndex] = useState(0)
+  const [_, setActiveVideoIndex] = useState(0)
 
   // Устанавливаем флаг монтирования компонента только на клиенте
   useEffect(() => {
@@ -75,12 +75,6 @@ const VideoReviews = () => {
       setActiveVideo(video)
       setActiveVideoIndex(videoReviews.findIndex(v => v.id === video.id))
     }
-  }
-
-  // Обработчик изменения состояния воспроизведения
-  const handlePlayStateChange = (playing: boolean) => {
-    // Можно использовать для аналитики или других действий
-    console.log(`Видео ${playing ? 'воспроизводится' : 'остановлено'}:`, activeVideo.title)
   }
 
   return (
@@ -109,11 +103,7 @@ const VideoReviews = () => {
           {/* Основное видео */}
           <div className='lg:col-span-5 lg:col-start-4'>
             {isMounted ? (
-              <VideoPlayer
-                videoUrl={activeVideo.videoUrl}
-                thumbnailUrl={activeVideo.thumbnail}
-                onPlayStateChange={handlePlayStateChange}
-              />
+              <VideoPlayer videoUrl={activeVideo.videoUrl} thumbnailUrl={activeVideo.thumbnail} />
             ) : (
               <div className='max-w-[400px] mx-auto'>
                 <div className='aspect-[9/16] bg-zinc-800 rounded-xl overflow-hidden flex items-center justify-center'>
@@ -176,12 +166,6 @@ const VideoReviews = () => {
               ))}
             </div>
           </div>
-        </div>
-
-        <div className='mt-12 text-center'>
-          <p className='text-zinc-400 text-sm'>
-            Все видеообзоры сняты на реальных объектах, построенных нашей компанией.
-          </p>
         </div>
       </div>
     </section>
