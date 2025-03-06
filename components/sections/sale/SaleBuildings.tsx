@@ -6,6 +6,7 @@ import Image from 'next/image'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
 import FAQ from '../home/FAQ/FAQ'
+import Features from '../home/Features/Features'
 
 const categories = [
   {
@@ -91,86 +92,7 @@ const SaleBuildings = () => {
         <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-20' />
       </section>
 
-      {/* Категории */}
-      <section className='py-20 bg-black'>
-        <div className='container mx-auto px-4'>
-          <h2 className='text-3xl md:text-4xl font-bold text-white text-center mb-16'>
-            Типы модульных зданий
-          </h2>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12'>
-            {categories.map(category => (
-              <motion.div
-                key={category.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`cursor-pointer rounded-xl p-6 transition-all duration-300 
-                ${
-                  activeCategory.id === category.id
-                    ? 'bg-gradient-to-r from-orange-500 to-yellow-500'
-                    : 'bg-zinc-900 hover:bg-zinc-800'
-                }`}
-                onClick={() => setActiveCategory(category)}
-              >
-                <h3 className='text-xl font-semibold text-white mb-2'>{category.title}</h3>
-                <p className='text-zinc-400 text-sm'>{category.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            key={activeCategory.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className='bg-zinc-900 rounded-2xl p-8 border border-zinc-800'
-          >
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-center'>
-              <div className='relative h-[300px] lg:h-[400px] rounded-xl overflow-hidden'>
-                <Image
-                  src={activeCategory.image}
-                  alt={activeCategory.title}
-                  fill
-                  className='object-cover'
-                />
-              </div>
-              <div>
-                <h3 className='text-2xl font-bold text-white mb-4'>{activeCategory.title}</h3>
-                <p className='text-zinc-400 mb-6'>{activeCategory.description}</p>
-                <ul className='space-y-3'>
-                  {activeCategory.features.map(feature => (
-                    <li key={feature} className='flex items-center text-zinc-300'>
-                      <svg
-                        className='w-5 h-5 text-orange-500 mr-3'
-                        fill='none'
-                        stroke='currentColor'
-                        viewBox='0 0 24 24'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth='2'
-                          d='M5 13l4 4L19 7'
-                        />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div className='mt-8'>
-                  <button
-                    onClick={handleOpenCallbackForm}
-                    className='px-6 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 
-                    text-white rounded-lg font-medium shadow-lg hover:shadow-orange-500/20
-                    transition-all duration-300'
-                  >
-                    Узнать стоимость
-                  </button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <Features />
 
       {/* Форма обратной связи */}
       <section className='py-20 bg-zinc-900'>
