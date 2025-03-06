@@ -2,11 +2,12 @@ import { Metadata } from 'next'
 import AboutHero from '@/components/sections/about/AboutHero/AboutHero'
 import AboutHistory from '@/components/sections/about/AboutHistory/AboutHistory'
 import AboutProduction from '@/components/sections/about/AboutProduction/AboutProduction'
+import AboutShowcase from '@/components/sections/about/AboutShowcase/AboutShowcase'
 
 export const metadata: Metadata = {
-  title: 'О компании BST HAB - Производство бытовок и модульных зданий в Хабаровске',
+  title: 'О компании BST HAB - Производство и аренда бытовок и модульных зданий в Хабаровске',
   description:
-    'Производим бытовки, дачные домики и модульные здания в Хабаровске с 2013 года. ✓ Каркасные бытовки ✓ Модули из сэндвич-панелей ✓ Переоборудование контейнеров ✓ Индивидуальные размеры ✓ Доставка по ДВ',
+    'Производим и сдаем в аренду бытовки, дачные домики и модульные здания в Хабаровске с 2013 года. ✓ Каркасные бытовки ✓ Модули из сэндвич-панелей ✓ Переоборудование контейнеров ✓ Индивидуальные размеры ✓ Доставка по ДВ ✓ Модули в наличии',
   keywords: [
     'бытовки Хабаровск',
     'дачные домики Хабаровск',
@@ -23,11 +24,16 @@ export const metadata: Metadata = {
     'бытовки для дачи',
     'производство модульных зданий',
     'быстровозводимые здания Хабаровск',
+    'аренда бытовок Хабаровск',
+    'аренда модульных зданий',
+    'бытовки в наличии',
+    'модули в наличии Хабаровск',
+    'аренда строительных бытовок',
   ],
   openGraph: {
-    title: 'BST HAB - Производство бытовок и модульных зданий в Хабаровске',
+    title: 'BST HAB - Производство и аренда бытовок и модульных зданий в Хабаровске',
     description:
-      'Изготавливаем бытовки, дачные домики и модульные здания любой сложности. Каркасные конструкции, сэндвич-панели, переоборудование контейнеров. Работаем с 2013 года.',
+      'Изготавливаем и сдаем в аренду бытовки, дачные домики и модульные здания любой сложности. Каркасные конструкции, сэндвич-панели, переоборудование контейнеров. Всегда есть модули в наличии. Работаем с 2013 года.',
     images: ['/img/about-hero.webp'],
     type: 'website',
     locale: 'ru_RU',
@@ -42,6 +48,7 @@ export default function About() {
     <div className='flex flex-col'>
       <AboutHero />
       <AboutProduction />
+      <AboutShowcase />
       <AboutHistory />
     </div>
   )

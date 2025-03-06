@@ -62,7 +62,7 @@ const AboutHero = () => {
             transition={{ duration: 0.6 }}
             className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'
           >
-            Производство <span className='text-[#FFD700]'>бытовок и модульных конструкций</span> в
+            Производство и <span className='text-[#FFD700]'>аренда модульных конструкций</span> в
             Хабаровске
           </motion.h1>
 
@@ -74,7 +74,7 @@ const AboutHero = () => {
           >
             Изготавливаем каркасные бытовки, модули из сэндвич-панелей и переоборудуем контейнеры.
             Стандартные решения и индивидуальные проекты любой сложности для бизнеса и частных
-            клиентов.
+            клиентов. Всегда есть модули в наличии.
           </motion.p>
 
           {/* Дополнительные преимущества */}
@@ -98,6 +98,13 @@ const AboutHero = () => {
                 <span>
                   <span className='text-[#FFD700] font-medium'>Меньший вес</span> готовых модулей по
                   сравнению с конкурентами — дешевле и удобнее в транспортировке
+                </span>
+              </li>
+              <li className='flex items-start gap-2'>
+                <span className='text-[#FFD700] mt-1'>✓</span>
+                <span>
+                  <span className='text-[#FFD700] font-medium'>Всегда в наличии</span> — готовые
+                  модули для продажи и аренды, быстрая доставка в любую точку Дальнего Востока
                 </span>
               </li>
               <li className='flex items-start gap-2'>

@@ -95,7 +95,7 @@ const AboutProduction = () => {
           className='relative rounded-2xl overflow-hidden mb-16 aspect-[16/9]'
         >
           <Image
-            src='/img/about/big-module.webp'
+            src='/img/about/big-module-main.webp'
             alt='Производство BST HAB'
             fill
             className='object-cover'
