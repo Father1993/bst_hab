@@ -156,26 +156,6 @@ const AboutProduction = () => {
           </div>
         </motion.div>
 
-        {/* Статистика */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1 }}
-          className='grid grid-cols-1 md:grid-cols-3 gap-8'
-        >
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className='text-center p-6 bg-zinc-800/30 backdrop-blur-sm rounded-xl border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300 group'
-            >
-              <div className='text-3xl md:text-4xl font-bold text-[#FFD700] mb-2 group-hover:scale-110 transition-transform'>
-                {stat.number}
-              </div>
-              <div className='text-gray-400'>{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
-
         {/* Преимущество компании */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
