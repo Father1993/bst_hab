@@ -4,18 +4,13 @@ import React from 'react'
 import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
-import { COMPANY_STATS, PRODUCTION_CAPABILITIES } from '@/components/shared/constants'
+import { PRODUCTION_CAPABILITIES } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 
 interface FeatureItem {
   icon: React.ReactElement
   title: string
   description: string
-}
-
-interface StatItem {
-  number: string
-  label: string
 }
 
 const AboutProduction = () => {
@@ -41,12 +36,6 @@ const AboutProduction = () => {
       description:
         'Используем только сертифицированные материалы и проверенные технологии производства',
     },
-  ]
-
-  const stats: StatItem[] = [
-    { number: COMPANY_STATS.projectsCount, label: 'готовых бытовок и модулей' },
-    { number: COMPANY_STATS.constructionTypes, label: 'минимальные сроки' },
-    { number: COMPANY_STATS.experience, label: 'лет опыта' },
   ]
 
   return (
@@ -95,7 +84,7 @@ const AboutProduction = () => {
           className='relative rounded-2xl overflow-hidden mb-16 aspect-[16/9]'
         >
           <Image
-            src='/img/about/big-module.webp'
+            src='/img/about/big-module-main.webp'
             alt='Производство BST HAB'
             fill
             className='object-cover'
@@ -154,26 +143,6 @@ const AboutProduction = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Статистика */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1 }}
-          className='grid grid-cols-1 md:grid-cols-3 gap-8'
-        >
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className='text-center p-6 bg-zinc-800/30 backdrop-blur-sm rounded-xl border border-zinc-700/30 hover:border-[#FFD700]/30 transition-all duration-300 group'
-            >
-              <div className='text-3xl md:text-4xl font-bold text-[#FFD700] mb-2 group-hover:scale-110 transition-transform'>
-                {stat.number}
-              </div>
-              <div className='text-gray-400'>{stat.label}</div>
-            </div>
-          ))}
         </motion.div>
 
         {/* Преимущество компании */}

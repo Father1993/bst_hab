@@ -334,7 +334,7 @@ const Footer = () => {
         <div className='pt-8 border-t border-zinc-800 mb-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
             <p className='text-gray-400 text-sm'>
-              © {currentYear} ООО "БСТ ХАБ". Все права защищены.
+              © 2013 - {currentYear} ООО "БСТ ХАБ". Все права защищены.
             </p>
             <div className='flex flex-wrap gap-4 md:justify-end'>
               <Link

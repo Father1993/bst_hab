@@ -3,11 +3,10 @@
 import { useState } from 'react'
 import DeliveryHero from './sections/DeliveryHero'
 import DeliveryTypes from './sections/DeliveryTypes'
-import DeliveryOptions from './sections/DeliveryOptions'
 import DeliveryAdvantages from './sections/DeliveryAdvantages'
 import PaymentOptions from './sections/PaymentOptions'
-import DeliveryForm from './sections/DeliveryForm'
 import CallbackForm from '@/components/features/CallbackForm'
+import ContactForm from '@/components/features/ContactForm'
 
 const DeliveryContent = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
@@ -27,10 +26,9 @@ const DeliveryContent = () => {
     <div className='flex flex-col'>
       <DeliveryHero onCallbackRequest={handleOpenCallbackForm} />
       <DeliveryTypes />
-      <DeliveryOptions />
       <DeliveryAdvantages />
       <PaymentOptions />
-      <DeliveryForm />
+      <ContactForm />
 
       {/* Форма обратного звонка */}
       <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
