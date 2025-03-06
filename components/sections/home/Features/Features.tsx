@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -9,9 +9,42 @@ import { ICONS } from '@/components/shared/icon'
 
 const Features = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState<Record<string, number>>({})
+  const intervalRefs = useRef<Record<string, NodeJS.Timeout>>({})
 
   useEffect(() => {
     setIsVisible(true)
+
+    // Инициализация индексов изображений для каждой карточки
+    const initialIndices: Record<string, number> = {}
+    PRODUCT_TYPES.forEach(product => {
+      if (product.images && product.images.length > 0) {
+        initialIndices[product.id] = 0
+      }
+    })
+    setCurrentImageIndex(initialIndices)
+
+    // Настройка интервалов для слайдеров
+    PRODUCT_TYPES.forEach(product => {
+      if (product.images && product.images.length > 1) {
+        intervalRefs.current[product.id] = setInterval(
+          () => {
+            setCurrentImageIndex(prev => ({
+              ...prev,
+              [product.id]: (prev[product.id] + 1) % product.images!.length,
+            }))
+          },
+          3000 + Math.random() * 2000
+        ) // Разные интервалы для разных карточек
+      }
+    })
+
+    return () => {
+      // Очистка интервалов при размонтировании
+      Object.values(intervalRefs.current).forEach(interval => {
+        clearInterval(interval)
+      })
+    }
   }, [])
 
   const containerVariants = {
@@ -46,7 +79,7 @@ const Features = () => {
         >
           <div className='text-center mb-12'>
             <h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-              Наши <span className='text-[#FFD700]'>услуги</span>
+              Наши <span className='text-[#FFD700]'>категории</span>
             </h2>
             <p className='text-gray-400 max-w-2xl mx-auto'>
               Производство и аренда модульных конструкций любой сложности. От типовых решений до
@@ -54,27 +87,93 @@ const Features = () => {
             </p>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {PRODUCT_TYPES.map((service, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className='group relative overflow-hidden rounded-xl'
+                className={`group relative overflow-hidden rounded-xl ${
+                  service.featured ? 'md:col-span-2 lg:col-span-2 lg:row-span-2' : ''
+                }`}
               >
                 <Link href={service.link}>
                   <div className='relative aspect-[4/3]'>
-                    <Image
-                      src={service.image}
-                      alt={service.name}
-                      fill
-                      className='object-cover transition-transform duration-500 group-hover:scale-110'
-                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw'
-                    />
+                    {service.images && service.images.length > 0 ? (
+                      <>
+                        {service.images.map((img, imgIndex) => (
+                          <Image
+                            key={imgIndex}
+                            src={img}
+                            alt={`${service.name} - изображение ${imgIndex + 1}`}
+                            fill
+                            className={`object-cover transition-opacity duration-1000 ${
+                              currentImageIndex[service.id] === imgIndex
+                                ? 'opacity-100'
+                                : 'opacity-0'
+                            } ${service.featured ? 'lg:object-cover' : ''}`}
+                            sizes={
+                              service.featured
+                                ? '(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw'
+                                : '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                            }
+                          />
+                        ))}
+                      </>
+                    ) : (
+                      <Image
+                        src={service.image}
+                        alt={service.name}
+                        fill
+                        className={`object-cover transition-transform duration-500 group-hover:scale-110 ${
+                          service.featured ? 'lg:object-cover' : ''
+                        }`}
+                        sizes={
+                          service.featured
+                            ? '(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 66vw'
+                            : '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                        }
+                      />
+                    )}
                     <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent' />
                   </div>
                   <div className='absolute bottom-0 left-0 right-0 p-6'>
-                    <h3 className='text-xl font-semibold text-white mb-2'>{service.name}</h3>
-                    <p className='text-gray-300 text-sm'>{service.description}</p>
+                    <h3
+                      className={`font-semibold text-white mb-2 ${
+                        service.featured ? 'text-2xl md:text-3xl' : 'text-xl'
+                      }`}
+                    >
+                      {service.name}
+                    </h3>
+                    <p
+                      className={`text-gray-300 ${
+                        service.featured ? 'text-base md:text-lg max-w-xl' : 'text-sm'
+                      }`}
+                    >
+                      {service.description}
+                    </p>
+
+                    {service.featured && (
+                      <div className='mt-4 hidden md:block'>
+                        <ul className='text-gray-300 text-sm space-y-1'>
+                          <li className='flex items-center'>
+                            <span className='text-[#FFD700] mr-2'>•</span>
+                            <span>Бытовки для рабочих и ИТР</span>
+                          </li>
+                          <li className='flex items-center'>
+                            <span className='text-[#FFD700] mr-2'>•</span>
+                            <span>Блок-модули с тамбуром и без</span>
+                          </li>
+                          <li className='flex items-center'>
+                            <span className='text-[#FFD700] mr-2'>•</span>
+                            <span>Столовые, бани, сушилки</span>
+                          </li>
+                          <li className='flex items-center'>
+                            <span className='text-[#FFD700] mr-2'>•</span>
+                            <span>Душевые и туалетные модули</span>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </Link>
               </motion.div>

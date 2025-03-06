@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { PROJECT_CATEGORIES, COMPLETED_PROJECTS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
-import Link from 'next/link'
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState('all')
