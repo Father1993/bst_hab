@@ -59,6 +59,7 @@ const SaleBuildings = () => {
       </section>
 
       <Features />
+      <VideoReviews />
 
       {/* Форма обратной связи */}
       <section className='py-20 bg-zinc-900'>
@@ -75,8 +76,6 @@ const SaleBuildings = () => {
           <ContactForm />
         </div>
       </section>
-
-      <VideoReviews />
 
       {/* Форма обратного звонка */}
       <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
