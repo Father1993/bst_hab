@@ -2,47 +2,13 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
 import FAQ from '../home/FAQ/FAQ'
 import Features from '../home/Features/Features'
-
-const categories = [
-  {
-    id: 'office',
-    title: 'Модульные офисы',
-    description:
-      'Мобильные офисы продаж с возможностью возведения в 1 или 2 этажа, не требующие капитального фундамента.',
-    image: '/img/security.webp',
-    features: ['Быстрый монтаж', 'Мобильность', 'Комфортные условия', 'Доступная цена'],
-  },
-  {
-    id: 'abk',
-    title: 'АБК',
-    description:
-      'Административно-бытовые комплексы с полной инфраструктурой для строительных площадок и промышленных объектов.',
-    image: '/img/abk.webp',
-    features: ['Столовая', 'Медпункт', 'Санузлы', 'Склады'],
-  },
-  {
-    id: 'garage',
-    title: 'Модульны гаражи',
-    description: 'Быстровозводимые модульные гаражи с возможностью поэтапного расширения.',
-    image: '/img/garage-3.webp',
-    features: ['Быстрый ввод', 'Масштабируемость', 'Комфорт', 'Экономичность'],
-  },
-  {
-    id: 'cafe',
-    title: 'Киоски и павильоны',
-    description: 'Торговые помещения различной конфигурации для розничной торговли и общепита.',
-    image: '/img/pavilion.webp',
-    features: ['Зонирование', 'Мобильность', 'Функциональность', 'Современный дизайн'],
-  },
-]
+import VideoReviews from './VideoReviews'
 
 const SaleBuildings = () => {
-  const [activeCategory, setActiveCategory] = useState(categories[0])
   const [showCallbackForm, setShowCallbackForm] = useState(false)
 
   // Обработчик открытия формы обратного звонка
@@ -109,6 +75,8 @@ const SaleBuildings = () => {
           <ContactForm />
         </div>
       </section>
+
+      <VideoReviews />
 
       {/* Форма обратного звонка */}
       <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
