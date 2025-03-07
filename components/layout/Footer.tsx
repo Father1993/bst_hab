@@ -314,7 +314,7 @@ const Footer = () => {
         {/* Дополнительная информация для SEO */}
         <div className='mb-8 border-t border-zinc-800 pt-8'>
           <h4 className='text-sm text-[#FFD700] mb-4'>
-            BST HAB - Модульные решения для бизнеса в Хабаровске
+            BST HAB - Модульные решения для бизнеса в Хабаровском крае
           </h4>
           <p className='text-xs text-gray-500 mb-2'>
             Компания BST HAB предлагает комплексные модульные решения для бизнеса и частных лиц в
