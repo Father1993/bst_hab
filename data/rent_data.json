@@ -1,0 +1,261 @@
+{
+  "moduleTypes": [
+    {
+      "id": "residential",
+      "name": "Бытовой модуль",
+      "description": "Комфортные жилые помещения для проживания рабочего персонала",
+      "image": "/img/modules/standart.webp",
+      "images": [
+        "/img/modules/standart.webp",
+        "/img/modules/standart-2.webp",
+        "/img/modules/standart-4.webp",
+        "/img/modules/standart-5.webp",
+        "/img/modules/standart-6.webp"
+      ],
+      "specifications": {
+        "capacity": "от 6 чел.",
+        "dimensions": {
+          "length": "от 6250",
+          "width": 2440,
+          "height": 2630,
+          "units": "мм"
+        },
+        "area": {
+          "value": "от 15.25",
+          "units": "м²"
+        },
+        "temperature": {
+          "min": -55,
+          "max": 45,
+          "units": "°C"
+        }
+      },
+      "pricing": {
+        "daily": 1000,
+        "monthly": 15000,
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "construction",
+      "name": "Гаражный модуль",
+      "description": "Функциональные модули для организации складов и гаражей",
+      "image": "/img/rent/garage-1.webp",
+      "images": [
+        "/img/modules/garage-1.webp",
+        "/img/modules/garage-2.webp",
+        "/img/modules/garage-3.webp",
+        "/img/modules/garage-4.webp"
+      ],
+      "specifications": {
+        "capacity": "от 6 чел",
+        "dimensions": {
+          "length": "Индивидуальные",
+          "width": "",
+          "height": "",
+          "units": ""
+        },
+        "area": {
+          "value": "по вашим требованиям",
+          "units": ""
+        },
+        "temperature": {
+          "min": -55,
+          "max": 45,
+          "units": "°C"
+        }
+      },
+      "pricing": {
+        "daily": 1200,
+        "monthly": 18000,
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "office",
+      "name": "Офисный модуль",
+      "description": "Современные офисные для комфортной работы в любых условиях",
+      "image": "/img/rent/module-3.webp",
+      "images": ["/img/modules/offiece-module-1.webp", "/img/modules/office-module-2.webp"],
+      "specifications": {
+        "capacity": "от 6 чел.",
+        "dimensions": {
+          "length": "от 6250",
+          "width": 2440,
+          "height": 2630,
+          "units": "мм"
+        },
+        "area": {
+          "value": "от 15.25",
+          "units": "м²"
+        },
+        "temperature": {
+          "min": -55,
+          "max": 45,
+          "units": "°C"
+        }
+      },
+      "pricing": {
+        "daily": 1500,
+        "monthly": 22000,
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "security",
+      "name": "Посты охраны и КПП",
+      "description": "Комфортные и функциональные для обеспечения безопасности объектов",
+      "image": "/img/security.webp",
+      "images": [
+        "/img/modules/sec-2.webp",
+        "/img/modules/sec-1.webp",
+        "/img/modules/sec-3.webp",
+        "/img/modules/sec-4.webp"
+      ],
+      "specifications": {
+        "capacity": "1-2 чел.",
+        "dimensions": {
+          "length": "от 3000",
+          "width": 2440,
+          "height": 2630,
+          "units": "мм"
+        },
+        "area": {
+          "value": "от 7.32",
+          "units": "м²"
+        },
+        "temperature": {
+          "min": -55,
+          "max": 45,
+          "units": "°C"
+        }
+      },
+      "pricing": {
+        "daily": 800,
+        "monthly": 12000,
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "large-buildings",
+      "name": "Модульные здания",
+      "description": "Общежития, столовые и другие крупные объекты из модульных конструкций",
+      "image": "/img/rent/module-1.webp",
+      "images": [
+        "/img/modules/module-3.webp",
+        "/img/modules/module-2.webp",
+        "/img/modules/module-1.webp"
+      ],
+      "specifications": {
+        "capacity": "от 10 чел.",
+        "dimensions": {
+          "length": "от 12000",
+          "width": 2440,
+          "height": 2630,
+          "units": "мм"
+        },
+        "area": {
+          "value": "от 30",
+          "units": "м²"
+        },
+        "temperature": {
+          "min": -55,
+          "max": 45,
+          "units": "°C"
+        }
+      },
+      "pricing": {
+        "daily": 2500,
+        "monthly": 35000,
+        "currency": "RUB"
+      }
+    },
+    {
+      "id": "country-houses",
+      "name": "Дачные домики",
+      "description": "Современные и комфортные решения для отдыха и проживания",
+      "image": "/img/rent/dacha.webp",
+      "images": ["/img/modules/dacha.webp", "/img/modules/dacha-2.webp"],
+      "specifications": {
+        "capacity": "4-6 чел.",
+        "dimensions": {
+          "length": 6250,
+          "width": 2440,
+          "height": 2630,
+          "units": "мм"
+        },
+        "area": {
+          "value": 15.25,
+          "units": "м²"
+        },
+        "temperature": {
+          "min": -55,
+          "max": 45,
+          "units": "°C"
+        }
+      },
+      "pricing": {
+        "daily": 1800,
+        "monthly": 25000,
+        "currency": "RUB"
+      }
+    }
+  ],
+  "features": [
+    "Прочный металлический каркас",
+    "Утепление минеральной ватой",
+    "Электропроводка по ГОСТ",
+    "Пожарная сигнализация",
+    "Возможность перепланировки",
+    "Быстрый монтаж и демонтаж"
+  ],
+  "advantages": [
+    {
+      "icon": "clock",
+      "title": "Быстрая доставка",
+      "description": "Доставим и установим модуль в течение 1-3 дней после заключения договора"
+    },
+    {
+      "icon": "shield",
+      "title": "Гарантия качества",
+      "description": "Все модули проходят строгий контроль качества перед отправкой клиенту"
+    },
+    {
+      "icon": "flexible",
+      "title": "Гибкие условия",
+      "description": "Индивидуальный подход к каждому клиенту и гибкие условия аренды"
+    },
+    {
+      "icon": "service",
+      "title": "Полное обслуживание",
+      "description": "Техническое обслуживание и ремонт на протяжении всего срока аренды"
+    }
+  ],
+  "process": [
+    {
+      "step": "01",
+      "title": "Оставьте заявку",
+      "description": "Заполните форму или позвоните нам"
+    },
+    {
+      "step": "02",
+      "title": "Выбор модуля",
+      "description": "Подберем оптимальный вариант под ваши задачи"
+    },
+    {
+      "step": "03",
+      "title": "Заключение договора",
+      "description": "Согласуем условия и подпишем документы"
+    },
+    {
+      "step": "04",
+      "title": "Доставка и монтаж",
+      "description": "Привезем и установим в удобное время"
+    }
+  ],
+  "generalDescription": [
+    "Наша компания предлагает в аренду современные модульные конструкции различного назначения. Модульные здания - это быстровозводимые конструкции, которые могут использоваться для различных целей: от временного проживания рабочих до организации офисного пространства.",
+    "Все модули изготавливаются на собственном производстве с соблюдением всех технологических норм и стандартов. Мы гарантируем качество и надежность наших конструкций.",
+    "Аренда модульных зданий - это экономичное и практичное решение для временного размещения персонала, организации офиса, склада или другого функционального помещения."
+  ]
+}
