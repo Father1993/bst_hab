@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import rentData from '@/data/rent_data.json'
@@ -93,14 +92,12 @@ const RentDetailPage = () => {
             </div>
 
             <div className='bg-zinc-900 rounded-xl p-6 mb-6'>
-              <div className='mt-6'>
-                <button
-                  onClick={handleOpenCallbackForm}
-                  className='w-full py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300'
-                >
-                  Арендовать
-                </button>
-              </div>
+              <button
+                onClick={handleOpenCallbackForm}
+                className='w-full py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300'
+              >
+                Арендовать
+              </button>
             </div>
           </div>
         </div>

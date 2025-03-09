@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -38,16 +38,16 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
   }
 
   // Переход к предыдущему изображению
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setDirection(-1)
     setCurrentIndex(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
-  }
+  }, [images.length])
 
   // Переход к следующему изображению
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setDirection(1)
     setCurrentIndex(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
-  }
+  }, [images.length])
 
   // Автоматическая прокрутка слайдера
   useEffect(() => {
@@ -56,7 +56,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [handleNext])
 
   // Варианты анимации для слайдера
   const slideVariants = {
