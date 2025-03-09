@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { COMPANY_INFO, PRODUCT_TYPES } from '../shared/constants'
 import { ICONS } from '../shared/icon'
 import Link from 'next/link'
+import { submitForm } from '@/services/formService'
+import toast from 'react-hot-toast'
 
 type FormData = {
   name: string
@@ -109,20 +111,49 @@ const ContactForm = () => {
     if (step !== 3) return
 
     setIsSubmitting(true)
-    // Здесь будет логика отправки формы
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setIsSuccess(true)
-    setFormData({
-      name: '',
-      phone: '',
-      email: '',
-      projectType: '',
-      message: '',
-      privacyConsent: false,
-    })
-    setStep(1)
-    setTimeout(() => setIsSuccess(false), 3000)
+
+    try {
+      // Получаем тип проекта из списка
+      const selectedProject = PRODUCT_TYPES.find(type => type.id === formData.projectType)
+      const projectTypeName = selectedProject ? selectedProject.name : formData.projectType
+
+      // Отправляем форму через EmailJS
+      const result = await submitForm({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+        formType: 'contact', // Указываем тип формы для выбора правильного шаблона
+        privacyConsent: formData.privacyConsent,
+        projectType: projectTypeName, // Добавляем тип проекта
+      })
+
+      if (result.success) {
+        setIsSuccess(true)
+        toast.success('Заявка успешно отправлена!')
+
+        // Сбрасываем форму
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          projectType: '',
+          message: '',
+          privacyConsent: false,
+        })
+        setStep(1)
+
+        // Скрываем уведомление через 3 секунды
+        setTimeout(() => setIsSuccess(false), 3000)
+      } else {
+        toast.error(result.message || 'Произошла ошибка при отправке')
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error)
+      toast.error('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (

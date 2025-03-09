@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import RootLayout from '@/components/layout/RootLayout'
 import YandexMetrika from '@/components/shared/YandexMetrika'
+import EmailJSProvider from '@/components/providers/EmailJSProvider'
 import './globalStyles/normalize.css'
 import './globalStyles/globals.css'
 
@@ -166,10 +167,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             }),
           }}
         />
+
+        {/* Яндекс.Метрика */}
+        <YandexMetrika />
       </head>
       <body>
-        <YandexMetrika />
-        <RootLayout>{children}</RootLayout>
+        <EmailJSProvider>
+          <RootLayout>{children}</RootLayout>
+        </EmailJSProvider>
       </body>
     </html>
   )

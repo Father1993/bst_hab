@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { submitForm, validateForm } from '../../../services/formService'
+import toast from 'react-hot-toast'
 
 // Тип для данных формы
 interface CallbackFormData {
@@ -83,7 +85,7 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
   }
 
   // Валидация формы
-  const validateForm = () => {
+  const validateFormData = () => {
     const newErrors: FormErrors = {}
 
     if (!formData.name.trim()) newErrors.name = 'Введите ваше имя'
@@ -103,23 +105,39 @@ const CallbackForm = ({ isOpen, onClose }: CallbackFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!validateForm()) return
+    if (!validateFormData()) return
 
     setIsSubmitting(true)
 
-    // Здесь будет логика отправки данных на сервер
-    // Имитация запроса
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    try {
+      // Подготовка данных для отправки через сервис
+      const result = await submitForm({
+        name: formData.name,
+        phone: formData.phone,
+        time: formData.time,
+        privacyConsent: formData.privacyConsent,
+        formType: 'callback', // Указываем тип формы для выбора правильного шаблона
+      })
 
-    setIsSubmitting(false)
-    setIsSuccess(true)
+      if (result.success) {
+        setIsSuccess(true)
+        toast.success('Заявка успешно отправлена!')
 
-    // Сбрасываем форму и закрываем через 2 секунды
-    setTimeout(() => {
-      setFormData({ name: '', phone: '', time: '', privacyConsent: false })
-      setIsSuccess(false)
-      onClose()
-    }, 2000)
+        // Сбрасываем форму и закрываем через 2 секунды
+        setTimeout(() => {
+          setFormData({ name: '', phone: '', time: '', privacyConsent: false })
+          setIsSuccess(false)
+          onClose()
+        }, 2000)
+      } else {
+        toast.error(result.message || 'Произошла ошибка при отправке')
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error)
+      toast.error('Произошла ошибка при отправке. Пожалуйста, попробуйте позже.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   // Останавливаем всплытие клика по модальному окну
