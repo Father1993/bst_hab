@@ -101,7 +101,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: 'ООО "СтройИнвест"',
     text: 'Отличный сервис и профессиональный подход. Заказывали модульные конструкции для строительной площадки - все выполнено в срок и с высоким качеством.',
     rating: 5,
-    date: '2024-02-15',
+    date: '2024-12-15',
     avatar: '/img/testimonials/1.webp',
   },
   {
@@ -109,7 +109,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: 'ИП Козлова М.В.',
     text: 'Благодарны команде за оперативность и внимание к деталям. Особенно порадовала скорость ответов в WhatsApp.',
     rating: 5,
-    date: '2024-02-10',
+    date: '2024-06-10',
     avatar: '/img/testimonials/2.webp',
   },
 ]

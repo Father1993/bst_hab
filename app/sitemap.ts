@@ -48,24 +48,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ],
         })
       }
-
-      // Добавляем страницы товаров в аренду
-      if (item.availability?.forRent !== false) {
-        sitemapEntries.push({
-          url: `${BASE_URL}/rent/${item.slug}`,
-          lastModified: currentDate,
-          changeFrequency: 'monthly',
-          priority: 0.8,
-          // Добавляем изображения как строки URL
-          images: [
-            `${BASE_URL}${item.images.main}`,
-            // Добавляем галерею изображений
-            ...item.images.gallery.map(img => `${BASE_URL}${img}`),
-          ],
-        })
-      }
     }
   }
+
+  // Добавляем страницу аренды
+  sitemapEntries.push({
+    url: `${BASE_URL}/rent`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  })
+
+  // Добавляем статичную страницу детального просмотра аренды
+  sitemapEntries.push({
+    url: `${BASE_URL}/rent/detail`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  })
 
   // Добавляем другие статические страницы сайта
   const staticPages = [

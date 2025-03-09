@@ -2,13 +2,13 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import catalogData from '@/data/catalog.json'
+import Image from 'next/image'
+import Link from 'next/link'
+import rentData from '@/data/rent_data.json'
 import ContactForm from '@/components/features/ContactForm'
-import { ProductCard } from '@/components/catalog/ProductCard'
 import CallbackForm from '@/components/features/CallbackForm'
 
 const RentPage = () => {
-  const [activeCategory, setActiveCategory] = useState(catalogData.categories[0])
   const [showCallbackForm, setShowCallbackForm] = useState(false)
 
   // Обработчик открытия формы обратного звонка
@@ -20,9 +20,6 @@ const RentPage = () => {
   const handleCloseCallbackForm = () => {
     setShowCallbackForm(false)
   }
-
-  // Фильтруем товары в выбранной категории по доступности для аренды
-  const filteredItems = activeCategory.items.filter(item => item.availability?.forRent !== false)
 
   return (
     <main className='min-h-screen bg-black'>
@@ -68,90 +65,172 @@ const RentPage = () => {
             Каталог модулей в аренду
           </h2>
 
-          {/* Категории */}
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-12'>
-            {catalogData.categories.map(category => (
+          {/* Карточки категорий */}
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {rentData.moduleTypes.map((module, index) => (
               <motion.div
-                key={category.id}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`cursor-pointer rounded-xl p-6 transition-all duration-300 
-                ${
-                  activeCategory.id === category.id
-                    ? 'bg-gradient-to-r from-orange-500 to-yellow-500'
-                    : 'bg-zinc-900 hover:bg-zinc-800'
-                }`}
-                onClick={() => setActiveCategory(category)}
+                key={module.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className='bg-zinc-900 rounded-xl overflow-hidden h-full'
               >
-                <h3 className='text-xl font-semibold text-white mb-2'>{category.name}</h3>
-                <p className='text-zinc-400 text-sm'>{category.description}</p>
+                <div className='relative aspect-[4/3]'>
+                  <Image
+                    src={module.image}
+                    alt={module.name}
+                    fill
+                    className='object-cover'
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                  />
+                </div>
+                <div className='p-6'>
+                  <h3 className='text-xl font-semibold text-white mb-2'>{module.name}</h3>
+                  <p className='text-zinc-400 mb-4'>{module.description}</p>
+                  <div className='flex flex-col space-y-3'>
+                    <div className='flex justify-between items-center'>
+                      <span className='text-zinc-400'>Вместимость:</span>
+                      <span className='text-white font-medium'>
+                        {module.specifications.capacity}
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span className='text-zinc-400'>Габариты:</span>
+                      <span className='text-white font-medium'>
+                        {module.specifications.dimensions.length}×
+                        {module.specifications.dimensions.width}×
+                        {module.specifications.dimensions.height}{' '}
+                        {module.specifications.dimensions.units}
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span className='text-zinc-400'>Площадь:</span>
+                      <span className='text-white font-medium'>
+                        {module.specifications.area.value} {module.specifications.area.units}
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span className='text-zinc-400'>Эксплуатация:</span>
+                      <span className='text-white font-medium'>
+                        от {module.specifications.temperature.min}°C до +
+                        {module.specifications.temperature.max}°C
+                      </span>
+                    </div>
+                  </div>
+                  <div className='mt-6 flex space-x-3'>
+                    <Link
+                      href='/rent/detail'
+                      className='flex-1 py-3 bg-[#FFD700]/10 text-[#FFD700] rounded-lg font-medium text-center hover:bg-[#FFD700] hover:text-black transition-all duration-300'
+                    >
+                      Подробнее
+                    </Link>
+                    <button
+                      onClick={handleOpenCallbackForm}
+                      className='flex-1 py-3 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300'
+                    >
+                      Арендовать
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Товары выбранной категории */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {filteredItems.map((item, index) => (
+      {/* Преимущества */}
+      <section className='py-20 bg-zinc-900'>
+        <div className='container mx-auto px-4'>
+          <h2 className='text-3xl md:text-4xl font-bold text-white text-center mb-16'>
+            Преимущества аренды у нас
+          </h2>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+            {rentData.advantages.map((advantage, index) => (
               <motion.div
-                key={item.id}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className='h-full'
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className='bg-black rounded-xl p-6 text-center'
               >
-                <ProductCard
-                  product={item}
-                  viewType='rent'
-                  onCallbackRequest={handleOpenCallbackForm}
-                />
+                <div className='flex justify-center mb-4'>
+                  {advantage.icon === 'clock' && (
+                    <svg
+                      className='w-12 h-12 text-[#FFD700]'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                      />
+                    </svg>
+                  )}
+                  {advantage.icon === 'shield' && (
+                    <svg
+                      className='w-12 h-12 text-[#FFD700]'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+                      />
+                    </svg>
+                  )}
+                  {advantage.icon === 'flexible' && (
+                    <svg
+                      className='w-12 h-12 text-[#FFD700]'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z'
+                      />
+                    </svg>
+                  )}
+                  {advantage.icon === 'service' && (
+                    <svg
+                      className='w-12 h-12 text-[#FFD700]'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16'
+                      />
+                    </svg>
+                  )}
+                </div>
+                <h3 className='text-xl font-semibold text-white mb-2'>{advantage.title}</h3>
+                <p className='text-zinc-400'>{advantage.description}</p>
               </motion.div>
             ))}
-            {/* Добавляем пустые элементы для выравнивания сетки */}
-            {[...Array(3 - (filteredItems.length % 3 || 3))].map(
-              (_, index) =>
-                filteredItems.length % 3 !== 0 && (
-                  <div key={`empty-${index}`} className='hidden lg:block' />
-                )
-            )}
-            {[...Array(2 - (filteredItems.length % 2 || 2))].map(
-              (_, index) =>
-                filteredItems.length % 2 !== 0 && (
-                  <div key={`empty-md-${index}`} className='hidden md:block lg:hidden' />
-                )
-            )}
           </div>
         </div>
       </section>
 
       {/* Процесс аренды */}
-      <section className='py-20 bg-zinc-900'>
+      <section className='py-20 bg-black'>
         <div className='container mx-auto px-4'>
           <h2 className='text-3xl md:text-4xl font-bold text-white text-center mb-16'>
             Как арендовать модуль
           </h2>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
-            {[
-              {
-                step: '01',
-                title: 'Оставьте заявку',
-                description: 'Заполните форму или позвоните нам',
-              },
-              {
-                step: '02',
-                title: 'Выбор модуля',
-                description: 'Подберем оптимальный вариант под ваши задачи',
-              },
-              {
-                step: '03',
-                title: 'Заключение договора',
-                description: 'Согласуем условия и подпишем документы',
-              },
-              {
-                step: '04',
-                title: 'Доставка и монтаж',
-                description: 'Привезем и установим в удобное время',
-              },
-            ].map((step, index) => (
+            {rentData.process.map((step, index) => (
               <motion.div
                 key={step.step}
                 initial={{ opacity: 0, y: 20 }}
@@ -169,7 +248,7 @@ const RentPage = () => {
       </section>
 
       {/* Форма обратной связи */}
-      <section className='py-20 bg-black relative overflow-hidden'>
+      <section className='py-20 bg-zinc-900 relative overflow-hidden'>
         <div className='absolute inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:16px_16px] opacity-20' />
         <div className='container mx-auto px-4 relative'>
           <div className='max-w-3xl mx-auto text-center mb-12'>
