@@ -38,7 +38,7 @@ const Header = () => {
     { href: '/about', label: 'О компании' },
     { href: '/rent', label: 'Аренда' },
     { href: '/sale', label: 'Продажа' },
-    { href: '/catalog', label: 'Каталог продукции' },
+    // { href: '/catalog', label: 'Каталог продукции' },
     { href: '/delivery', label: 'Доставка' },
     { href: '/contacts', label: 'Контакты' },
   ]
