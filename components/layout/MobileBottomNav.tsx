@@ -39,8 +39,8 @@ const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
       ),
     },
     {
-      href: '/catalog',
-      label: 'Каталог',
+      href: '/sale',
+      label: 'Продажа',
       icon: (
         <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path

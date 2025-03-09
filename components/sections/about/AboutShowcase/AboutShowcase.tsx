@@ -195,7 +195,7 @@ const AboutShowcase = () => {
             </svg>
           </Link>
           <Link
-            href='/catalog'
+            href='/sale'
             className='inline-flex items-center justify-center px-8 py-4 border-2 border-[#FFD700] text-[#FFD700] rounded-lg font-semibold hover:bg-[#FFD700] hover:text-black transition-colors'
           >
             Смотреть каталог

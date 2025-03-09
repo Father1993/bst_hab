@@ -104,7 +104,7 @@ const Footer = () => {
             <ul className='space-y-4'>
               <li>
                 <Link
-                  href='/catalog?category=residential'
+                  href='/sale/'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
                   Жилые модули и бытовки
@@ -112,7 +112,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href='/catalog?category=office'
+                  href='/sale/'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
                   Офисные и административные здания
@@ -120,7 +120,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href='/catalog?category=garage'
+                  href='/sale/'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
                   Модульные гаражи и автосервисы
@@ -128,7 +128,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href='/catalog?category=special'
+                  href='/sale/'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
                   Посты охраны и КПП
@@ -136,7 +136,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href='/catalog?category=construction'
+                  href='/sale/'
                   className='text-gray-400 hover:text-[#FFD700] transition-colors'
                 >
                   Строительные бытовки и вагончики
@@ -144,7 +144,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href='/catalog'
+                  href='/sale/'
                   className='text-[#FFD700] hover:text-[#FFD700]/80 transition-colors font-medium'
                 >
                   Весь каталог продукции →

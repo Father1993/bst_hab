@@ -1,5 +1,4 @@
 import type { MetadataRoute } from 'next'
-import catalogData from '@/data/catalog.json'
 
 // Настройка для статического экспорта
 export const dynamic = 'force-static'
@@ -23,33 +22,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
   })
 
   // Добавляем страницу каталога
-  sitemapEntries.push({
-    url: `${BASE_URL}/catalog`,
-    lastModified: currentDate,
-    changeFrequency: 'weekly',
-    priority: 0.9,
-  })
+  // sitemapEntries.push({
+  //   url: `${BASE_URL}/catalog`,
+  //   lastModified: currentDate,
+  //   changeFrequency: 'weekly',
+  //   priority: 0.9,
+  // })
 
   // Добавляем страницы каждого продукта в каталоге
-  for (const category of catalogData.categories) {
-    for (const item of category.items) {
-      // Добавляем только те товары, которые доступны для продажи
-      if (item.availability?.forSale !== false) {
-        sitemapEntries.push({
-          url: `${BASE_URL}/catalog/${item.slug}`,
-          lastModified: currentDate,
-          changeFrequency: 'monthly',
-          priority: 0.8,
-          // Добавляем изображения как строки URL
-          images: [
-            `${BASE_URL}${item.images.main}`,
-            // Добавляем галерею изображений
-            ...item.images.gallery.map(img => `${BASE_URL}${img}`),
-          ],
-        })
-      }
-    }
-  }
+  // for (const category of catalogData.categories) {
+  //   for (const item of category.items) {
+  //     // Добавляем только те товары, которые доступны для продажи
+  //     if (item.availability?.forSale !== false) {
+  //       sitemapEntries.push({
+  //         url: `${BASE_URL}/catalog/${item.slug}`,
+  //         lastModified: currentDate,
+  //         changeFrequency: 'monthly',
+  //         priority: 0.8,
+  //         // Добавляем изображения как строки URL
+  //         images: [
+  //           `${BASE_URL}${item.images.main}`,
+  //           // Добавляем галерею изображений
+  //           ...item.images.gallery.map(img => `${BASE_URL}${img}`),
+  //         ],
+  //       })
+  //     }
+  //   }
+  // }
 
   // Добавляем страницу аренды
   sitemapEntries.push({

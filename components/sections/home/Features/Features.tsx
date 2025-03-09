@@ -211,16 +211,6 @@ const Features = () => {
               </motion.div>
             ))}
           </div>
-
-          <div className='text-center mt-12'>
-            <Link
-              href='/catalog'
-              className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'
-            >
-              <span>Смотреть весь каталог</span>
-              {ICONS.arrow}
-            </Link>
-          </div>
         </motion.div>
 
         {/* Преимущества */}
