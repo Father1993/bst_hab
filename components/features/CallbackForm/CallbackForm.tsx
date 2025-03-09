@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { submitForm, validateForm } from '../../../services/formService'
+import { submitForm } from '../../../services/formService'
 import toast from 'react-hot-toast'
 
 // Тип для данных формы
