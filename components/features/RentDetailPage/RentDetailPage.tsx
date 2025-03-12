@@ -15,7 +15,8 @@ const RentDetailPage = ({ moduleId }: RentDetailPageProps) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
 
   // Находим модуль по ID
-  const module = rentData.moduleTypes.find(m => m.id === moduleId) || rentData.moduleTypes[0]
+  const selectedModule =
+    rentData.moduleTypes.find(m => m.id === moduleId) || rentData.moduleTypes[0]
 
   // Обработчик открытия формы обратного звонка
   const handleOpenCallbackForm = () => {
@@ -40,7 +41,7 @@ const RentDetailPage = ({ moduleId }: RentDetailPageProps) => {
             Аренда
           </Link>
           <span>/</span>
-          <span className='text-white'>{module.name}</span>
+          <span className='text-white'>{selectedModule.name}</span>
         </div>
       </div>
 
@@ -49,48 +50,51 @@ const RentDetailPage = ({ moduleId }: RentDetailPageProps) => {
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-8'>
           {/* Галерея изображений */}
           <div className='lg:col-span-7'>
-            <ImageSlider images={module.images || [module.image]} />
+            <ImageSlider images={selectedModule.images || [selectedModule.image]} />
           </div>
 
           {/* Информация о продукте */}
           <div className='lg:col-span-5'>
-            <h1 className='text-3xl font-bold text-white mb-4'>{module.name}</h1>
-            <p className='text-zinc-400 mb-6'>{module.description}</p>
+            <h1 className='text-3xl font-bold text-white mb-4'>{selectedModule.name}</h1>
+            <p className='text-zinc-400 mb-6'>{selectedModule.description}</p>
 
             <div className='bg-zinc-900 rounded-xl p-6 mb-6'>
               <h2 className='text-xl font-semibold text-white mb-4'>Характеристики</h2>
               <div className='space-y-3'>
                 <div className='flex justify-between'>
                   <span className='text-zinc-400'>Вместимость:</span>
-                  <span className='text-white font-medium'>{module.specifications.capacity}</span>
+                  <span className='text-white font-medium'>
+                    {selectedModule.specifications.capacity}
+                  </span>
                 </div>
                 <div className='flex justify-between'>
                   <span className='text-zinc-400'>Габариты:</span>
                   <span className='text-white font-medium'>
-                    {module.specifications.dimensions.length}×
-                    {module.specifications.dimensions.width}×
-                    {module.specifications.dimensions.height}{' '}
-                    {module.specifications.dimensions.units}
+                    {selectedModule.specifications.dimensions.length}×
+                    {selectedModule.specifications.dimensions.width}×
+                    {selectedModule.specifications.dimensions.height}{' '}
+                    {selectedModule.specifications.dimensions.units}
                   </span>
                 </div>
                 <div className='flex justify-between'>
                   <span className='text-zinc-400'>Площадь:</span>
                   <span className='text-white font-medium'>
-                    {module.specifications.area.value} {module.specifications.area.units}
+                    {selectedModule.specifications.area.value}{' '}
+                    {selectedModule.specifications.area.units}
                   </span>
                 </div>
                 <div className='flex justify-between'>
                   <span className='text-zinc-400'>Эксплуатация:</span>
                   <span className='text-white font-medium'>
-                    от {module.specifications.temperature.min}°C до +
-                    {module.specifications.temperature.max}°C
+                    от {selectedModule.specifications.temperature.min}°C до +
+                    {selectedModule.specifications.temperature.max}°C
                   </span>
                 </div>
-                {module.pricing && (
+                {selectedModule.pricing && (
                   <div className='flex justify-between'>
                     <span className='text-zinc-400'>Стоимость аренды:</span>
                     <span className='text-white font-medium'>
-                      от {module.pricing.monthly} {module.pricing.currency}/месяц
+                      от {selectedModule.pricing.monthly} {selectedModule.pricing.currency}/месяц
                     </span>
                   </div>
                 )}
