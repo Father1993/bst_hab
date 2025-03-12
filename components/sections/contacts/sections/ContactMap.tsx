@@ -34,9 +34,7 @@ const ContactMap = () => {
             <h2 className='text-3xl font-bold text-white mb-4'>
               Часто задаваемые <span className='text-[#FFD700]'>вопросы</span>
             </h2>
-            <p className='text-gray-400'>
-              Ответы на популярные вопросы о посещении офиса и способах связи
-            </p>
+            <p className='text-gray-400'>Ответы на популярные вопросы</p>
           </div>
 
           <div className='space-y-4'>
