@@ -1,4 +1,4 @@
-import type { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next'
 
 // Настройка для статического экспорта
 export const dynamic = 'force-static'
@@ -56,14 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: currentDate,
     changeFrequency: 'weekly',
     priority: 0.9,
-  })
-
-  // Добавляем статичную страницу детального просмотра аренды
-  sitemapEntries.push({
-    url: `${BASE_URL}/rent/detail`,
-    lastModified: currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.8,
   })
 
   // Добавляем другие статические страницы сайта
