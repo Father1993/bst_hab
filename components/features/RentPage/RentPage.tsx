@@ -21,6 +21,11 @@ const RentPage = () => {
     setShowCallbackForm(false)
   }
 
+  // Фильтруем только нужные типы модулей
+  const filteredModules = rentData.moduleTypes.filter(
+    module => module.id === 'residential' || module.id === 'security'
+  )
+
   return (
     <main className='min-h-screen bg-black'>
       {/* Hero секция */}
@@ -66,8 +71,8 @@ const RentPage = () => {
           </h2>
 
           {/* Карточки категорий */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {rentData.moduleTypes.map((module, index) => (
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            {filteredModules.map((module, index) => (
               <motion.div
                 key={module.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -81,7 +86,7 @@ const RentPage = () => {
                     alt={module.name}
                     fill
                     className='object-cover'
-                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                    sizes='(max-width: 768px) 100vw, 50vw'
                   />
                 </div>
                 <div className='p-6'>
@@ -119,7 +124,7 @@ const RentPage = () => {
                   </div>
                   <div className='mt-6 flex space-x-3'>
                     <Link
-                      href='/rent/detail'
+                      href={`/rent/${module.id}`}
                       className='flex-1 py-3 bg-[#FFD700]/10 text-[#FFD700] rounded-lg font-medium text-center hover:bg-[#FFD700] hover:text-black transition-all duration-300'
                     >
                       Подробнее
@@ -220,6 +225,205 @@ const RentPage = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Дополнительная комплектация */}
+      <section className='py-20 bg-black'>
+        <div className='container mx-auto px-4'>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className='bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 rounded-xl p-8 border border-zinc-700 shadow-xl'
+          >
+            <div className='flex flex-col md:flex-row items-center justify-center gap-6 mb-10 text-center md:text-left'>
+              <div className='flex-shrink-0 bg-gradient-to-br from-orange-500 to-yellow-500 p-4 rounded-full'>
+                <svg
+                  className='w-12 h-12 text-white'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={1.5}
+                    d='M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'
+                  />
+                </svg>
+              </div>
+              <div>
+                <h2 className='text-3xl md:text-4xl font-bold text-white mb-3'>
+                  Полная комплектация под ключ
+                </h2>
+                <p className='text-xl text-zinc-300 max-w-3xl'>
+                  Дополнительно укомплектуем модули всем необходимым для комфортного проживания и
+                  работы
+                </p>
+              </div>
+            </div>
+
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mb-10'>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className='bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-zinc-700/50 hover:border-orange-500/30 transition-all duration-300'
+              >
+                <div className='flex items-center mb-4'>
+                  <div className='bg-orange-500/20 p-3 rounded-lg mr-4'>
+                    <svg
+                      className='w-8 h-8 text-orange-500'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M13 10V3L4 14h7v7l9-11h-7z'
+                      />
+                    </svg>
+                  </div>
+                  <h3 className='text-xl font-semibold text-white'>Бытовая техника</h3>
+                </div>
+                <ul className='space-y-2 text-zinc-400'>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Холодильник
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Микроволновая печь
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Электрический чайник
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Телевизор
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Кондиционер
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className='bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-zinc-700/50 hover:border-orange-500/30 transition-all duration-300'
+              >
+                <div className='flex items-center mb-4'>
+                  <div className='bg-orange-500/20 p-3 rounded-lg mr-4'>
+                    <svg
+                      className='w-8 h-8 text-orange-500'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+                      />
+                    </svg>
+                  </div>
+                  <h3 className='text-xl font-semibold text-white'>Постельные принадлежности</h3>
+                </div>
+                <ul className='space-y-2 text-zinc-400'>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Кровати и матрасы
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Подушки и одеяла
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Комплекты постельного белья
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Полотенца
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Шторы и занавески
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className='bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-zinc-700/50 hover:border-orange-500/30 transition-all duration-300'
+              >
+                <div className='flex items-center mb-4'>
+                  <div className='bg-orange-500/20 p-3 rounded-lg mr-4'>
+                    <svg
+                      className='w-8 h-8 text-orange-500'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+                      />
+                    </svg>
+                  </div>
+                  <h3 className='text-xl font-semibold text-white'>Мебель и интерьер</h3>
+                </div>
+                <ul className='space-y-2 text-zinc-400'>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Столы и стулья
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Шкафы и тумбочки
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Офисная мебель
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Осветительные приборы
+                  </li>
+                  <li className='flex items-center'>
+                    <span className='text-[#FFD700] mr-2 text-xs'>●</span>
+                    Элементы декора
+                  </li>
+                </ul>
+              </motion.div>
+            </div>
+
+            <div className='text-center'>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleOpenCallbackForm}
+                className='px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-500 text-white rounded-xl font-medium text-lg shadow-lg hover:shadow-orange-500/20 transition-all duration-300'
+              >
+                Получить индивидуальное предложение
+              </motion.button>
+              <p className='text-zinc-500 mt-4'>
+                Подберем оптимальную комплектацию под ваш бюджет и потребности
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 

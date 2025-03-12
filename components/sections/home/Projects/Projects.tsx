@@ -79,17 +79,6 @@ const Projects = () => {
                       <span className='ml-1'>{project.location}</span>
                     </div>
                   </div>
-                  <div className='space-y-2 text-right'>
-                    <div className='text-gray-400 text-sm'>
-                      Площадь: <span className='text-white'>{project.stats.area}</span>
-                    </div>
-                    <div className='text-gray-400 text-sm'>
-                      Срок: <span className='text-white'>{project.stats.time}</span>
-                    </div>
-                    <div className='text-gray-400 text-sm'>
-                      Модулей: <span className='text-white'>{project.stats.modules}</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>

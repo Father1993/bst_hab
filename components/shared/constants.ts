@@ -3,7 +3,7 @@ export const COMPANY_INFO = {
   foundedYear: 2013,
   phone: '+7 (914) 203-91-97',
   whatsapp: '79142039197',
-  email: '252188@mail.ru',
+  email: '252188dv@mail.ru',
   address: 'ул.Связная, 1Б, Хабаровск',
 }
 
@@ -78,26 +78,29 @@ export const PRODUCT_TYPES = [
       '/img/modules/standart-5.webp',
       '/img/modules/standart-6.webp',
     ],
-    link: '/catalog/',
+    link: '/sale/standard-modules',
     featured: true,
   },
   {
     id: 'garages',
-    name: 'Модульные гаражи',
-    description: 'Надежные и практичные конструкции любых размеров для хранения техники',
+    name: 'Гаражи из сэндвич панелей',
+    description:
+      'Надежные и практичные конструкции любых размеров для хранения техники по индивидуальным проектам',
     image: '/img/garaz.webp',
     images: [
       '/img/modules/garage-1.webp',
+      '/img/modules/garage/garage-blue-0.webp',
+      '/img/modules/garage/garage-blue-1.webp',
       '/img/modules/garage-2.webp',
       '/img/modules/garage-3.webp',
-      '/img/modules/garage-4.webp',
     ],
-    link: '/catalog/',
+    link: '/sale/garages',
   },
   {
     id: 'posts',
     name: 'Посты охраны и КПП',
-    description: 'Комфортные и функциональные решения для обеспечения безопасности объектов',
+    description:
+      'Комфортные и функциональные решения для обеспечения безопасности объектов с панорамным остеклением',
     image: '/img/security.webp',
     images: [
       '/img/modules/sec-2.webp',
@@ -105,35 +108,38 @@ export const PRODUCT_TYPES = [
       '/img/modules/sec-3.webp',
       '/img/modules/sec-4.webp',
     ],
-    link: '/catalog/',
+    link: '/sale/posts',
   },
   {
     id: 'large-buildings',
     name: 'Модульные здания',
-    description: 'Общежития, столовые и другие крупные объекты из модульных конструкций',
+    description:
+      'Общежития, столовые и другие крупные объекты из модульных конструкций, включая двухэтажные здания',
     image: '/img/spec-const.webp',
     images: [
       '/img/modules/module-3.webp',
       '/img/modules/module-2.webp',
       '/img/modules/module-1.webp',
     ],
-    link: '/catalog/',
+    link: '/sale/large-buildings',
   },
   {
     id: 'country-houses',
     name: 'Дачные домики',
-    description: 'Современные и комфортные решения для загородного отдыха и проживания',
+    description:
+      'Современные и комфортные решения для загородного отдыха и проживания с качественной теплоизоляцией',
     image: '/img/country-house.webp',
     images: ['/img/modules/dacha.webp', '/img/modules/dacha-2.webp'],
-    link: '/catalog/',
+    link: '/sale/country-houses',
   },
   {
     id: 'business',
     name: 'Помещения для бизнеса',
-    description: 'Модульные офисы и коммерческие пространства для вашего бизнеса',
+    description:
+      'Модульные офисы и коммерческие пространства для вашего бизнеса с современным дизайном и отделкой',
     image: '/img/business.webp',
     images: ['/img/modules/offiece-module-1.webp', '/img/modules/office-module-2.webp'],
-    link: '/catalog/',
+    link: '/sale/business',
   },
 ]
 
@@ -244,14 +250,14 @@ export const COMPLETED_PROJECTS = [
     category: 'bytovki',
     title: 'Комплекс для строителей',
     description: 'Модульный городок на 30 человек',
-    location: 'Хабаровск',
+    location: 'Хабаровский край',
     stats: { area: '250 м²', time: '30 дней', modules: '20' },
     image: '/img/projects/stroy.webp',
   },
   {
     id: 2,
     category: 'garages',
-    title: 'Автосервис-гараж из модулей',
+    title: 'Автосервис-гараж из из сэндвич панелей',
     description: 'Быстровозводимый гараж на 2 авто',
     location: 'Хабаровск',
     stats: { area: '60 м²', time: '10 дней', modules: '4' },
@@ -260,7 +266,7 @@ export const COMPLETED_PROJECTS = [
   {
     id: 3,
     category: 'posts',
-    title: 'Модульная баня',
+    title: 'Баня',
     description: 'Полноценная баня с доставкой',
     location: 'Хабаровск',
     stats: { area: '14.6 м²', time: '3 дня', modules: '6' },
@@ -269,9 +275,9 @@ export const COMPLETED_PROJECTS = [
   {
     id: 4,
     category: 'modules',
-    title: 'Современный модульный магазин',
-    description: 'Современный магазин из модулей',
-    location: 'Хабаровск',
+    title: 'Фельдшерско-акушерский пункт',
+    description: 'Современный ФАП',
+    location: 'Хабаровский край',
     stats: { area: '14.6 м²', time: '5 дней', modules: '1' },
     image: '/img/projects/modules-bst-hab-2.webp',
   },

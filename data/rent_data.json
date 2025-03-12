@@ -38,10 +38,12 @@
     },
     {
       "id": "construction",
-      "name": "Гаражный модуль",
-      "description": "Функциональные модули для организации складов и гаражей",
+      "name": "Гаражи из сэндвич панелей",
+      "description": "Функциональные для организации складов и гаражей",
       "image": "/img/rent/garage-1.webp",
       "images": [
+        "/img/modules/garage/garage-blue-0.webp",
+        "/img/modules/garage/garage-blue-1.webp",
         "/img/modules/garage-1.webp",
         "/img/modules/garage-2.webp",
         "/img/modules/garage-3.webp",
