@@ -210,7 +210,7 @@ const PrivacyPolicyPage = () => {
                 <strong className='text-[#FFD700]'>Руководитель:</strong> Дементьев Владимир
                 Александрович, директор
                 <br />
-                <strong className='text-[#FFD700]'>E-mail:</strong> 252188@mail.ru
+                <strong className='text-[#FFD700]'>E-mail:</strong> 252188dv@mail.ru
                 <br />
                 <strong className='text-[#FFD700]'>Телефон:</strong> +7 (914) 203-91-97
               </p>
@@ -222,7 +222,7 @@ const PrivacyPolicyPage = () => {
               пожалуйста, свяжитесь с нами:
             </p>
             <ul className='list-disc pl-6 space-y-2 mt-4'>
-              <li>Email: 252188@mail.ru</li>
+              <li>Email: 252188dv@mail.ru</li>
               <li>Телефон: +7 (914) 203-91-97</li>
               <li>Почтовый адрес: 680018, Хабаровский кр., г. Хабаровск, ул. Белинского, д. 9Б</li>
             </ul>

@@ -160,10 +160,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 '@type': 'ContactPoint',
                 telephone: '+7-914-203-91-97',
                 contactType: 'customer service',
-                email: '252188@mail.ru',
+                email: '252188dv@mail.ru',
                 availableLanguage: 'Russian',
               },
-              sameAs: ['https://vk.com/bsthab', 'https://t.me/bsthab'],
+              sameAs: ['https://t.me/+79142039197', 'https://t.me/+79142039197'],
             }),
           }}
         />

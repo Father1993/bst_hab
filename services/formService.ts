@@ -31,19 +31,19 @@ const EMAILJS_CONFIG = {
 const formConfigs: Record<string, FormConfig> = {
   callback: {
     subject: 'Заявка на обратный звонок с сайта BST HAB',
-    recipients: ['252188@mail.ru'],
+    recipients: ['252188dv@mail.ru'],
     template: 'callback',
     templateId: process.env.NEXT_PUBLIC_EMAILJS_CALLBACK_TEMPLATE_ID || 'template_callback',
   },
   contact: {
     subject: 'Новая заявка с сайта BST HAB',
-    recipients: ['252188@mail.ru'],
+    recipients: ['252188dv@mail.ru'],
     template: 'contact',
     templateId: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || 'template_contact',
   },
   delivery: {
     subject: 'Запрос на доставку BST HAB',
-    recipients: ['252188@mail.ru'],
+    recipients: ['252188dv@mail.ru'],
     template: 'delivery',
     templateId: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || 'template_contact', // Используем тот же шаблон, что и для контактной формы
   },

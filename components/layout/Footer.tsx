@@ -48,23 +48,7 @@ const Footer = () => {
             </p>
             <div className='flex space-x-4'>
               <a
-                href='https://vk.com'
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label='BST HAB ВКонтакте'
-                className='w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-[#FFD700] transition-colors group'
-              >
-                <svg
-                  className='w-5 h-5 text-white group-hover:text-black transition-colors'
-                  fill='currentColor'
-                  viewBox='0 0 24 24'
-                  aria-hidden='true'
-                >
-                  <path d='M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.049-1.725-1.033-1.003-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.597v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202-2.17-3.048-2.763-5.335-2.763-5.81 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.848 2.46 2.274 4.617 2.867 4.617.22 0 .322-.102.322-.66V9.379c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.748c.372 0 .5.203.5.643v3.473c0 .372.17.5.271.5.22 0 .407-.128.813-.542 1.27-1.422 2.188-3.624 2.188-3.624.119-.254.373-.491.847-.491h1.744c.525 0 .643.27.525.643-.22 1.032-2.392 4.098-2.392 4.098-.186.305-.254.44 0 .78.186.254.796.779 1.202 1.253.745.847 1.32 1.558 1.473 2.045.17.473-.085.71-.576.71z' />
-                </svg>
-              </a>
-              <a
-                href='https://t.me'
+                href='https://t.me/+79142039197'
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='BST HAB Telegram'
@@ -248,10 +232,10 @@ const Footer = () => {
                 </svg>
                 <div>
                   <a
-                    href='mailto:252188@mail.ru'
+                    href='mailto:252188dv@mail.ru'
                     className='text-gray-400 hover:text-[#FFD700] transition-colors block'
                   >
-                    252188@mail.ru
+                    252188dv@mail.ru
                   </a>
                   <span className='text-xs text-gray-500'>Ответ в течение 2 часов</span>
                 </div>
@@ -390,11 +374,11 @@ const Footer = () => {
               '@type': 'ContactPoint',
               telephone: '+7-914-203-91-97',
               contactType: 'customer service',
-              email: '252188@mail.ru',
+              email: '252188dv@mail.ru',
               areaServed: 'RU',
               availableLanguage: 'Russian',
             },
-            sameAs: ['https://vk.com/bsthab', 'https://t.me/bsthab'],
+            sameAs: ['https://t.me/+79142039197', 'https://t.me/bsthab'],
           }),
         }}
       />

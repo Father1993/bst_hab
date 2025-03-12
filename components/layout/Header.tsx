@@ -82,8 +82,11 @@ const Header = () => {
                 </div>
               </div>
               <div className='flex items-center space-x-4'>
-                <a href='mailto:252188@mail.ru' className='hover:text-[#FFD700] transition-colors'>
-                  252188@mail.ru
+                <a
+                  href='mailto:252188dv@mail.ru'
+                  className='hover:text-[#FFD700] transition-colors'
+                >
+                  252188dv@mail.ru
                 </a>
                 <a
                   href='https://yandex.ru/maps/org/bst_khab/225751482910/?ll=135.062871%2C48.575113&z=17.54'
@@ -225,8 +228,8 @@ const Header = () => {
                   <a href='tel:+79142039197' className='block hover:text-[#FFD700]'>
                     +7 (914) 203-91-97
                   </a>
-                  <a href='mailto:252188@mail.ru' className='block hover:text-[#FFD700]'>
-                    252188@mail.ru
+                  <a href='mailto:252188dv@mail.ru' className='block hover:text-[#FFD700]'>
+                    252188dv@mail.ru
                   </a>
                   <p>Пн-Сб: 9:00 - 19:00</p>
                   <p>г. Хабаровск</p>

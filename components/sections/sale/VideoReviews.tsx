@@ -53,6 +53,13 @@ const videoReviews = [
     thumbnail: '/videos/3.webp',
     videoUrl: '/videos/obzor-bst-hab-3.mp4',
   },
+  {
+    id: 4,
+    title: 'Обзор бани',
+    description: 'Комфортная баня',
+    thumbnail: '/videos/4.webp',
+    videoUrl: '/videos/obzor-banya-bsh-hab.mp4',
+  },
 ]
 
 const VideoReviews = () => {
