@@ -78,7 +78,6 @@ const productData = {
     'Полноценная электропроводка и освещение',
     'Сетевая инфраструктура',
     'Системы безопасности',
-    'Быстрый монтаж (от 5 дней)',
     'Возможность расширения и модификации',
   ],
   specifications: {
@@ -87,16 +86,19 @@ const productData = {
       width: 'от 3 до 12+ м (по проекту)',
       height: 'от 2.5 до 3.5 м',
     },
-    area: 'от 18 до 500+ м²',
+    area: 'от 14 до 150+ м²',
     capacity: 'от 2 до 50+ рабочих мест',
     temperature: 'от -40°C до +40°C',
-    weight: 'от 3 до 15+ тонн',
-    lifespan: 'не менее 25 лет',
+    weight: '',
+    lifespan: '',
   },
   images: [
-    '/img/business.webp',
-    '/img/modules/offiece-module-1.webp',
-    '/img/modules/office-module-2.webp',
+    '/img/modules/office/1.webp',
+    '/img/modules/office/2.webp',
+    '/img/modules/office/3.webp',
+    '/img/modules/office/4.webp',
+    '/img/modules/office/5.webp',
+    '/img/modules/office/6.webp',
   ],
   advantages: [
     {

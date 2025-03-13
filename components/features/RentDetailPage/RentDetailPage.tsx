@@ -90,14 +90,6 @@ const RentDetailPage = ({ moduleId }: RentDetailPageProps) => {
                     {selectedModule.specifications.temperature.max}°C
                   </span>
                 </div>
-                {selectedModule.pricing && (
-                  <div className='flex justify-between'>
-                    <span className='text-zinc-400'>Стоимость аренды:</span>
-                    <span className='text-white font-medium'>
-                      от {selectedModule.pricing.monthly} {selectedModule.pricing.currency}/месяц
-                    </span>
-                  </div>
-                )}
               </div>
             </div>
 

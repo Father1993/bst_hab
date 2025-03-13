@@ -6,11 +6,17 @@
       "description": "Комфортные жилые помещения для проживания рабочего персонала",
       "image": "/img/modules/standart.webp",
       "images": [
-        "/img/modules/standart.webp",
-        "/img/modules/standart-2.webp",
-        "/img/modules/standart-4.webp",
-        "/img/modules/standart-5.webp",
-        "/img/modules/standart-6.webp"
+        "/img/modules/standart/1.webp",
+        "/img/modules/standart/02.webp",
+        "/img/modules/standart/2.webp",
+        "/img/modules/standart/3.webp",
+        "/img/modules/standart/4.webp",
+        "/img/modules/standart/5.webp",
+        "/img/modules/standart/6.webp",
+        "/img/modules/standart/7.webp",
+        "/img/modules/standart/8.webp",
+        "/img/modules/standart/standart-4.webp",
+        "/img/modules/standart/standart-5.webp"
       ],
       "specifications": {
         "capacity": "от 6 чел.",
@@ -109,6 +115,9 @@
       "description": "Комфортные и функциональные для обеспечения безопасности объектов",
       "image": "/img/security.webp",
       "images": [
+        "/img/modules/secur-1.webp",
+        "/img/modules/secur-2.webp",
+        "/img/modules/secur-3.webp",
         "/img/modules/sec-2.webp",
         "/img/modules/sec-1.webp",
         "/img/modules/sec-3.webp",
