@@ -97,7 +97,7 @@ const productData = {
       height: '',
     },
     area: 'от 14.4 м²',
-    capacity: 'от 4 человек',
+    capacity: '',
     temperature: 'от -45°C до +40°C',
     weight: '',
     lifespan: '',
