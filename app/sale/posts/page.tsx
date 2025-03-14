@@ -81,11 +81,11 @@ const productData = {
   ],
   specifications: {
     dimensions: {
-      length: 'от 2000 до 6000 мм',
-      width: 'от 2000 до 3000 мм',
-      height: 'от 2400 до 2800 мм',
+      length: 'по проекту',
+      width: 'по проекту',
+      height: 'по проекту',
     },
-    area: 'от 4 до 18 м²',
+    area: 'по проекту',
     capacity: '',
     temperature: 'от -45°C до +40°C',
     weight: '',

@@ -1,7 +1,7 @@
 export const COMPANY_INFO = {
   name: 'BST HAB',
   foundedYear: 2013,
-  phone: '+7 (914) 203-91-97',
+  phone: '+7 (4212) 25-21-88',
   whatsapp: '79142039197',
   email: '252188dv@mail.ru',
   address: 'ул.Связная, 1Б, Хабаровск',

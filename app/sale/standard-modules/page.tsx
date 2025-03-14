@@ -112,8 +112,6 @@ const productData = {
     '/img/modules/standart/6.webp',
     '/img/modules/standart/7.webp',
     '/img/modules/standart/8.webp',
-    '/img/modules/standart/standart-4.webp',
-    '/img/modules/standart/standart-5.webp',
   ],
   advantages: [
     {
