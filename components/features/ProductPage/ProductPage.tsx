@@ -2,7 +2,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContactForm from '@/components/features/ContactForm'
@@ -12,8 +12,142 @@ interface ProductPageProps {
   product: any // В реальном проекте здесь должен быть правильный тип
 }
 
+// Компонент слайдера для ProductPage
+const ProductImageSlider = ({ images, productName }: { images: string[]; productName: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [direction, setDirection] = useState(0)
+
+  // Переход к предыдущему изображению
+  const handlePrev = () => {
+    setDirection(-1)
+    setCurrentIndex(prevIndex => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+  }
+
+  // Переход к следующему изображению
+  const handleNext = () => {
+    setDirection(1)
+    setCurrentIndex(prevIndex => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+  }
+
+  // Варианты анимации для слайдера
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? '-100%' : '100%',
+      opacity: 0,
+    }),
+  }
+
+  return (
+    <div className='space-y-4'>
+      {/* Основной слайдер */}
+      <div className='relative aspect-[4/3] bg-zinc-900 rounded-2xl overflow-hidden'>
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial='enter'
+            animate='center'
+            exit='exit'
+            transition={{
+              x: { type: 'spring', stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 },
+            }}
+            className='absolute inset-0'
+          >
+            <Image
+              src={images[currentIndex]}
+              alt={`${productName} ${currentIndex + 1}`}
+              fill
+              className='object-cover'
+              priority={currentIndex === 0}
+              quality={90}
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Кнопки управления */}
+        <button
+          onClick={handlePrev}
+          className='absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10 transition-all duration-300'
+          aria-label='Предыдущее изображение'
+        >
+          <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M15 19l-7-7 7-7'
+            />
+          </svg>
+        </button>
+        <button
+          onClick={handleNext}
+          className='absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10 transition-all duration-300'
+          aria-label='Следующее изображение'
+        >
+          <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
+          </svg>
+        </button>
+
+        {/* Индикаторы */}
+        <div className='absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10'>
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setDirection(index > currentIndex ? 1 : -1)
+                setCurrentIndex(index)
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex ? 'bg-orange-500 w-4' : 'bg-white/50'
+              }`}
+              aria-label={`Перейти к изображению ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Миниатюры */}
+      <div className='grid grid-cols-4 gap-4'>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`relative h-20 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-300 ${
+              currentIndex === index
+                ? 'border-orange-500'
+                : 'border-transparent hover:border-orange-500/50'
+            }`}
+            onClick={() => {
+              setDirection(index > currentIndex ? 1 : -1)
+              setCurrentIndex(index)
+            }}
+          >
+            <Image
+              src={image}
+              alt={`${productName} ${index + 1}`}
+              fill
+              className='object-cover'
+              sizes='(max-width: 768px) 25vw, 10vw'
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
-  const [selectedImage, setSelectedImage] = useState(product.images[0])
   const [showCallbackForm, setShowCallbackForm] = useState(false)
 
   // Обработчик открытия формы обратного звонка
@@ -48,36 +182,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
         <div className='container mx-auto px-4'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
             {/* Галерея */}
-            <div className='space-y-4'>
-              <div className='relative h-[400px] rounded-2xl overflow-hidden'>
-                <Image
-                  src={selectedImage}
-                  alt={product.name}
-                  fill
-                  className='object-cover'
-                  priority
-                />
-              </div>
-              <div className='grid grid-cols-4 gap-4'>
-                {product.images.map((image: string, index: number) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`relative h-20 rounded-lg overflow-hidden cursor-pointer
-                      ${selectedImage === image ? 'ring-2 ring-orange-500' : ''}`}
-                    onClick={() => setSelectedImage(image)}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${product.name} ${index + 1}`}
-                      fill
-                      className='object-cover'
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            <ProductImageSlider images={product.images} productName={product.name} />
 
             {/* Информация */}
             <div>

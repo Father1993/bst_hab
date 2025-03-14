@@ -113,6 +113,12 @@ const productData = {
     '/img/modules/buildings/module-6.webp',
     '/img/modules/buildings/module-7.webp',
     '/img/modules/buildings/module-8.webp',
+    '/img/modules/buildings/a0.webp',
+    '/img/modules/buildings/a01.webp',
+    '/img/modules/buildings/a1.webp',
+    '/img/modules/buildings/a3.webp',
+    '/img/modules/buildings/a6.webp',
+    '/img/modules/buildings/a7.webp',
     '/img/modules/buildings/module-9.webp',
   ],
   advantages: [

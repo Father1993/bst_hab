@@ -99,6 +99,7 @@ const productData = {
     '/img/modules/sec-1.webp',
     '/img/modules/sec-3.webp',
     '/img/modules/sec-4.webp',
+    '/img/modules/sec00.webp',
   ],
   advantages: [
     {
