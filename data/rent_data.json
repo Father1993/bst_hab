@@ -17,16 +17,12 @@
         "/img/modules/standart/8.webp"
       ],
       "specifications": {
-        "capacity": "от 6 чел.",
+        "capacity": "по проекту",
         "dimensions": {
-          "length": "от 6250",
-          "width": 2440,
-          "height": 2630,
-          "units": "мм"
+          "length": "по проекту"
         },
         "area": {
-          "value": "от 15.25",
-          "units": "м²"
+          "value": "по проекту"
         },
         "temperature": {
           "min": -55,
@@ -111,7 +107,7 @@
       "id": "security",
       "name": "Посты охраны и КПП",
       "description": "Комфортные и функциональные для обеспечения безопасности объектов",
-      "image": "/img/security.webp",
+      "image": "/img/modules/secur-1.webp",
       "images": [
         "/img/modules/secur-1.webp",
         "/img/modules/secur-2.webp",
@@ -119,7 +115,8 @@
         "/img/modules/sec-2.webp",
         "/img/modules/sec-1.webp",
         "/img/modules/sec-3.webp",
-        "/img/modules/sec-4.webp"
+        "/img/modules/sec-4.webp",
+        "/img/modules/sec00.webp"
       ],
       "specifications": {
         "capacity": "по проекту",

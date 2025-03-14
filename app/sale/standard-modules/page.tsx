@@ -112,6 +112,15 @@ const productData = {
     '/img/modules/standart/6.webp',
     '/img/modules/standart/7.webp',
     '/img/modules/standart/8.webp',
+    '/img/modules/standart/b1.webp',
+    '/img/modules/standart/b2.webp',
+    '/img/modules/standart/b4.webp',
+    '/img/modules/standart/b5.webp',
+    '/img/modules/standart/b6.webp',
+    '/img/modules/standart/b7.webp',
+    '/img/modules/standart/b10.webp',
+    '/img/modules/standart/b11.webp',
+    '/img/modules/standart/b12.webp',
   ],
   advantages: [
     {
