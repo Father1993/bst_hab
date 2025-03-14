@@ -378,7 +378,7 @@ const Footer = () => {
               areaServed: 'RU',
               availableLanguage: 'Russian',
             },
-            sameAs: ['https://t.me/+79142039197', 'https://t.me/bsthab'],
+            sameAs: ['https://t.me/+79142039197', 'https://t.me/+79142039197'],
           }),
         }}
       />
