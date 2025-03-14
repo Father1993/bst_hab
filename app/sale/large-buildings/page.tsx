@@ -98,10 +98,10 @@ const productData = {
       width: 'по проекту',
       height: 'по проекту',
     },
-    area: 'от 30 до 500+ м²',
+    area: 'от 10 до 500+ м²',
     capacity: 'от 10 до 100+ человек',
     temperature: 'от -50°C до +40°C',
-    floors: 'от 1 до 3 этажей',
+    floors: 'от 1 до 2 этажей',
     lifespan: '',
   },
   images: [
