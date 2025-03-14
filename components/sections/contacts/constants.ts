@@ -23,7 +23,7 @@ export const CONTACT_METHODS: ContactMethod[] = [
     title: 'Позвоните нам',
     description: 'Мгновенная консультация по всем вопросам',
     action: 'Позвонить сейчас',
-    link: `tel:${COMPANY_INFO.phone}`,
+    link: `tel:+74212252188`,
     responseTime: 'Мгновенно',
     availableHours: '9:00 - 19:00',
     benefits: [
