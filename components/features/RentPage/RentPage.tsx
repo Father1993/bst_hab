@@ -23,7 +23,11 @@ const RentPage = () => {
 
   // Фильтруем только нужные типы модулей
   const filteredModules = rentData.moduleTypes.filter(
-    module => module.id === 'residential' || module.id === 'security'
+    module =>
+      module.id === 'residential' ||
+      module.id === 'security' ||
+      module.id === 'container-40ft' ||
+      module.id === 'container-20ft'
   )
 
   return (
