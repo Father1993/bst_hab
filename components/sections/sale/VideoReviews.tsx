@@ -60,6 +60,20 @@ const videoReviews = [
     thumbnail: '/videos/4.webp',
     videoUrl: '/videos/obzor-banya-bsh-hab.mp4',
   },
+  {
+    id: 5,
+    title: 'Обзор модульного КПП',
+    description: 'Просторный и светлый пункт охраны за счет панорамных окон',
+    thumbnail: '/videos/5.webp',
+    videoUrl: '/videos/obzor-kpp-blue.mp4',
+  },
+  {
+    id: 6,
+    title: 'Модульное здание с тамбуром',
+    description: 'Обзор небольшого модульного здания с удобным тамбуром',
+    thumbnail: '/videos/6.webp',
+    videoUrl: '/videos/obzor-modules-grey.mp4',
+  },
 ]
 
 const VideoReviews = () => {
