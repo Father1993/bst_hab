@@ -103,6 +103,8 @@ export const PRODUCT_TYPES = [
       'Комфортные и функциональные решения для обеспечения безопасности объектов с панорамным остеклением',
     image: '/img/security.webp',
     images: [
+      '/img/modules/sec/sec-1.webp',
+      '/img/modules/sec/sec-3.webp',
       '/img/modules/sec-2.webp',
       '/img/modules/sec-1.webp',
       '/img/modules/sec-3.webp',
