@@ -74,6 +74,13 @@ const videoReviews = [
     thumbnail: '/videos/6.webp',
     videoUrl: '/videos/obzor-modules-grey.mp4',
   },
+  {
+    id: 7,
+    title: 'Бытовка защищенная',
+    description: 'Бытовка - защищенная под разные нужды',
+    thumbnail: '/videos/7.webp',
+    videoUrl: '/videos/bst-hab.mp4',
+  },
 ]
 
 const VideoReviews = () => {
@@ -143,9 +150,9 @@ const VideoReviews = () => {
           </div>
 
           {/* Список видео */}
-          <div className='lg:col-span-3 lg:col-start-9'>
-            <h3 className='text-lg font-medium text-white mb-4'>Другие видеообзоры</h3>
-            <div className='space-y-4'>
+          <div className='lg:col-span-4 lg:col-start-9'>
+            <h3 className='text-lg font-medium text-white mb-2'>Другие видеообзоры</h3>
+            <div className='space-y-1'>
               {videoReviews.map((video, index) => (
                 <motion.div
                   key={video.id}
@@ -153,7 +160,7 @@ const VideoReviews = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   onClick={() => handleSelectVideo(video)}
-                  className={`flex gap-4 p-3 rounded-lg cursor-pointer transition-all duration-300 ${
+                  className={`flex gap-2 p-2 rounded-lg cursor-pointer transition-all duration-300 ${
                     activeVideo.id === video.id
                       ? 'bg-zinc-800 border-l-4 border-[#FFD700]'
                       : 'hover:bg-zinc-900'

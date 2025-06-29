@@ -104,6 +104,7 @@ const productData = {
     lifespan: '',
   },
   images: [
+    '/img/modules/new/bst-3.webp',
     '/img/modules/dacha/1.webp',
     '/img/modules/dacha/2.webp',
     '/img/modules/dacha/3.webp',
@@ -116,6 +117,9 @@ const productData = {
     '/img/modules/dacha.webp',
     '/img/modules/dacha.webp',
     '/img/modules/dacha-2.webp',
+    '/img/modules/new/bst-7.webp',
+    '/img/modules/new/bst-9.webp',
+    '/img/modules/new/bst-2.webp',
   ],
   advantages: [
     {

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import rentData from '@/data/rent_data.json'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
+import VideoReviews from '@/components/sections/sale/VideoReviews'
 
 const RentPage = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
@@ -146,6 +147,8 @@ const RentPage = () => {
           </div>
         </div>
       </section>
+
+      <VideoReviews />
 
       {/* Преимущества */}
       <section className='py-20 bg-zinc-900'>
