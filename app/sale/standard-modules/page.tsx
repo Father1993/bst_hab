@@ -103,6 +103,7 @@ const productData = {
     lifespan: '',
   },
   images: [
+    '/img/modules/new/bst-3.webp',
     '/img/modules/standart/1.webp',
     '/img/modules/standart/02.webp',
     '/img/modules/standart/2.webp',
@@ -125,6 +126,10 @@ const productData = {
     '/img/modules/others/out-4.webp',
     '/img/modules/others/int-4.webp',
     '/img/modules/others/int-2.webp',
+    '/img/modules/new/bst-1.webp',
+    '/img/modules/new/bst-7.webp',
+    '/img/modules/new/bst-9.webp',
+    '/img/modules/new/bst-2.webp',
   ],
   advantages: [
     {

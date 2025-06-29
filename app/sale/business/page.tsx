@@ -93,12 +93,14 @@ const productData = {
     lifespan: '',
   },
   images: [
+    '/img/modules/office/3.webp',
     '/img/modules/office/1.webp',
     '/img/modules/office/2.webp',
-    '/img/modules/office/3.webp',
     '/img/modules/office/4.webp',
     '/img/modules/office/5.webp',
     '/img/modules/office/6.webp',
+    '/img/modules/new/bst-7.webp',
+    '/img/modules/new/bst-2.webp',
   ],
   advantages: [
     {
