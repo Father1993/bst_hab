@@ -48,7 +48,7 @@ const Footer = () => {
             </p>
             <div className='flex space-x-4'>
               <a
-                href='https://t.me/+79142039197'
+                href='https://t.me/+79145422188'
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='BST HAB Telegram'
@@ -64,7 +64,7 @@ const Footer = () => {
                 </svg>
               </a>
               <a
-                href='https://wa.me/79142039197'
+                href='https://wa.me/79145422188'
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='BST HAB WhatsApp'
@@ -206,7 +206,7 @@ const Footer = () => {
                 </svg>
                 <div>
                   <a
-                    href='tel:+79142039197'
+                    href='tel:+79145422188'
                     className='text-gray-400 hover:text-[#FFD700] transition-colors block'
                   >
                     +7 (4212) 25-21-88
@@ -372,13 +372,13 @@ const Footer = () => {
             },
             contactPoint: {
               '@type': 'ContactPoint',
-              telephone: '+7-914-203-91-97',
+              telephone: '+7-914-542-21-88',
               contactType: 'customer service',
               email: '252188dv@mail.ru',
               areaServed: 'RU',
               availableLanguage: 'Russian',
             },
-            sameAs: ['https://t.me/+79142039197', 'https://t.me/+79142039197'],
+            sameAs: ['https://t.me/+79145422188', 'https://t.me/+79145422188'],
           }),
         }}
       />

@@ -89,7 +89,7 @@ const DeliveryHero = ({ onCallbackRequest }: DeliveryHeroProps) => {
                 Рассчитать стоимость доставки
               </motion.button>
               <motion.a
-                href='tel:+79142039197'
+                href='tel:+79145422188'
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className='px-8 py-4 bg-transparent border-2 border-[#FFD700]/30 

@@ -76,7 +76,7 @@ const Process = () => {
             className='text-center mt-16'
           >
             <Link
-              href={`https://wa.me/79142039197?text=${encodeURIComponent('Здравствуйте! Я с вашего сайта. Интересуют модульные решения и условия аренды. Можно консультацию?')}`}
+              href={`https://wa.me/79145422188?text=${encodeURIComponent('Здравствуйте! Я с вашего сайта. Интересуют модульные решения и условия аренды. Можно консультацию?')}`}
               target='_blank'
               rel='noopener noreferrer'
               className='inline-flex items-center justify-center px-8 py-4 bg-[#FFD700] text-black rounded-lg font-semibold hover:bg-[#FFD700]/90 transition-colors group'
