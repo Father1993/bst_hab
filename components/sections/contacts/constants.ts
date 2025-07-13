@@ -47,7 +47,7 @@ export const CONTACT_METHODS: ContactMethod[] = [
     title: 'Telegram',
     description: 'Удобный и быстрый способ связи',
     action: 'Написать в Telegram',
-    link: 'https://t.me/+79142039197',
+    link: 'https://t.me/+79145422188',
     responseTime: 'До 15 минут',
     availableHours: '9:00 - 20:00',
     benefits: ['Мгновенные уведомления', 'Удобный интерфейс', 'Безопасная связь'],
@@ -58,7 +58,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     icon: 'telegram',
     name: 'Telegram',
-    url: 'https://t.me/+79142039197',
+    url: 'https://t.me/+79145422188',
     color: '#229ED9',
     followers: '2K+',
   },
