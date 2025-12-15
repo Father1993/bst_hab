@@ -108,15 +108,6 @@ const ContactForm = () => {
         transition={{ duration: 0.5 }}
         className='bg-zinc-900/60 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-zinc-800/50 shadow-2xl'
       >
-        <div className='text-center mb-8'>
-          <h2 id='contact-form-title' className='text-3xl md:text-4xl font-bold text-white mb-3'>
-            Оставьте заявку
-          </h2>
-          <p className='text-zinc-400 text-lg'>
-            Расскажите о вашем проекте, и мы свяжемся с вами в ближайшее время
-          </p>
-        </div>
-
         <form onSubmit={handleSubmit} className='space-y-6' noValidate>
           <div className='grid md:grid-cols-2 gap-6'>
             <div>
