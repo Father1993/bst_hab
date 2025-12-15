@@ -72,7 +72,7 @@ const Hero = () => {
             muted
             loop
             playsInline
-            className={`absolute w-full h-full object-cover transition-opacity duration-700 ${
+            className={`absolute w-full h-full object-cover transition-opacity duration-700 scale-125 object-center ${
               isVideoLoaded ? 'opacity-50' : 'opacity-0'
             }`}
             onLoadedData={() => setIsVideoLoaded(true)}
