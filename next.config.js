@@ -1,16 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Статическая генерация
+  // SSR включён (убрали output: 'export' для работы middleware и динамического контента)
   images: {
-    unoptimized: true, // Для статической генерации
-    domains: ['bst-hab.ru', 'localhost'], // Разрешенные домены
-    formats: ['image/webp'], // Поддерживаемые форматы
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'bst-hab.ru',
+      },
+      {
+        protocol: 'https',
+        hostname: 'irkutsk.bst-hab.ru',
+      },
+    ],
+    formats: ['image/webp'],
   },
-  trailingSlash: true, // Слеш в конце URL
-  distDir: 'out',
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
-
+  
   // Оптимизация для продакшена
   compress: true,
   poweredByHeader: false,
@@ -18,7 +22,6 @@ const nextConfig = {
 
   // Настройка webpack для оптимизации
   webpack: (config, { dev, isServer }) => {
-    // Оптимизация только для продакшена
     if (!dev && !isServer) {
       config.optimization.minimize = true
     }

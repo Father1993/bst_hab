@@ -3,12 +3,19 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { COMPANY_FEATURES, COMPANY_STATS } from '@/components/shared/constants'
+import { usePathname } from 'next/navigation'
+import { COMPANY_FEATURES, COMPANY_STATS, CITIES } from '@/components/shared/constants'
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const pathname = usePathname()
+
+  // Определяем город по URL
+  const isIrkutsk = pathname.startsWith('/irkutsk')
+  const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
+  const cityName = currentCity.name
 
   useEffect(() => {
     // Устанавливаем флаг монтирования сразу после первого рендера
@@ -93,7 +100,7 @@ const Hero = () => {
           <div className='space-y-8'>
             <div className='space-y-6'>
               <h2 className='inline-block bg-[#FFD700]/10 text-[#FFD700] px-4 py-2 rounded-full text-sm font-medium'>
-                Лидер рынка модульного строительства в г. Хабаровск
+                Лидер рынка модульного строительства в г. {cityName}
               </h2>
               <h1
                 className='text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight'
@@ -109,8 +116,8 @@ const Hero = () => {
                 решения для бизнеса
               </h1>
               <p className='text-lg sm:text-xl text-gray-300 max-w-xl'>
-                Производство и аренда модульных конструкций любой сложности. От типовых бытовок до
-                индивидуальных проектов под ключ.
+                Производство и аренда модульных конструкций любой сложности в {cityName}е. От
+                типовых бытовок до индивидуальных проектов под ключ.
               </p>
             </div>
 

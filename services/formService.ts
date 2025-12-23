@@ -10,6 +10,7 @@ export interface BaseFormData {
   time?: string // для формы обратного звонка
   privacyConsent?: boolean
   projectType?: string // для формы контакта
+  city?: string // город (Хабаровск, Иркутск) для различия заявок
 }
 
 // Конфигурация для формы
@@ -85,6 +86,7 @@ export async function submitForm(
       preferred_time: data.time || 'Не указано',
       project_type: data.projectType || 'Не указано',
       form_type: data.formType,
+      city: data.city || 'Хабаровск', // город для различия заявок
     }
 
     // Отправка через EmailJS

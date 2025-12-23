@@ -1,14 +1,25 @@
+'use client'
+
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import Creator from './Creator'
 import CallbackForm from '@/components/features/CallbackForm'
 import useBreakpoint from '@/components/hooks/useBreakpoint'
+import { COMPANY_INFO, IRKUTSK_OFFICE, CITIES } from '@/components/shared/constants'
 
 const Footer = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
   const { isMobile } = useBreakpoint()
+  const pathname = usePathname()
   const logoSize = isMobile ? 230 : 170
+
+  // Определяем город по URL
+  const isIrkutsk = pathname.startsWith('/irkutsk')
+  const office = isIrkutsk ? IRKUTSK_OFFICE : COMPANY_INFO
+  const cityName = isIrkutsk ? CITIES.irkutsk.name : CITIES.khabarovsk.name
+  const regionName = isIrkutsk ? CITIES.irkutsk.region : CITIES.khabarovsk.region
 
   // Обработчик открытия формы обратного звонка
   const handleOpenCallbackForm = () => {
@@ -34,7 +45,7 @@ const Footer = () => {
               <div className='flex justify-center md:justify-start'>
                 <Image
                   src='/img/logo/bst_hab-logo-black.png'
-                  alt='BST HAB - Модульные здания в Хабаровске'
+                  alt={`BST HAB - Модульные здания в ${cityName}е`}
                   width={logoSize}
                   height={logoSize}
                   className='object-contain mb-4'
@@ -43,7 +54,7 @@ const Footer = () => {
             </Link>
             <p className='text-gray-400 text-sm'>
               Производство и аренда модульных конструкций: бытовки, гаражи, строительные модули.
-              Собственное производство в Хабаровске. Быстрое изготовление по типовым и
+              Собственное производство в {cityName}е. Быстрое изготовление по типовым и
               индивидуальным проектам.
             </p>
             <div className='flex space-x-4'>
@@ -143,7 +154,7 @@ const Footer = () => {
             <ul className='space-y-4'>
               <li>
                 <Link href='/rent' className='text-gray-400 hover:text-[#FFD700] transition-colors'>
-                  Аренда модульных зданий в Хабаровске
+                  Аренда модульных зданий в {cityName}е
                 </Link>
               </li>
               <li>
@@ -206,10 +217,10 @@ const Footer = () => {
                 </svg>
                 <div>
                   <a
-                    href='tel:+79145422188'
+                    href={`tel:${office.phoneRaw}`}
                     className='text-gray-400 hover:text-[#FFD700] transition-colors block'
                   >
-                    +7 (4212) 25-21-88
+                    {office.phone}
                   </a>
                   <span className='text-xs text-gray-500'>
                     Звонки 7 дней в неделю с 9:00 до 19:00
@@ -232,10 +243,10 @@ const Footer = () => {
                 </svg>
                 <div>
                   <a
-                    href='mailto:252188dv@mail.ru'
+                    href={`mailto:${office.email}`}
                     className='text-gray-400 hover:text-[#FFD700] transition-colors block'
                   >
-                    252188dv@mail.ru
+                    {office.email}
                   </a>
                   <span className='text-xs text-gray-500'>Ответ в течение 2 часов</span>
                 </div>
@@ -281,12 +292,14 @@ const Footer = () => {
                 </svg>
                 <div>
                   <a
-                    href='https://yandex.ru/maps/org/bst_khab/225751482910/?ll=135.062871%2C48.575113&z=17.54'
+                    href={office.yandexMapsUrl}
                     target='_blank'
                     rel='noopener noreferrer'
                     className='text-gray-400 hover:text-[#FFD700] transition-colors block'
                   >
-                    г. Хабаровск, ул. Связная, 1Б
+                    {isIrkutsk && 'addressFull' in office
+                      ? office.addressFull
+                      : `г. ${cityName}, ${office.address.replace(`, ${cityName}`, '')}`}
                   </a>
                   <span className='text-xs text-gray-500'>Производство и офис</span>
                 </div>
@@ -298,11 +311,11 @@ const Footer = () => {
         {/* Дополнительная информация для SEO */}
         <div className='mb-8 border-t border-zinc-800 pt-8'>
           <h4 className='text-sm text-[#FFD700] mb-4'>
-            BST HAB - Модульные решения для бизнеса в Хабаровском крае
+            BST HAB - Модульные решения для бизнеса в {regionName}
           </h4>
           <p className='text-xs text-gray-500 mb-2'>
             Компания BST HAB предлагает комплексные модульные решения для бизнеса и частных лиц в
-            Хабаровске и Хабаровском крае. Мы производим, продаем и сдаем в аренду модульные здания
+            {cityName}е и {regionName}. Мы производим, продаем и сдаем в аренду модульные здания
             любого типа и сложности: от строительных бытовок и постов охраны до многоэтажных
             административных комплексов.
           </p>
@@ -356,29 +369,36 @@ const Footer = () => {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'BST HAB',
-            url: 'https://bst-hab.ru',
+            '@type': isIrkutsk ? 'LocalBusiness' : 'Organization',
+            name: office.name || 'BST HAB',
+            url: isIrkutsk ? 'https://irkutsk.bst-hab.ru' : 'https://bst-hab.ru',
             logo: 'https://bst-hab.ru/img/logo/bst_hab-logo-black.png',
-            description:
-              'Производство, продажа и аренда модульных конструкций: бытовки, гаражи, строительные модули в Хабаровске',
+            description: `Производство, продажа и аренда модульных конструкций: бытовки, гаражи, строительные модули в ${cityName}е`,
             address: {
               '@type': 'PostalAddress',
-              streetAddress: 'ул. Связная, 1Б',
-              addressLocality: 'Хабаровск',
-              addressRegion: 'Хабаровский край',
-              postalCode: '680000',
+              streetAddress: isIrkutsk ? 'ул. Промышленная, 3Б' : 'ул. Связная, 1Б',
+              addressLocality: isIrkutsk && 'settlement' in office ? office.settlement : cityName,
+              addressRegion: regionName,
+              postalCode: isIrkutsk ? '' : '680000',
               addressCountry: 'RU',
             },
             contactPoint: {
               '@type': 'ContactPoint',
-              telephone: '+7-914-542-21-88',
+              telephone: office.phoneRaw,
               contactType: 'customer service',
-              email: '252188dv@mail.ru',
+              email: office.email,
               areaServed: 'RU',
               availableLanguage: 'Russian',
             },
-            sameAs: ['https://t.me/+79145422188', 'https://t.me/+79145422188'],
+            sameAs: [office.telegram, `https://wa.me/${office.whatsapp}`],
+            ...(isIrkutsk && {
+              areaServed: {
+                '@type': 'AdministrativeArea',
+                name: `${cityName} и ${regionName}`,
+              },
+              openingHours: 'Mo-Sa 09:00-19:00',
+              priceRange: '$$',
+            }),
           }),
         }}
       />
