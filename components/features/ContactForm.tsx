@@ -21,9 +21,10 @@ type FormErrors = Partial<Record<keyof FormData, string>>
 
 interface ContactFormProps {
   city?: 'khabarovsk' | 'irkutsk'
+  metrikaGoalId?: string // ID цели в Яндекс.Метрике
 }
 
-const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
+const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -35,6 +36,7 @@ const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
 
   // Определяем город для заголовка формы
   const cityLabel = city === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
+  const formId = city === 'irkutsk' ? 'contact-form-irkutsk' : 'contact-form-khabarovsk'
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -89,6 +91,17 @@ const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
 
       if (result.success) {
         toast.success('Заявка успешно отправлена!')
+        
+        // Отправляем цель в Яндекс.Метрику для отслеживания конверсий
+        if (metrikaGoalId && typeof window !== 'undefined' && (window as any).ym) {
+          try {
+            ;(window as any).ym(99571633, 'reachGoal', metrikaGoalId)
+            console.log(`Yandex.Metrika: цель достигнута - ${metrikaGoalId}`)
+          } catch (e) {
+            console.warn('Ошибка отправки цели в Метрику:', e)
+          }
+        }
+        
         setFormData({
           name: '',
           phone: '',
@@ -97,6 +110,7 @@ const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
           message: '',
           privacyConsent: false,
         })
+        setErrors({})
       } else {
         toast.error(result.message || 'Произошла ошибка при отправке')
       }
