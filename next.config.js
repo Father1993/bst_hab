@@ -1,18 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // SSR включён (убрали output: 'export' для работы middleware и динамического контента)
+  // Статический экспорт для хостинга
+  output: 'export',
+  distDir: 'out',
+  
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'bst-hab.ru',
-      },
-      {
-        protocol: 'https',
-        hostname: 'irkutsk.bst-hab.ru',
-      },
-    ],
-    formats: ['image/webp'],
+    unoptimized: true, // Требуется для static export
   },
   
   // Оптимизация для продакшена
