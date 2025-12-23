@@ -64,6 +64,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/contacts', priority: 0.7 },
     { path: '/delivery', priority: 0.6 },
     { path: '/privacy', priority: 0.5 },
+    { path: '/privacy-policy', priority: 0.4 },
+    { path: '/sale', priority: 0.8 },
+    { path: '/irkutsk', priority: 0.9 }, // Иркутск - важная страница
+    { path: '/irkutsk/contacts', priority: 0.7 },
   ]
 
   for (const page of staticPages) {

@@ -19,7 +19,11 @@ type FormData = {
 
 type FormErrors = Partial<Record<keyof FormData, string>>
 
-const ContactForm = () => {
+interface ContactFormProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -28,6 +32,9 @@ const ContactForm = () => {
     message: '',
     privacyConsent: false,
   })
+
+  // Определяем город для заголовка формы
+  const cityLabel = city === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -77,6 +84,7 @@ const ContactForm = () => {
         formType: 'contact',
         privacyConsent: formData.privacyConsent,
         projectType: projectTypeName,
+        city: cityLabel, // Добавляем город в заявку
       })
 
       if (result.success) {
@@ -108,6 +116,14 @@ const ContactForm = () => {
         transition={{ duration: 0.5 }}
         className='bg-zinc-900/60 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-zinc-800/50 shadow-2xl'
       >
+        {city === 'irkutsk' && (
+          <div className='mb-6 text-center'>
+            <span className='inline-block bg-[#FFD700]/10 text-[#FFD700] px-4 py-2 rounded-full text-sm font-medium'>
+              Заявка из {cityLabel}
+            </span>
+          </div>
+        )}
+        
         <form onSubmit={handleSubmit} className='space-y-6' noValidate>
           <div className='grid md:grid-cols-2 gap-6'>
             <div>
