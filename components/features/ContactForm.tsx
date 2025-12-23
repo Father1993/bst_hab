@@ -36,7 +36,6 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
 
   // Определяем город для заголовка формы
   const cityLabel = city === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
-  const formId = city === 'irkutsk' ? 'contact-form-irkutsk' : 'contact-form-khabarovsk'
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -91,17 +90,21 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
 
       if (result.success) {
         toast.success('Заявка успешно отправлена!')
-        
+
         // Отправляем цель в Яндекс.Метрику для отслеживания конверсий
-        if (metrikaGoalId && typeof window !== 'undefined' && (window as any).ym) {
+        if (metrikaGoalId && typeof window !== 'undefined') {
           try {
-            ;(window as any).ym(99571633, 'reachGoal', metrikaGoalId)
-            console.log(`Yandex.Metrika: цель достигнута - ${metrikaGoalId}`)
+            const windowWithYm = window as Window & {
+              ym?: (counterId: number, action: string, goalId: string) => void
+            }
+            if (windowWithYm.ym) {
+              windowWithYm.ym(99571633, 'reachGoal', metrikaGoalId)
+            }
           } catch (e) {
             console.warn('Ошибка отправки цели в Метрику:', e)
           }
         }
-        
+
         setFormData({
           name: '',
           phone: '',
@@ -137,7 +140,7 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
             </span>
           </div>
         )}
-        
+
         <form onSubmit={handleSubmit} className='space-y-6' noValidate>
           <div className='grid md:grid-cols-2 gap-6'>
             <div>
