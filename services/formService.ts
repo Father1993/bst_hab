@@ -28,26 +28,32 @@ const EMAILJS_CONFIG = {
   userId: process.env.NEXT_PUBLIC_EMAILJS_USER_ID || 'default_user',
 }
 
-// Мапинг типов форм к конфигурациям
-const formConfigs: Record<string, FormConfig> = {
-  callback: {
-    subject: 'Заявка на обратный звонок с сайта BST HAB',
-    recipients: ['252188dv@mail.ru'],
-    template: 'callback',
-    templateId: process.env.NEXT_PUBLIC_EMAILJS_CALLBACK_TEMPLATE_ID || 'template_callback',
-  },
-  contact: {
-    subject: 'Новая заявка с сайта BST HAB',
-    recipients: ['252188dv@mail.ru'],
-    template: 'contact',
-    templateId: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || 'template_contact',
-  },
-  delivery: {
-    subject: 'Запрос на доставку BST HAB',
-    recipients: ['252188dv@mail.ru'],
-    template: 'delivery',
-    templateId: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || 'template_contact', // Используем тот же шаблон, что и для контактной формы
-  },
+// Функция для получения конфигурации с учетом города
+const getFormConfig = (formType: string, city?: string): FormConfig => {
+  const cityPrefix = city === 'Иркутск' ? '[Иркутск] ' : city === 'irkutsk' ? '[Иркутск] ' : ''
+  
+  const configs: Record<string, FormConfig> = {
+    callback: {
+      subject: `${cityPrefix}Заявка на обратный звонок с сайта BST HAB`,
+      recipients: ['252188dv@mail.ru'],
+      template: 'callback',
+      templateId: process.env.NEXT_PUBLIC_EMAILJS_CALLBACK_TEMPLATE_ID || 'template_callback',
+    },
+    contact: {
+      subject: `${cityPrefix}Новая заявка с сайта BST HAB`,
+      recipients: ['252188dv@mail.ru'],
+      template: 'contact',
+      templateId: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || 'template_contact',
+    },
+    delivery: {
+      subject: `${cityPrefix}Запрос на доставку BST HAB`,
+      recipients: ['252188dv@mail.ru'],
+      template: 'delivery',
+      templateId: process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID || 'template_contact',
+    },
+  }
+  
+  return configs[formType]
 }
 
 /**
@@ -68,8 +74,10 @@ export async function submitForm(
   data: BaseFormData
 ): Promise<{ success: boolean; message: string }> {
   try {
-    // Получаем конфигурацию для данного типа формы
-    const config = formConfigs[data.formType]
+    // Получаем конфигурацию для данного типа формы с учетом города
+    const cityName = data.city === 'irkutsk' ? 'Иркутск' : data.city || 'Хабаровск'
+    const config = getFormConfig(data.formType, cityName)
+    
     if (!config) {
       throw new Error(`Неизвестный тип формы: ${data.formType}`)
     }
@@ -86,7 +94,7 @@ export async function submitForm(
       preferred_time: data.time || 'Не указано',
       project_type: data.projectType || 'Не указано',
       form_type: data.formType,
-      city: data.city || 'Хабаровск', // город для различия заявок
+      city: cityName, // Город для различия заявок (Хабаровск или Иркутск)
     }
 
     // Отправка через EmailJS

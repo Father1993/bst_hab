@@ -3,11 +3,11 @@ const nextConfig = {
   // Статический экспорт для хостинга
   output: 'export',
   distDir: 'out',
-  
+
   images: {
     unoptimized: true,
   },
-  
+
   // Оптимизация для продакшена
   compress: true,
   poweredByHeader: false,

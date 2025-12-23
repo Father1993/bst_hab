@@ -21,9 +21,10 @@ type FormErrors = Partial<Record<keyof FormData, string>>
 
 interface ContactFormProps {
   city?: 'khabarovsk' | 'irkutsk'
+  metrikaGoalId?: string // ID цели в Яндекс.Метрике
 }
 
-const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
+const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -35,6 +36,7 @@ const ContactForm = ({ city = 'khabarovsk' }: ContactFormProps) => {
 
   // Определяем город для заголовка формы
   const cityLabel = city === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
+  const formId = city === 'irkutsk' ? 'contact-form-irkutsk' : 'contact-form-khabarovsk'
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)

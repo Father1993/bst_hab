@@ -3,7 +3,7 @@ import IrkutskRedirect from './redirect'
 
 export const metadata: Metadata = {
   title: 'BST HAB Иркутск — Производство и аренда модульных конструкций',
-  description: `Модульные конструкции в Иркутске: бытовки, гаражи, посты охраны. Собственное производство, быстрая доставка. Офис: ${IRKUTSK_OFFICE.addressFull}. Телефоны: ${IRKUTSK_OFFICE.phone}, ${IRKUTSK_OFFICE.phoneLocal}`,
+  description: 'Модульные конструкции в Иркутске: бытовки, гаражи, посты охраны. Собственное производство, быстрая доставка. Офис: ул. Промышленная, 3Б, рп. Маркова. Телефоны: +7 (4212) 25-21-88, +7 (3952) 98-27-27',
   keywords: [
     'бытовки Иркутск',
     'модульные конструкции Иркутск',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'BST HAB Иркутск — Модульные конструкции',
-    description: `Производство и аренда бытовок, гаражей, модульных зданий в Иркутске. ${IRKUTSK_OFFICE.phone}`,
+    description: 'Производство и аренда бытовок, гаражей, модульных зданий в Иркутске. +7 (4212) 25-21-88',
     url: 'https://irkutsk.bst-hab.ru',
     siteName: 'BST HAB Иркутск',
     locale: 'ru_RU',
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     canonical: 'https://irkutsk.bst-hab.ru',
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false, // Не индексируем страницу редиректа
+    follow: false,
   },
 }
 

@@ -122,7 +122,7 @@ export default function Home() {
               Заполните форму ниже, и мы свяжемся с вами в течение 30 минут для обсуждения деталей
             </p>
           </div>
-          <ContactForm />
+          <ContactForm city='khabarovsk' metrikaGoalId='form_submit_khabarovsk' />
         </div>
       </section>
     </div>
