@@ -5,7 +5,7 @@ const nextConfig = {
   distDir: 'out',
   
   images: {
-    unoptimized: true, // Требуется для static export
+    unoptimized: true,
   },
   
   // Оптимизация для продакшена
