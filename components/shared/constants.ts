@@ -3,6 +3,7 @@ export const COMPANY_INFO = {
   name: 'BST HAB',
   foundedYear: 2013,
   phone: '+7 (4212) 25-21-88',
+  phoneRaw: '+74212252188', // Для tel: ссылок
   whatsapp: '79145422188',
   telegram: 'https://t.me/+79145422188',
   email: '252188dv@mail.ru',

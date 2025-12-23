@@ -14,7 +14,7 @@ const Footer = () => {
   const { isMobile } = useBreakpoint()
   const pathname = usePathname()
   const logoSize = isMobile ? 230 : 170
-  
+
   // Определяем город по URL
   const isIrkutsk = pathname.startsWith('/irkutsk')
   const office = isIrkutsk ? IRKUTSK_OFFICE : COMPANY_INFO
@@ -297,7 +297,9 @@ const Footer = () => {
                     rel='noopener noreferrer'
                     className='text-gray-400 hover:text-[#FFD700] transition-colors block'
                   >
-                    {isIrkutsk ? office.addressFull : `г. ${cityName}, ${office.address.replace(`, ${cityName}`, '')}`}
+                    {isIrkutsk && 'addressFull' in office
+                      ? office.addressFull
+                      : `г. ${cityName}, ${office.address.replace(`, ${cityName}`, '')}`}
                   </a>
                   <span className='text-xs text-gray-500'>Производство и офис</span>
                 </div>
@@ -375,7 +377,7 @@ const Footer = () => {
             address: {
               '@type': 'PostalAddress',
               streetAddress: isIrkutsk ? 'ул. Промышленная, 3Б' : 'ул. Связная, 1Б',
-              addressLocality: isIrkutsk ? office.settlement : cityName,
+              addressLocality: isIrkutsk && 'settlement' in office ? office.settlement : cityName,
               addressRegion: regionName,
               postalCode: isIrkutsk ? '' : '680000',
               addressCountry: 'RU',
