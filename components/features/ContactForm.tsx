@@ -91,6 +91,17 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
 
       if (result.success) {
         toast.success('Заявка успешно отправлена!')
+        
+        // Отправляем цель в Яндекс.Метрику для отслеживания конверсий
+        if (metrikaGoalId && typeof window !== 'undefined' && (window as any).ym) {
+          try {
+            ;(window as any).ym(99571633, 'reachGoal', metrikaGoalId)
+            console.log(`Yandex.Metrika: цель достигнута - ${metrikaGoalId}`)
+          } catch (e) {
+            console.warn('Ошибка отправки цели в Метрику:', e)
+          }
+        }
+        
         setFormData({
           name: '',
           phone: '',
@@ -99,6 +110,7 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
           message: '',
           privacyConsent: false,
         })
+        setErrors({})
       } else {
         toast.error(result.message || 'Произошла ошибка при отправке')
       }
