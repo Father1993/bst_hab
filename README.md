@@ -1,223 +1,76 @@
-# BST HAB - Современный Сайт-Каталог 🏠
+# BST HAB — Next.js 15 (SSR) + 2 домена (поддомены)
 
-Современный, полностью оптимизированный для SEO сайт-каталог, построенный на Next.js 14 с использованием передовых веб-технологий.
+### Как это работает (коротко)
+- **Один SSR-проект** обслуживает два домена:
+  - **Хабаровск**: `bst-hab.ru`
+  - **Иркутск**: `irkutsk.bst-hab.ru`
+- Иркутск **живёт на поддомене**, а путь `bst-hab.ru/irkutsk` используется только как **301 редирект** (без дублей для SEO) — это делает `middleware.ts`.
+- `robots.txt` и `sitemap.xml` **зависят от `Host`** → в Nginx обязательно `proxy_set_header Host $host;`.
 
-## 🚀 Технологии
+### Нужные файлы в репозитории
+- **`Dockerfile`** — сборка Next.js в режиме `output: 'standalone'`
+- **`docker-compose.yml`** — запуск SSR в контейнере
+- **`nginx.conf`** — пример прокси-конфига (если Nginx на хосте)
+- **`middleware.ts`** — логика поддомена Иркутска + 301 редиректы
+- **`env.production.example`** — шаблон переменных окружения
 
-- **Frontend:**
+### `.env.production` (что добавить/заполнить)
+На сервере (в папке проекта) создай `.env.production` из `env.production.example` и заполни минимум:
 
-  - Next.js 14
-  - TypeScript
-  - Tailwind CSS
-  - React Server Components
-  - Server Actions
-  - App Router
+- **домены** (canonical/SEO/переключатель города):
+  - `NEXT_PUBLIC_SITE_URL=https://bst-hab.ru`
+  - `NEXT_PUBLIC_MAIN_DOMAIN=https://bst-hab.ru`
+  - `NEXT_PUBLIC_IRKUTSK_DOMAIN=https://irkutsk.bst-hab.ru`
+- **Яндекс.Метрика** (2 счётчика или один — но переменные должны быть):
+  - `NEXT_PUBLIC_YANDEX_METRIKA_ID_KHABAROVSK=...`
+  - `NEXT_PUBLIC_YANDEX_METRIKA_ID_IRKUTSK=...`
+  - (fallback) `NEXT_PUBLIC_YANDEX_METRIKA_ID=...`
+- **EmailJS**:
+  - `NEXT_PUBLIC_EMAILJS_SERVICE_ID=...`
+  - `NEXT_PUBLIC_EMAILJS_USER_ID=...`
+  - `NEXT_PUBLIC_EMAILJS_CALLBACK_TEMPLATE_ID=...`
+  - `NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=...`
+- **контакты** (если отличаются — укажи, иначе будут дефолты из кода):
+  - `NEXT_PUBLIC_CONTACT_*`
+  - `NEXT_PUBLIC_IRKUTSK_*`
 
-- **Оптимизация:**
+### Яндекс.Метрика: цели по формам (чтобы отличать заявки)
+После отправки формы дополнительно отправляется цель вида:
+- `form_submit_contact_khabarovsk`
+- `form_submit_callback_khabarovsk`
+- `form_submit_contact_irkutsk`
+- `form_submit_callback_irkutsk`
 
-  - SEO-оптимизация
-  - Метрики Core Web Vitals
-  - Оптимизация изображений
-  - Кэширование
+Также в EmailJS уходят поля `city`, `form_type`, `page_url`, `page_path`, `host` — удобно фильтровать заявки.
 
-- **Аналитика и Маркетинг:**
-  - Яндекс.Метрика
-  - Интеграция с Яндекс.Директ
-  - SSL-сертификация
+### Деплой на Ubuntu VPS (GitHub Actions → SSH → docker compose)
+**Предусловия на сервере:**
+- установлен Docker + Docker Compose plugin (`docker compose`)
+- репозиторий уже лежит в `/opt/bst`
+- один раз создан `/opt/bst/.env.production`
 
-## 📋 Функциональность
+**1) Первый запуск на сервере (один раз):**
 
-- Адаптивный дизайн
-- Оптимизированная загрузка страниц
-- Интерактивный каталог продукции
-- Формы обратной связи
-- Интеграция с системами аналитики
-- Блог с SEO-оптимизацией
+```bash
+cd /opt/bst
+cp env.production.example .env.production
+nano .env.production
+docker compose up -d --build
+```
 
-## 👨‍💻 Процесс Разработки
+**2) GitHub Actions**
+В репозитории уже есть workflow: `.github/workflows/deploy.yml`.
 
-1. **Основная разработка ведется в ветке `dev`**
+Добавь GitHub Secrets:
+- **`SSH_HOST`**: IP сервера
+- **`SSH_USER`**: `dev`
+- **`SSH_KEY`**: приватный ключ (которым заходишь по SSH)
+- **`SSH_PORT`**: `22`
+- **`DEPLOY_PATH`**: `/opt/bst`
 
-   ```bash
-   git checkout dev
-   git pull
-   # внесение изменений
-   git add .
-   git commit -m "описание изменений"
-   git push
-   ```
+После пуша в `main` GitHub сам выполнит на сервере:
+- `git reset --hard origin/main`
+- `docker compose up -d --build --remove-orphans`
 
-2. **Деплой через Pull Request**
-
-   - Создание Pull Request из `dev` в `main` на GitHub
-   - Code Review и тестирование
-   - После одобрения - merge в `main`
-   - Автоматический деплой на Timeweb Cloud
-
-3. **Синхронизация веток**
-   ```bash
-   git checkout dev
-   git pull origin main
-   git push
-   ```
-
-## 🛠 Установка и Запуск
-
-1. **Клонирование репозитория:**
-
-   ```bash
-   git clone https://github.com/your-username/bst-habitat.git
-   cd bst-habitat
-   ```
-
-2. **Установка зависимостей:**
-
-   ```bash
-   npm install
-   # или
-   yarn install
-   ```
-
-3. **Запуск в режиме разработки:**
-
-   ```bash
-   npm run dev
-   # или
-   yarn dev
-   ```
-
-4. **Сборка для продакшена:**
-   ```bash
-   npm run build
-   # или
-   yarn build
-   ```
-
-## 🌐 Деплой
-
-Проект настроен для автоматического деплоя на Timeweb Cloud через GitHub Actions.
-
-## 📈 Метрики и Аналитика
-
-- Интеграция с Яндекс.Метрикой
-- Отслеживание конверсий
-- Анализ поведения пользователей
-- Мониторинг производительности
-
----
-
-# English Version
-
-# BST Habitat - Modern Catalog Website 🏠
-
-A modern, fully SEO-optimized catalog website built with Next.js 14 using cutting-edge web technologies.
-
-## 🚀 Tech Stack
-
-- **Frontend:**
-
-  - Next.js 14
-  - TypeScript
-  - Tailwind CSS
-  - React Server Components
-  - Server Actions
-  - App Router
-
-- **Optimization:**
-
-  - SEO optimization
-  - Core Web Vitals metrics
-  - Image optimization
-  - Caching
-
-- **Analytics & Marketing:**
-  - Yandex.Metrica
-  - Yandex.Direct integration
-  - SSL certification
-
-## 📋 Features
-
-- Responsive design
-- Optimized page loading
-- Interactive product catalog
-- Contact forms
-- Analytics systems integration
-- SEO-optimized blog
-
-## 👨‍💻 Development Process
-
-1. **Main development in `dev` branch**
-
-   ```bash
-   git checkout dev
-   git pull
-   # make changes
-   git add .
-   git commit -m "change description"
-   git push
-   ```
-
-2. **Deployment via Pull Request**
-
-   - Create Pull Request from `dev` to `main` on GitHub
-   - Code Review and testing
-   - After approval - merge to `main`
-   - Automatic deployment to Timeweb Cloud
-
-3. **Branch synchronization**
-   ```bash
-   git checkout dev
-   git pull origin main
-   git push
-   ```
-
-## 🛠 Installation & Setup
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/your-username/bst-habitat.git
-   cd bst-habitat
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run development server:**
-
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. **Build for production:**
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
-
-## 🌐 Deployment
-
-The project is configured for automatic deployment to Timeweb Cloud via GitHub Actions.
-
-## 📈 Metrics & Analytics
-
-- Yandex.Metrica integration
-- Conversion tracking
-- User behavior analysis
-- Performance monitoring
-
-## 📝 License
-
-MIT
-
----
-
-© 2024 BST Habitat. All rights reserved.
+### Nginx (если используешь)
+Главное: **пробросить Host**. Пример конфига смотри в `nginx.conf`.

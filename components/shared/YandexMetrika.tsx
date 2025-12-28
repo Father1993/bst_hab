@@ -20,12 +20,12 @@ declare global {
   }
 }
 
-function YandexMetrikaInner() {
+function YandexMetrikaInner({ id }: { id: number | null }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    const metrikaId = getActiveMetrikaId()
+    const metrikaId = id ?? getActiveMetrikaId()
     if (!metrikaId) return
 
     // Инициализация Яндекс.Метрики
@@ -72,12 +72,12 @@ function YandexMetrikaInner() {
       accurateTrackBounce: true,
       webvisor: true,
     })
-  }, [])
+  }, [id])
 
   // Отслеживание изменения страниц в SPA
   useEffect(() => {
     if (typeof window !== 'undefined' && window.ym) {
-      const metrikaId = getActiveMetrikaId()
+      const metrikaId = id ?? getActiveMetrikaId()
       if (!metrikaId) return
       const search = searchParams?.toString()
       const path = window.location.pathname + (search ? `?${search}` : '')
@@ -85,11 +85,13 @@ function YandexMetrikaInner() {
     }
   }, [pathname, searchParams])
 
+  if (!id) return null
+
   return (
     <noscript>
       <div>
         <img
-          src='https://mc.yandex.ru/watch/100029556'
+          src={`https://mc.yandex.ru/watch/${id}`}
           style={{ position: 'absolute', left: '-9999px' }}
           alt=''
         />
@@ -98,10 +100,10 @@ function YandexMetrikaInner() {
   )
 }
 
-export default function YandexMetrika() {
+export default function YandexMetrika({ id }: { id: number | null }) {
   return (
     <Suspense fallback={null}>
-      <YandexMetrikaInner />
+      <YandexMetrikaInner id={id} />
     </Suspense>
   )
 }

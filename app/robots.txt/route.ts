@@ -15,7 +15,7 @@ export function GET(request: NextRequest) {
     'Disallow: /api/',
     'Disallow: /test/',
     'Disallow: /dev/',
-    `Host: ${baseUrl}`,
+    `Host: ${host}`,
     `Sitemap: ${baseUrl}/sitemap.xml`,
     '',
   ].join('\n')
