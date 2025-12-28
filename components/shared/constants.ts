@@ -2,36 +2,46 @@
 export const COMPANY_INFO = {
   name: 'BST HAB',
   foundedYear: 2013,
-  phone: '+7 (4212) 25-21-88',
-  phoneRaw: '+74212252188', // Для tel: ссылок
-  whatsapp: '79145422188',
-  telegram: 'https://t.me/+79145422188',
-  email: '252188dv@mail.ru',
-  address: 'ул.Связная, 1Б, Хабаровск',
+  phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || '+7 (4212) 25-21-88',
+  phoneRaw:
+    process.env.NEXT_PUBLIC_CONTACT_PHONE_RAW ||
+    (process.env.NEXT_PUBLIC_CONTACT_PHONE || '+7 (4212) 25-21-88').replace(/[^0-9+]/g, ''),
+  whatsapp: process.env.NEXT_PUBLIC_CONTACT_WHATSAPP || '79145422188',
+  telegram: process.env.NEXT_PUBLIC_CONTACT_TELEGRAM || 'https://t.me/+79145422188',
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || '252188dv@mail.ru',
+  address: process.env.NEXT_PUBLIC_CONTACT_ADDRESS || 'ул.Связная, 1Б, Хабаровск',
   city: 'Хабаровск',
   region: 'Хабаровский край',
   yandexMapsUrl:
+    process.env.NEXT_PUBLIC_CONTACT_YANDEX_MAPS ||
     'https://yandex.ru/maps/org/bst_khab/225751482910/?ll=135.062871%2C48.575113&z=17.54',
 }
 
 // Филиал в Иркутске
 export const IRKUTSK_OFFICE = {
   name: 'BST HAB Иркутск',
-  phone: '+7 (4212) 25-21-88', // Основной телефон (как в Хабаровске)
-  phoneLocal: '+7 (3952) 98-27-27', // Городской иркутский
-  phoneShort: '98-27-27', // Короткий городской
-  phoneRaw: '+74212252188', // Для tel: ссылок (основной)
-  phoneLocalRaw: '+73952982727', // Для tel: ссылок (городской)
-  whatsapp: '79145422188', // WhatsApp
-  telegram: 'https://t.me/+79145422188', // Telegram
-  email: '252188dv@mail.ru',
-  address: 'ул. Промышленная, 3Б, рп. Маркова',
-  addressFull: 'ул. Промышленная, 3Б, рп. Маркова, Иркутский район, Иркутская область',
+  phone: process.env.NEXT_PUBLIC_IRKUTSK_PHONE || '+7 (4212) 25-21-88',
+  phoneLocal: process.env.NEXT_PUBLIC_IRKUTSK_PHONE_LOCAL || '+7 (3952) 98-27-27',
+  phoneShort: process.env.NEXT_PUBLIC_IRKUTSK_PHONE_SHORT || '98-27-27',
+  phoneRaw:
+    process.env.NEXT_PUBLIC_IRKUTSK_PHONE_RAW ||
+    (process.env.NEXT_PUBLIC_IRKUTSK_PHONE || '+7 (4212) 25-21-88').replace(/[^0-9+]/g, ''),
+  phoneLocalRaw:
+    process.env.NEXT_PUBLIC_IRKUTSK_PHONE_LOCAL_RAW ||
+    (process.env.NEXT_PUBLIC_IRKUTSK_PHONE_LOCAL || '+7 (3952) 98-27-27').replace(/[^0-9+]/g, ''),
+  whatsapp: process.env.NEXT_PUBLIC_IRKUTSK_WHATSAPP || '79145422188',
+  telegram: process.env.NEXT_PUBLIC_IRKUTSK_TELEGRAM || 'https://t.me/+79145422188',
+  email: process.env.NEXT_PUBLIC_IRKUTSK_EMAIL || (process.env.NEXT_PUBLIC_CONTACT_EMAIL || '252188dv@mail.ru'),
+  address: process.env.NEXT_PUBLIC_IRKUTSK_ADDRESS || 'ул. Промышленная, 3Б, рп. Маркова',
+  addressFull:
+    process.env.NEXT_PUBLIC_IRKUTSK_ADDRESS_FULL ||
+    'ул. Промышленная, 3Б, рп. Маркова, Иркутский район, Иркутская область',
   city: 'Иркутск',
   region: 'Иркутская область',
   settlement: 'рп. Маркова',
   workHours: 'Пн-Сб: 9:00 - 19:00',
   yandexMapsUrl:
+    process.env.NEXT_PUBLIC_IRKUTSK_YANDEX_MAPS ||
     'https://yandex.ru/maps/11266/irkutsk-oblast/house/promyshlennaya_ulitsa_3/ZUkCaAZoTUwAXkJvYWJzdXhiYwE=/?ll=104.182546%2C52.244047&z=15',
 }
 
@@ -41,7 +51,7 @@ export const CITIES = {
     id: 'khabarovsk',
     name: 'Хабаровск',
     region: 'Хабаровский край',
-    url: 'https://bst-hab.ru',
+    url: process.env.NEXT_PUBLIC_MAIN_DOMAIN || 'https://bst-hab.ru',
     localUrl: '/',
     info: COMPANY_INFO,
   },
@@ -49,7 +59,7 @@ export const CITIES = {
     id: 'irkutsk',
     name: 'Иркутск',
     region: 'Иркутская область',
-    url: 'https://irkutsk.bst-hab.ru',
+    url: process.env.NEXT_PUBLIC_IRKUTSK_DOMAIN || 'https://irkutsk.bst-hab.ru',
     localUrl: '/irkutsk',
     info: IRKUTSK_OFFICE,
   },
@@ -120,6 +130,15 @@ export const PRODUCT_TYPES = [
     description: 'Бытовки, ИТР с душем и туалетом, блок-модули с тамбуром, столовые, бани, сушилки',
     image: '/img/modules/standart.webp',
     images: [
+      // Новые фото (декабрь 2025) — туалетные модули
+      '/img/dec-2025/tualet_3.jpg',
+      '/img/dec-2025/tualet_1.jpg',
+      '/img/dec-2025/tualet_2.jpg',
+      '/img/dec-2025/tualet_4.jpg',
+      '/img/dec-2025/tualet_5.jpg',
+      '/img/dec-2025/tualet_6.jpg',
+
+      // Остальные фото
       '/img/modules/standart.webp',
       '/img/modules/standart-2.webp',
       '/img/modules/standart-4.webp',
@@ -149,8 +168,20 @@ export const PRODUCT_TYPES = [
     name: 'Посты охраны и КПП',
     description:
       'Комфортные и функциональные решения для обеспечения безопасности объектов с панорамным остеклением',
-    image: '/img/security.webp',
+    image: '/img/dec-2025/sec-dec-2025_1.jpg',
     images: [
+      // Новые фото (декабрь 2025)
+      '/img/dec-2025/sec-dec-2025_1.jpg',
+      '/img/dec-2025/sec-dec-2025_2.jpg',
+      '/img/dec-2025/sec-dec-2025_3.jpg',
+      '/img/dec-2025/sec-dec-2025_4.jpg',
+      '/img/dec-2025/sec-dec-2025_5.jpg',
+      '/img/dec-2025/sec-dec-2025_7.jpg',
+      '/img/dec-2025/sec-dec-2025_8.jpg',
+      '/img/dec-2025/sec-dec-2025_9.jpg',
+      '/img/dec-2025/sec-dec-2025_10.jpg',
+
+      // Остальные фото
       '/img/modules/sec/sec-1.webp',
       '/img/modules/sec/sec-3.webp',
       '/img/modules/sec-2.webp',

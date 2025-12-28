@@ -58,9 +58,10 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: ReactNode
+  initialCity?: 'khabarovsk' | 'irkutsk'
 }
 
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = ({ children, initialCity = 'khabarovsk' }: RootLayoutProps) => {
   const [cookieAlertOpen, setCookieAlertOpen] = useState(false)
 
   useEffect(() => {
@@ -72,11 +73,11 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 
   return (
     <>
-      <Header />
+      <Header initialCity={initialCity} />
       <main className='pt-[70px] lg:pt-[70px] md:pt-[70px] sm:pt-[72px] pb-[80px] lg:pb-0 container mx-auto px-4'>
         {children}
       </main>
-      <Footer />
+      <Footer initialCity={initialCity} />
       <Toaster position='bottom-center' />
       {cookieAlertOpen && <CookieAlert setCookieAlertOpen={setCookieAlertOpen} />}
     </>

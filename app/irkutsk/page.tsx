@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 export default function IrkutskPage() {
   return (
     <main className='min-h-screen bg-black'>
-      <Hero />
+      <Hero city='irkutsk' />
       <Features />
       <Benefits />
       <Process />

@@ -1,12 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Статический экспорт для хостинга
-  output: 'export',
-  distDir: 'out',
-
-  images: {
-    unoptimized: true,
-  },
+  // SSR режим для одного приложения с поддоменами (в Docker/Node)
+  // Для Docker удобно: можно включить standalone и собирать один артефакт.
+  output: 'standalone',
 
   // Оптимизация для продакшена
   compress: true,

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     images: [
       {
-        url: '/img/security.webp',
+        url: '/img/dec-2025/sec-dec-2025_1.jpg',
         width: 1200,
         height: 630,
         alt: 'Аренда постов охраны и КПП BST HAB',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Аренда постов охраны и КПП в Хабаровске | BST HAB',
     description: 'Комфортные и функциональные модули для обеспечения безопасности объектов',
-    images: '/img/security.webp',
+    images: '/img/dec-2025/sec-dec-2025_1.jpg',
   },
   alternates: {
     canonical: 'https://bst-hab.ru/rent/security',

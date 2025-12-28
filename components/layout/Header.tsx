@@ -8,17 +8,26 @@ import MobileBottomNav from './MobileBottomNav'
 import CallbackForm from '@/components/features/CallbackForm'
 import { CITIES, COMPANY_INFO, IRKUTSK_OFFICE } from '@/components/shared/constants'
 
-const Header = () => {
+const Header = ({ initialCity = 'khabarovsk' }: { initialCity?: 'khabarovsk' | 'irkutsk' }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [showCallbackForm, setShowCallbackForm] = useState(false)
   const [showCityMenu, setShowCityMenu] = useState(false)
+  const [isLocalDev, setIsLocalDev] = useState(false)
   const pathname = usePathname()
 
   // Определяем текущий город
-  const isIrkutsk = pathname.startsWith('/irkutsk')
+  const isIrkutsk = initialCity === 'irkutsk' || pathname.startsWith('/irkutsk')
   const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
   const currentInfo = isIrkutsk ? IRKUTSK_OFFICE : COMPANY_INFO
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const host = window.location.hostname
+    setIsLocalDev(host === 'localhost' || host === '127.0.0.1')
+  }, [])
+
+  const cityHref = (city: (typeof CITIES)[keyof typeof CITIES]) => (isLocalDev ? city.localUrl : city.url)
 
   // Отслеживание скролла для изменения стиля header
   useEffect(() => {
@@ -83,7 +92,7 @@ const Header = () => {
                       {Object.values(CITIES).map(city => (
                         <Link
                           key={city.id}
-                          href={city.localUrl}
+                          href={cityHref(city)}
                           onClick={() => setShowCityMenu(false)}
                           className={`block px-4 py-2 hover:bg-zinc-700 transition-colors ${
                             currentCity.id === city.id ? 'text-[#FFD700]' : 'text-white'
@@ -97,7 +106,7 @@ const Header = () => {
                 </div>
 
                 <a
-                  href={`tel:${currentInfo.phone.replace(/[^0-9+]/g, '')}`}
+                  href={`tel:${currentInfo.phoneRaw}`}
                   className='flex items-center space-x-2 hover:text-[#FFD700] transition-colors'
                 >
                   <svg className='w-4 h-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>

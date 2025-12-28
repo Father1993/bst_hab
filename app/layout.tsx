@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
+import { headers } from 'next/headers'
 import RootLayout from '@/components/layout/RootLayout'
 import YandexMetrika from '@/components/shared/YandexMetrika'
 import EmailJSProvider from '@/components/providers/EmailJSProvider'
@@ -81,7 +82,11 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const h = await headers()
+  const host = (h.get('host') || '').replace(/^www\./, '').toLowerCase()
+  const initialCity = host.startsWith('irkutsk.') ? 'irkutsk' : 'khabarovsk'
+
   return (
     <html lang='ru' className={montserrat.className}>
       <head>
@@ -173,7 +178,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <EmailJSProvider>
-          <RootLayout>{children}</RootLayout>
+          <RootLayout initialCity={initialCity}>{children}</RootLayout>
         </EmailJSProvider>
       </body>
     </html>
