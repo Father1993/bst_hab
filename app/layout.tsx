@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import RootLayout from '@/components/layout/RootLayout'
 import YandexMetrika from '@/components/shared/YandexMetrika'
 import EmailJSProvider from '@/components/providers/EmailJSProvider'
+import { getMetrikaIdByHost } from '@/components/shared/metrika'
 import './globalStyles/normalize.css'
 import './globalStyles/globals.css'
 
@@ -86,6 +87,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
   const h = await headers()
   const host = (h.get('host') || '').replace(/^www\./, '').toLowerCase()
   const initialCity = host.startsWith('irkutsk.') ? 'irkutsk' : 'khabarovsk'
+  const metrikaId = getMetrikaIdByHost(host)
 
   return (
     <html lang='ru' className={montserrat.className}>
@@ -174,7 +176,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
         />
 
         {/* Яндекс.Метрика */}
-        <YandexMetrika />
+        <YandexMetrika id={metrikaId} />
       </head>
       <body>
         <EmailJSProvider>
