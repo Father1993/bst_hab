@@ -9,14 +9,14 @@ import CallbackForm from '@/components/features/CallbackForm'
 import useBreakpoint from '@/components/hooks/useBreakpoint'
 import { COMPANY_INFO, IRKUTSK_OFFICE, CITIES } from '@/components/shared/constants'
 
-const Footer = () => {
+const Footer = ({ initialCity = 'khabarovsk' }: { initialCity?: 'khabarovsk' | 'irkutsk' }) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
   const { isMobile } = useBreakpoint()
   const pathname = usePathname()
   const logoSize = isMobile ? 230 : 170
 
   // Определяем город по URL
-  const isIrkutsk = pathname.startsWith('/irkutsk')
+  const isIrkutsk = initialCity === 'irkutsk' || pathname.startsWith('/irkutsk')
   const office = isIrkutsk ? IRKUTSK_OFFICE : COMPANY_INFO
   const cityName = isIrkutsk ? CITIES.irkutsk.name : CITIES.khabarovsk.name
   const regionName = isIrkutsk ? CITIES.irkutsk.region : CITIES.khabarovsk.region

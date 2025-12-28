@@ -6,14 +6,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { COMPANY_FEATURES, COMPANY_STATS, CITIES } from '@/components/shared/constants'
 
-const Hero = () => {
+interface HeroProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const Hero = ({ city }: HeroProps = {}) => {
   const [isMounted, setIsMounted] = useState(false)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const pathname = usePathname()
 
-  // Определяем город по URL
-  const isIrkutsk = pathname.startsWith('/irkutsk')
+  // Определяем город: сначала из prop, потом по URL
+  const isIrkutsk = city === 'irkutsk' || (!city && pathname.startsWith('/irkutsk'))
   const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
   const cityName = currentCity.name
 

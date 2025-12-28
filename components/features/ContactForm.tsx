@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { PRODUCT_TYPES, COMPANY_INFO } from '../shared/constants'
+import { PRODUCT_TYPES, COMPANY_INFO, IRKUTSK_OFFICE } from '../shared/constants'
 import { ICONS } from '../shared/icon'
 import Link from 'next/link'
 import { submitForm } from '@/services/formService'
 import toast from 'react-hot-toast'
+import { getActiveMetrikaId } from '@/components/shared/metrika'
 
 type FormData = {
   name: string
@@ -36,6 +37,7 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
 
   // Определяем город для заголовка формы
   const cityLabel = city === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
+  const office = city === 'irkutsk' ? IRKUTSK_OFFICE : COMPANY_INFO
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -97,8 +99,9 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
             const windowWithYm = window as Window & {
               ym?: (counterId: number, action: string, goalId: string) => void
             }
-            if (windowWithYm.ym) {
-              windowWithYm.ym(99571633, 'reachGoal', metrikaGoalId)
+            const counterId = getActiveMetrikaId()
+            if (windowWithYm.ym && counterId) {
+              windowWithYm.ym(counterId, 'reachGoal', metrikaGoalId)
             }
           } catch (e) {
             console.warn('Ошибка отправки цели в Метрику:', e)
@@ -344,28 +347,30 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
 
         <div className='mt-8 pt-8 border-t border-zinc-800 grid grid-cols-1 md:grid-cols-3 gap-4'>
           <a
-            href={`tel:${COMPANY_INFO.phone}`}
+            href={`tel:${office.phoneRaw}`}
             className='flex items-center justify-center p-4 bg-zinc-800/30 rounded-xl hover:bg-zinc-800/50 transition-colors group'
-            aria-label={`Позвонить по телефону ${COMPANY_INFO.phone}`}
+            aria-label={`Позвонить по телефону ${office.phone}`}
           >
             <div className='text-[#FFD700] group-hover:scale-110 transition-transform'>
               {ICONS.phone}
             </div>
-            <span className='ml-3 text-white'>{COMPANY_INFO.phone}</span>
+            <span className='ml-3 text-white'>{office.phone}</span>
           </a>
           <a
-            href={`mailto:${COMPANY_INFO.email}`}
+            href={`mailto:${office.email}`}
             className='flex items-center justify-center p-4 bg-zinc-800/30 rounded-xl hover:bg-zinc-800/50 transition-colors group'
-            aria-label={`Написать на email ${COMPANY_INFO.email}`}
+            aria-label={`Написать на email ${office.email}`}
           >
             <div className='text-[#FFD700] group-hover:scale-110 transition-transform'>
               {ICONS.email}
             </div>
-            <span className='ml-3 text-white'>{COMPANY_INFO.email}</span>
+            <span className='ml-3 text-white'>{office.email}</span>
           </a>
           <div className='flex items-center justify-center p-4 bg-zinc-800/30 rounded-xl'>
             <div className='text-[#FFD700]'>{ICONS.location}</div>
-            <span className='ml-3 text-white'>{COMPANY_INFO.address}</span>
+            <span className='ml-3 text-white'>
+              {city === 'irkutsk' ? IRKUTSK_OFFICE.addressFull : COMPANY_INFO.address}
+            </span>
           </div>
         </div>
       </motion.div>

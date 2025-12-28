@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     images: [
       {
-        url: '/img/modules/standart.webp',
+        url: '/img/dec-2025/tualet_3.jpg',
         width: 1200,
         height: 630,
         alt: 'Стандартные модульные здания BST HAB',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Стандартные модульные здания под ключ | BST HAB',
     description:
       'Бытовки, ИТР с душем и туалетом, блок-модули с тамбуром и без, столовые, бани, сушилки',
-    images: '/img/modules/standart.webp',
+    images: '/img/dec-2025/tualet_3.jpg',
   },
   alternates: {
     canonical: 'https://bst-hab.ru/sale/standard-modules',
@@ -103,6 +103,15 @@ const productData = {
     lifespan: '',
   },
   images: [
+    // Новые фото (декабрь 2025) — туалетный модуль (первые в галерее)
+    '/img/dec-2025/tualet_3.jpg',
+    '/img/dec-2025/tualet_1.jpg',
+    '/img/dec-2025/tualet_2.jpg',
+    '/img/dec-2025/tualet_4.jpg',
+    '/img/dec-2025/tualet_5.jpg',
+    '/img/dec-2025/tualet_6.jpg',
+
+    // Остальные фото
     '/img/modules/new/bst-3.webp',
     '/img/modules/standart/1.webp',
     '/img/modules/standart/02.webp',

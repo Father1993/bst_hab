@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     images: [
       {
-        url: '/img/security.webp',
+        url: '/img/dec-2025/sec-dec-2025_1.jpg',
         width: 1200,
         height: 630,
         alt: 'Посты охраны и КПП BST HAB',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Посты охраны и КПП под ключ | BST HAB',
     description: 'Комфортные и функциональные решения для обеспечения безопасности объектов',
-    images: '/img/security.webp',
+    images: '/img/dec-2025/sec-dec-2025_1.jpg',
   },
   alternates: {
     canonical: 'https://bst-hab.ru/sale/posts',
@@ -92,6 +92,18 @@ const productData = {
     lifespan: '',
   },
   images: [
+    // Новые фото (декабрь 2025) — первые в галерее
+    '/img/dec-2025/sec-dec-2025_1.jpg',
+    '/img/dec-2025/sec-dec-2025_2.jpg',
+    '/img/dec-2025/sec-dec-2025_3.jpg',
+    '/img/dec-2025/sec-dec-2025_4.jpg',
+    '/img/dec-2025/sec-dec-2025_5.jpg',
+    '/img/dec-2025/sec-dec-2025_7.jpg',
+    '/img/dec-2025/sec-dec-2025_8.jpg',
+    '/img/dec-2025/sec-dec-2025_9.jpg',
+    '/img/dec-2025/sec-dec-2025_10.jpg',
+
+    // Остальные фото
     '/img/modules/new/bst-3.webp',
     '/img/modules/secur-1.webp',
     '/img/modules/secur-2.webp',

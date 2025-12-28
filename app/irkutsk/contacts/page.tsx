@@ -176,7 +176,7 @@ export default function IrkutskContactsPage() {
               Заполните форму, и мы свяжемся с вами в ближайшее время для обсуждения вашего проекта
             </p>
           </div>
-          <ContactForm city='irkutsk' />
+          <ContactForm city='irkutsk' metrikaGoalId='form_submit_irkutsk' />
         </section>
       </div>
 

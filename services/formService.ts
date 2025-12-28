@@ -82,6 +82,9 @@ export async function submitForm(
       throw new Error(`Неизвестный тип формы: ${data.formType}`)
     }
 
+    const userMessage = (data.message || '').trim()
+    const messageWithCity = `Город: ${cityName}${userMessage ? `\n\n${userMessage}` : ''}`
+
     // Подготовка данных для отправки
     const templateParams = {
       to_email: config.recipients.join(', '),
@@ -89,7 +92,7 @@ export async function submitForm(
       reply_to: data.email || '',
       email: data.email || '',
       subject: config.subject,
-      message: data.message || '',
+      message: messageWithCity,
       phone_number: data.phone,
       preferred_time: data.time || 'Не указано',
       project_type: data.projectType || 'Не указано',

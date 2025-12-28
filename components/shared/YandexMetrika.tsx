@@ -2,6 +2,7 @@
 
 import { useEffect, Suspense } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { getActiveMetrikaId } from '@/components/shared/metrika'
 
 interface YandexMetrika {
   (id: number, action: string, params?: unknown): void
@@ -24,6 +25,9 @@ function YandexMetrikaInner() {
   const searchParams = useSearchParams()
 
   useEffect(() => {
+    const metrikaId = getActiveMetrikaId()
+    if (!metrikaId) return
+
     // Инициализация Яндекс.Метрики
     ;(function (
       m: WindowWithYM,
@@ -62,7 +66,7 @@ function YandexMetrikaInner() {
     )
 
     // Инициализация счетчика
-    window.ym(100029556, 'init', {
+    window.ym(metrikaId, 'init', {
       clickmap: true,
       trackLinks: true,
       accurateTrackBounce: true,
@@ -73,9 +77,11 @@ function YandexMetrikaInner() {
   // Отслеживание изменения страниц в SPA
   useEffect(() => {
     if (typeof window !== 'undefined' && window.ym) {
+      const metrikaId = getActiveMetrikaId()
+      if (!metrikaId) return
       const search = searchParams?.toString()
       const path = window.location.pathname + (search ? `?${search}` : '')
-      window.ym(100029556, 'hit', path)
+      window.ym(metrikaId, 'hit', path)
     }
   }, [pathname, searchParams])
 
