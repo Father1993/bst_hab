@@ -53,6 +53,14 @@
 - **Порты 80/443** доступны снаружи (firewall/security group).
 - Установлен Docker + Docker Compose plugin (`docker compose`).
 
+**Если на сервере есть только `docker-compose` (через дефис) или видишь `Docker Compose requires buildx plugin`:**
+
+```bash
+sudo apt update
+sudo apt install -y docker-compose-plugin docker-buildx-plugin
+docker compose version
+```
+
 **1) Первый запуск на сервере (один раз):**
 
 ```bash
@@ -60,8 +68,8 @@ cd /opt/bst_hab   # или куда вы положили проект
 cp env.production.example .env.production
 nano .env.production
 
-# email для Let's Encrypt (можно без него, но лучше указать)
-echo "CADDY_EMAIL=you@example.com" > .env
+# email для Let's Encrypt (необязательно)
+# echo "CADDY_EMAIL=you@example.com" > .env
 
 docker compose up -d --build
 ```
