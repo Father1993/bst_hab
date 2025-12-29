@@ -1,0 +1,22 @@
+{
+	email {$CADDY_EMAIL}
+}
+
+(bst_proxy) {
+	encode zstd gzip
+	reverse_proxy app:3000
+}
+
+bst-hab.ru {
+	import bst_proxy
+}
+
+www.bst-hab.ru {
+	redir https://bst-hab.ru{uri} permanent
+}
+
+irkutsk.bst-hab.ru {
+	import bst_proxy
+}
+
+

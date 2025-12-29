@@ -9,7 +9,8 @@
 
 ### Нужные файлы в репозитории
 - **`Dockerfile`** — сборка Next.js в режиме `output: 'standalone'`
-- **`docker-compose.yml`** — запуск SSR в контейнере
+- **`docker-compose.yml`** — запуск SSR в контейнере + HTTPS (Caddy → Let's Encrypt)
+- **`Caddyfile`** — обратный прокси + автоматические сертификаты
 - **`nginx.conf`** — пример прокси-конфига (если Nginx на хосте)
 - **`middleware.ts`** — логика поддомена Иркутска + 301 редиректы
 - **`env.production.example`** — шаблон переменных окружения
@@ -43,34 +44,33 @@
 
 Также в EmailJS уходят поля `city`, `form_type`, `page_url`, `page_path`, `host` — удобно фильтровать заявки.
 
-### Деплой на Ubuntu VPS (GitHub Actions → SSH → docker compose)
-**Предусловия на сервере:**
-- установлен Docker + Docker Compose plugin (`docker compose`)
-- репозиторий уже лежит в `/opt/bst`
-- один раз создан `/opt/bst/.env.production`
+### Деплой на Ubuntu VPS (Docker Compose + HTTPS)
+**Предусловия (обязательно):**
+- **A-записи DNS** указывают на IP сервера:
+  - `bst-hab.ru`
+  - `www.bst-hab.ru`
+  - `irkutsk.bst-hab.ru`
+- **Порты 80/443** доступны снаружи (firewall/security group).
+- Установлен Docker + Docker Compose plugin (`docker compose`).
 
 **1) Первый запуск на сервере (один раз):**
 
 ```bash
-cd /opt/bst
+cd /opt/bst_hab   # или куда вы положили проект
 cp env.production.example .env.production
 nano .env.production
+
+# email для Let's Encrypt (можно без него, но лучше указать)
+echo "CADDY_EMAIL=you@example.com" > .env
+
 docker compose up -d --build
 ```
 
-**2) GitHub Actions**
-В репозитории уже есть workflow: `.github/workflows/deploy.yml`.
+**2) Обновление (после `git pull` или автодеплоя):**
 
-Добавь GitHub Secrets:
-- **`SSH_HOST`**: IP сервера
-- **`SSH_USER`**: `dev`
-- **`SSH_KEY`**: приватный ключ (которым заходишь по SSH)
-- **`SSH_PORT`**: `22`
-- **`DEPLOY_PATH`**: `/opt/bst`
-
-После пуша в `main` GitHub сам выполнит на сервере:
-- `git reset --hard origin/main`
-- `docker compose up -d --build --remove-orphans`
+```bash
+docker compose up -d --build --remove-orphans
+```
 
 ### Nginx (если используешь)
 Главное: **пробросить Host**. Пример конфига смотри в `nginx.conf`.
