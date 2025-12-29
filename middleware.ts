@@ -16,6 +16,15 @@ const isAssetPath = (pathname: string) => {
 
 const normalizeHost = (host: string) => host.replace(/^www\./, '').toLowerCase()
 
+const getHostFromEnv = (value?: string) => {
+  if (!value) return ''
+  try {
+    return new URL(value).host
+  } catch {
+    return value.replace(/^https?:\/\//, '').replace(/\/.*$/, '')
+  }
+}
+
 export function middleware(request: NextRequest) {
   const url = request.nextUrl
   const hostHeader = request.headers.get('host') || ''
@@ -32,7 +41,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const isIrkutskHost = host.startsWith('irkutsk.')
+  const mainHostFromEnv = normalizeHost(getHostFromEnv(process.env.NEXT_PUBLIC_MAIN_DOMAIN))
+  const irkutskHostFromEnv = normalizeHost(getHostFromEnv(process.env.NEXT_PUBLIC_IRKUTSK_DOMAIN))
+
+  const mainHost = mainHostFromEnv || host
+  const irkutskHost = irkutskHostFromEnv || `irkutsk.${mainHost}`
+
+  const isIrkutskHost = irkutskHostFromEnv ? host === irkutskHostFromEnv : host.startsWith('irkutsk.')
 
   // 1) На поддомене: убираем лишний /irkutsk из URL (чистые SEO URL)
   if (isIrkutskHost && pathname === '/irkutsk') {
@@ -48,7 +63,7 @@ export function middleware(request: NextRequest) {
   // 2) На основном домене: /irkutsk* -> 301 на поддомен (без дублей)
   if (!isIrkutskHost && (pathname === '/irkutsk' || pathname.startsWith('/irkutsk/'))) {
     const tail = pathname.replace(/^\/irkutsk/, '') || '/'
-    const redirectUrl = new URL(`https://irkutsk.${host}${tail}`)
+    const redirectUrl = new URL(`https://${irkutskHost}${tail}`)
     redirectUrl.search = url.search
     return NextResponse.redirect(redirectUrl, 301)
   }
