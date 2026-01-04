@@ -6,6 +6,9 @@ out
 .gitignore
 *.md
 .env.local
+.env
+.env.production
+.env.*
 .env.development
 .env.test
 .vscode
