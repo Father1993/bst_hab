@@ -24,9 +24,10 @@ jobs:
           script: |
             set -euo pipefail
             cd "${{ secrets.SSH_PATH }}"
-            git fetch --prune
-            git checkout main
-            git pull --ff-only
+            git fetch origin main --prune
+            git checkout -f main
+            git reset --hard origin/main
+            git clean -fd
             docker compose build --no-cache
             docker compose down
             docker compose up -d --remove-orphans
