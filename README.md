@@ -80,5 +80,78 @@ docker compose up -d --build
 docker compose up -d --build --remove-orphans
 ```
 
+### Автодеплой (GitHub Actions → SSH → docker compose)
+В репозитории есть workflow: `.github/workflows/deploy.yml`.
+Он запускается **при push в `main`** и на сервере делает:
+`git pull` → `docker compose build --no-cache` → `docker compose down` → `docker compose up -d`.
+
+#### 1) Подготовка сервера (Ubuntu)
+Установи зависимости (если ещё не стоят):
+
+```bash
+sudo apt update
+sudo apt install -y git docker.io docker-compose-plugin docker-buildx-plugin
+sudo systemctl enable --now docker
+```
+
+Создай пользователя для деплоя и доступ к Docker:
+
+```bash
+sudo adduser --disabled-password --gecos "" deploy
+sudo usermod -aG docker deploy
+sudo mkdir -p /opt/bst_hab
+sudo chown -R deploy:deploy /opt/bst_hab
+```
+
+Склонируй проект (под пользователем `deploy`):
+
+```bash
+sudo -u deploy -H bash -lc 'cd /opt/bst_hab && git clone <SSH_ИЛИ_HTTPS_URL_РЕПО> .'
+```
+
+Создай переменные окружения **в папке проекта** (важно: `.env.production` используется и при сборке, и при запуске):
+
+```bash
+sudo -u deploy -H bash -lc 'cd /opt/bst_hab && cp env.production.example .env.production'
+sudo -u deploy -H nano /opt/bst_hab/.env.production
+
+# (опционально) email для Let's Encrypt (подстановка в docker-compose.yml)
+sudo -u deploy -H bash -lc 'cd /opt/bst_hab && printf "CADDY_EMAIL=you@example.com\n" > .env'
+```
+
+Первый запуск:
+
+```bash
+sudo -u deploy -H bash -lc 'cd /opt/bst_hab && docker compose up -d --build'
+```
+
+#### 2) SSH-ключ для GitHub Actions (на сервере)
+Сгенерируй ключ (без пароля) и разреши вход этим ключом:
+
+```bash
+sudo -u deploy -H bash -lc 'mkdir -p ~/.ssh && chmod 700 ~/.ssh'
+sudo -u deploy -H ssh-keygen -t ed25519 -C "github-actions@bst-hab" -f /home/deploy/.ssh/github_actions -N ""
+sudo -u deploy -H bash -lc 'cat ~/.ssh/github_actions.pub >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys'
+```
+
+Теперь:
+- **приватный ключ** возьми командой:
+
+```bash
+sudo cat /home/deploy/.ssh/github_actions
+```
+
+- **хост сервера** — это ваш домен или IP (например `bst-hab.ru` или `1.2.3.4`)
+
+#### 3) GitHub Secrets (Settings → Secrets and variables → Actions)
+Добавь секреты:
+- `SSH_HOST` — IP/домен сервера
+- `SSH_USER` — `deploy`
+- `SSH_KEY` — приватный ключ из `/home/deploy/.ssh/github_actions`
+- `SSH_PATH` — `/opt/bst_hab`
+- `SSH_PORT` — `22` (если нестандартный порт)
+
+После мержа/пуша в `main` GitHub Actions сам выполнит деплой.
+
 ### Nginx (если используешь)
 Главное: **пробросить Host**. Пример конфига смотри в `nginx.conf`.

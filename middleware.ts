@@ -7,6 +7,8 @@ const isAssetPath = (pathname: string) => {
     pathname.startsWith('/img') ||
     pathname.startsWith('/videos') ||
     pathname.startsWith('/icons') ||
+    pathname === '/robots.txt' ||
+    pathname === '/sitemap.xml' ||
     pathname === '/favicon.ico' ||
     pathname === '/apple-touch-icon.png' ||
     pathname === '/manifest.json' ||
