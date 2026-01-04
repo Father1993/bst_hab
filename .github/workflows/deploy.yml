@@ -3,6 +3,37 @@ name: deploy
 on:
   push:
     branches: [main]
+
+concurrency:
+  group: production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            set -euo pipefail
+            cd "${{ secrets.SSH_PATH }}"
+            git fetch --prune
+            git checkout main
+            git pull --ff-only
+            docker compose build --no-cache
+            docker compose down
+            docker compose up -d --remove-orphans
+name: deploy
+
+on:
+  push:
+    branches: [main]
   workflow_dispatch: {}
 
 jobs:
