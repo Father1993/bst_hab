@@ -2,19 +2,26 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 interface DeliveryHeroProps {
   onCallbackRequest: () => void
 }
 
 const DeliveryHero = ({ onCallbackRequest }: DeliveryHeroProps) => {
+  const pathname = usePathname()
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const cityWhere = isIrkutsk ? 'Иркутске' : 'Хабаровске'
+  const cityGen = isIrkutsk ? 'Иркутска' : 'Хабаровска'
+  const region = isIrkutsk ? 'Иркутской области' : 'Хабаровского края'
+
   return (
     <section className='relative py-32 overflow-hidden'>
       {/* Фоновое изображение */}
       <div className='absolute inset-0 z-0'>
         <Image
           src='/img/delivery/delivery-hero.webp'
-          alt='Доставка модульных зданий и бытовок в Хабаровске'
+          alt={`Доставка модульных зданий и бытовок в ${cityWhere}`}
           fill
           className='object-cover'
           priority
@@ -41,7 +48,9 @@ const DeliveryHero = ({ onCallbackRequest }: DeliveryHeroProps) => {
               className='inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full border border-[#FFD700]/10 bg-[#FFD700]/5'
             >
               <span className='text-[#FFD700] text-sm font-medium'>
-                Работаем 24/7 по всему Дальнему Востоку
+                {isIrkutsk
+                  ? 'Работаем 24/7 по Иркутской области'
+                  : 'Работаем 24/7 по Дальнему Востоку'}
               </span>
             </motion.div>
 
@@ -52,8 +61,8 @@ const DeliveryHero = ({ onCallbackRequest }: DeliveryHeroProps) => {
               </span>
             </h1>
             <p className='text-xl text-zinc-300 max-w-3xl mx-auto mb-8'>
-              Профессиональная, оперативная доставка в любую точку Хабаровска и Хабаровского края.
-              От одной бытовки до крупных партий модулей для строительных площадок.
+              Профессиональная, оперативная доставка в любую точку {cityGen} и {region}. От одной
+              бытовки до крупных партий модулей для строительных площадок.
             </p>
 
             {/* Преимущества доставки */}

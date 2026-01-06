@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { submitForm } from '@/services/formService'
 import toast from 'react-hot-toast'
 import { getActiveMetrikaId } from '@/components/shared/metrika'
+import { usePathname } from 'next/navigation'
 
 type FormData = {
   name: string
@@ -25,7 +26,11 @@ interface ContactFormProps {
   metrikaGoalId?: string // ID цели в Яндекс.Метрике
 }
 
-const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) => {
+const ContactForm = ({ city, metrikaGoalId }: ContactFormProps) => {
+  const pathname = usePathname()
+  const activeCity: 'khabarovsk' | 'irkutsk' =
+    city || (pathname?.startsWith('/irkutsk') ? 'irkutsk' : 'khabarovsk')
+
   const [formData, setFormData] = useState<FormData>({
     name: '',
     phone: '',
@@ -36,8 +41,8 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
   })
 
   // Определяем город для заголовка формы
-  const cityLabel = city === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
-  const office = city === 'irkutsk' ? IRKUTSK_OFFICE : COMPANY_INFO
+  const cityLabel = activeCity === 'irkutsk' ? 'Иркутск' : 'Хабаровск'
+  const office = activeCity === 'irkutsk' ? IRKUTSK_OFFICE : COMPANY_INFO
 
   const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -136,7 +141,7 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
         transition={{ duration: 0.5 }}
         className='bg-zinc-900/60 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-zinc-800/50 shadow-2xl'
       >
-        {city === 'irkutsk' && (
+        {activeCity === 'irkutsk' && (
           <div className='mb-6 text-center'>
             <span className='inline-block bg-[#FFD700]/10 text-[#FFD700] px-4 py-2 rounded-full text-sm font-medium'>
               Заявка из {cityLabel}
@@ -369,7 +374,7 @@ const ContactForm = ({ city = 'khabarovsk', metrikaGoalId }: ContactFormProps) =
           <div className='flex items-center justify-center p-4 bg-zinc-800/30 rounded-xl'>
             <div className='text-[#FFD700]'>{ICONS.location}</div>
             <span className='ml-3 text-white'>
-              {city === 'irkutsk' ? IRKUTSK_OFFICE.addressFull : COMPANY_INFO.address}
+              {activeCity === 'irkutsk' ? IRKUTSK_OFFICE.addressFull : COMPANY_INFO.address}
             </span>
           </div>
         </div>

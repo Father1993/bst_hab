@@ -1,8 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 const DeliveryTypes = () => {
+  const pathname = usePathname()
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const city = isIrkutsk ? 'Иркутску' : 'Хабаровску'
+  const region = isIrkutsk ? 'Иркутской области' : 'Хабаровскому краю'
+
   return (
     <section className='relative py-16 md:py-24 bg-black overflow-hidden'>
       {/* Градиентный фон */}
@@ -33,14 +39,14 @@ const DeliveryTypes = () => {
                 <li className='flex items-start gap-2'>
                   <span className='text-[#FFD700] mt-1'>✓</span>
                   <span className='text-gray-300'>
-                    <span className='font-medium text-white'>По городу Хабаровску:</span> от 6 000 -
+                    <span className='font-medium text-white'>По городу {city}:</span> от 6 000 -
                     8 000 рублей (доставка автомобилем с краном-манипулятором)
                   </span>
                 </li>
                 <li className='flex items-start gap-2'>
                   <span className='text-[#FFD700] mt-1'>✓</span>
                   <span className='text-gray-300'>
-                    <span className='font-medium text-white'>По Хабаровскому краю:</span>{' '}
+                    <span className='font-medium text-white'>По {region}:</span>{' '}
                     рассчитывается индивидуально в зависимости от расстояния (используются
                     полуприцепы для перевозки 2-х модулей)
                   </span>

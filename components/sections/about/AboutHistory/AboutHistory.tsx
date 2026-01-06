@@ -3,8 +3,39 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { COMPANY_HISTORY } from '@/components/shared/constants'
+import { usePathname } from 'next/navigation'
 
 const AboutHistory = () => {
+  const pathname = usePathname()
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+
+  const fixText = (s: string) => {
+    if (!isIrkutsk) return s
+    return s
+      .replaceAll('в Хабаровске', 'в Иркутске')
+      .replaceAll('Хабаровске', 'Иркутске')
+      .replaceAll('Хабаровского края', 'Иркутской области')
+      .replaceAll('Хабаровскому краю', 'Иркутской области')
+      .replaceAll('Хабаровск', 'Иркутск')
+  }
+
+  const history = [
+    ...COMPANY_HISTORY.map(m => ({
+      ...m,
+      description: fixText(m.description),
+    })),
+    ...(isIrkutsk
+      ? [
+          {
+            year: '2025',
+            title: 'Открытие филиала в Иркутске',
+            description:
+              'В 2025 году мы открыли филиал в Иркутске: расширяемся благодаря стабильному качеству бытовок и модульных конструкций. Наши решения зарекомендовали себя в суровых дальневосточных условиях — теперь те же стандарты производства, сервиса и логистики доступны и в Иркутской области.',
+          },
+        ]
+      : []),
+  ]
+
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -40,7 +71,7 @@ const AboutHistory = () => {
 
           {/* Вехи */}
           <div className='space-y-24'>
-            {COMPANY_HISTORY.map((milestone, index) => (
+            {history.map((milestone, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

@@ -4,7 +4,7 @@ export const DELIVERY_TYPES: DeliveryType[] = [
   {
     icon: 'truck',
     title: 'Автомобиль с краном',
-    description: 'Для доставки по городу Хабаровску (от 6 000 ₽)',
+    description: 'Для доставки по городу (от 6 000 ₽)',
   },
   {
     icon: 'truck-loading',
@@ -14,7 +14,7 @@ export const DELIVERY_TYPES: DeliveryType[] = [
   {
     icon: 'train',
     title: 'Железнодорожный транспорт',
-    description: 'Для доставки в отдаленные районы Дальнего Востока',
+    description: 'Для доставки в отдаленные районы',
   },
   {
     icon: 'ship',
@@ -55,7 +55,7 @@ export const DELIVERY_ADVANTAGES: DeliveryAdvantage[] = [
     icon: 'route',
     title: 'Любая точка ДВ',
     description:
-      'Доставляем модули в любую точку Хабаровска, Хабаровского края и всего Дальнего Востока',
+      'Доставляем модули в любую точку региона и по России (условия уточняйте у менеджера)',
   },
 ]
 
