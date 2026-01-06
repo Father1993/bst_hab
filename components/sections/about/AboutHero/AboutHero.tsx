@@ -4,8 +4,13 @@ import { motion } from 'framer-motion'
 import { COMPANY_STATS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const AboutHero = () => {
+  const pathname = usePathname()
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
+
   const stats = [
     {
       number: COMPANY_STATS.experience,
@@ -63,7 +68,7 @@ const AboutHero = () => {
             className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'
           >
             Производство и <span className='text-[#FFD700]'>аренда модульных конструкций</span> в
-            Хабаровске
+            {cityName}
           </motion.h1>
 
           <motion.p

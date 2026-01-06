@@ -83,7 +83,7 @@ function YandexMetrikaInner({ id }: { id: number | null }) {
       const path = window.location.pathname + (search ? `?${search}` : '')
       window.ym(metrikaId, 'hit', path)
     }
-  }, [pathname, searchParams])
+  }, [pathname, searchParams, id])
 
   if (!id) return null
 
