@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
+import { usePathname } from 'next/navigation'
 
 interface ProductPageProps {
   product: any // В реальном проекте здесь должен быть правильный тип
@@ -149,6 +150,26 @@ const ProductImageSlider = ({ images, productName }: { images: string[]; product
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
+  const pathname = usePathname()
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+
+  const localize = (value: unknown) => {
+    if (!isIrkutsk || typeof value !== 'string') return value
+    return value
+      .replaceAll('в Хабаровске', 'в Иркутске')
+      .replaceAll('Хабаровского края', 'Иркутской области')
+      .replaceAll('Хабаровскому краю', 'Иркутской области')
+      .replaceAll('Хабаровск', 'Иркутск')
+  }
+
+  const p = isIrkutsk
+    ? {
+        ...product,
+        name: localize(product.name),
+        description: localize(product.description),
+        longDescription: localize(product.longDescription),
+      }
+    : product
 
   // Обработчик открытия формы обратного звонка
   const handleOpenCallbackForm = () => {
@@ -173,7 +194,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
             Продажа
           </Link>
           <span>/</span>
-          <span className='text-white'>{product.name}</span>
+          <span className='text-white'>{p.name}</span>
         </div>
       </div>
 
@@ -182,12 +203,12 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
         <div className='container mx-auto px-4'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
             {/* Галерея */}
-            <ProductImageSlider images={product.images} productName={product.name} />
+            <ProductImageSlider images={p.images} productName={p.name} />
 
             {/* Информация */}
             <div>
-              <h1 className='text-3xl md:text-4xl font-bold text-white mb-6'>{product.name}</h1>
-              <p className='text-lg text-zinc-300 mb-8'>{product.description}</p>
+              <h1 className='text-3xl md:text-4xl font-bold text-white mb-6'>{p.name}</h1>
+              <p className='text-lg text-zinc-300 mb-8'>{p.description}</p>
 
               {/* Характеристики */}
               <div className='bg-black/50 rounded-xl p-6 mb-8'>
@@ -301,13 +322,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
       </section>
 
       {/* Подробное описание */}
-      {product.longDescription && (
+      {p.longDescription && (
         <section className='py-16 bg-black'>
           <div className='container mx-auto px-4'>
             <h2 className='text-3xl font-bold text-white text-center mb-12'>Описание</h2>
             <div className='max-w-4xl mx-auto'>
               <div className='prose prose-lg prose-invert'>
-                {product.longDescription.split('\n\n').map((paragraph: string, index: number) => (
+                {p.longDescription.split('\n\n').map((paragraph: string, index: number) => (
                   <p key={index} className='text-zinc-300 mb-4'>
                     {paragraph}
                   </p>

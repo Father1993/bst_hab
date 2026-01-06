@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import rentData from '@/data/rent_data.json'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
@@ -11,6 +12,10 @@ import VideoReviews from '@/components/sections/sale/VideoReviews'
 
 const RentPage = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
+  const pathname = usePathname()
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const city = isIrkutsk ? 'Иркутске' : 'Хабаровске'
+  const region = isIrkutsk ? 'Иркутской области' : 'Дальнему Востоку'
 
   // Обработчик открытия формы обратного звонка
   const handleOpenCallbackForm = () => {
@@ -49,9 +54,13 @@ const RentPage = () => {
               <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-500'>
                 от производителя
               </span>
+              <span className='block text-2xl md:text-3xl font-semibold text-zinc-300 mt-3'>
+                в {city}
+              </span>
             </h1>
             <p className='text-xl md:text-2xl text-zinc-300 max-w-3xl mx-auto mb-12'>
-              Быстрая доставка и монтаж. Выгодные условия аренды. Полное обслуживание на весь срок.
+              Быстрая доставка и монтаж по {region}. Выгодные условия аренды. Полное обслуживание на
+              весь срок.
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}

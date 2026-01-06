@@ -150,7 +150,7 @@ const Hero = ({ city }: HeroProps = {}) => {
             {/* Кнопки действия */}
             <div className='flex flex-wrap gap-4'>
               <Link
-                href='/catalog'
+                href='/sale'
                 className='group relative px-8 py-4 bg-[#FFD700] text-black rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.3)] hover:scale-105'
               >
                 <div className='absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500' />
