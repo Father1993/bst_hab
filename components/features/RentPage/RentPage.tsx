@@ -4,17 +4,19 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import rentData from '@/data/rent_data.json'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
 import VideoReviews from '@/components/sections/sale/VideoReviews'
 
-const RentPage = () => {
+interface RentPageProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const RentPage = ({ city = 'khabarovsk' }: RentPageProps) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
-  const city = isIrkutsk ? 'Иркутске' : 'Хабаровске'
+  const isIrkutsk = city === 'irkutsk'
+  const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
   const region = isIrkutsk ? 'Иркутской области' : 'Дальнему Востоку'
 
   // Обработчик открытия формы обратного звонка
@@ -55,7 +57,7 @@ const RentPage = () => {
                 от производителя
               </span>
               <span className='block text-2xl md:text-3xl font-semibold text-zinc-300 mt-3'>
-                в {city}
+                в {cityName}
               </span>
             </h1>
             <p className='text-xl md:text-2xl text-zinc-300 max-w-3xl mx-auto mb-12'>
@@ -480,7 +482,7 @@ const RentPage = () => {
               требований в течение 30 минут
             </p>
           </div>
-          <ContactForm />
+          <ContactForm city={city} />
         </div>
       </section>
 

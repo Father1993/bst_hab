@@ -5,7 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 
-const AboutShowcase = () => {
+interface AboutShowcaseProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const AboutShowcase = ({ city = 'khabarovsk' }: AboutShowcaseProps) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 

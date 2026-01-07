@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-const DeliveryAdvantages = () => {
+interface DeliveryAdvantagesProps {
+  isIrkutsk?: boolean
+}
+
+const DeliveryAdvantages = ({ isIrkutsk = false }: DeliveryAdvantagesProps) => {
   return (
     <section className='py-16 md:py-24 bg-zinc-900 relative overflow-hidden'>
       {/* Фоновые элементы */}

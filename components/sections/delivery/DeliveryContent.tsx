@@ -8,29 +8,30 @@ import PaymentOptions from './sections/PaymentOptions'
 import CallbackForm from '@/components/features/CallbackForm'
 import ContactForm from '@/components/features/ContactForm'
 
-const DeliveryContent = () => {
+interface DeliveryContentProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const DeliveryContent = ({ city = 'khabarovsk' }: DeliveryContentProps) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
 
-  // Обработчик открытия формы обратного звонка
   const handleOpenCallbackForm = () => {
     setShowCallbackForm(true)
   }
 
-  // Обработчик закрытия формы обратного звонка
   const handleCloseCallbackForm = () => {
     setShowCallbackForm(false)
   }
 
-  // Передаем функцию в дочерние компоненты
+  const isIrkutsk = city === 'irkutsk'
+
   return (
     <div className='flex flex-col'>
-      <DeliveryHero onCallbackRequest={handleOpenCallbackForm} />
-      <DeliveryTypes />
-      <DeliveryAdvantages />
+      <DeliveryHero onCallbackRequest={handleOpenCallbackForm} isIrkutsk={isIrkutsk} />
+      <DeliveryTypes isIrkutsk={isIrkutsk} />
+      <DeliveryAdvantages isIrkutsk={isIrkutsk} />
       <PaymentOptions />
-      <ContactForm />
-
-      {/* Форма обратного звонка */}
+      <ContactForm city={city} />
       <CallbackForm isOpen={showCallbackForm} onClose={handleCloseCallbackForm} />
     </div>
   )

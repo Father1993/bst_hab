@@ -1,14 +1,27 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { CITIES } from '@/components/shared/constants'
 
 interface MobileBottomNavProps {
-  onCallbackRequest: () => void // Функция для открытия формы обратного звонка
+  onCallbackRequest: () => void
 }
 
 const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
   const pathname = usePathname()
+  const [showCityMenu, setShowCityMenu] = useState(false)
+  const [isLocalDev, setIsLocalDev] = useState(false)
 
-  // Основные иконки навигации
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const host = window.location.hostname
+    setIsLocalDev(host === 'localhost' || host === '127.0.0.1')
+  }, [])
+
+  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
+  const cityHref = (city: (typeof CITIES)[keyof typeof CITIES]) => (isLocalDev ? city.localUrl : city.url)
+
   const navItems = [
     {
       href: '/',
@@ -25,22 +38,28 @@ const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
       ),
     },
     {
-      href: '/rent',
-      label: 'Аренда',
+      label: currentCity.name,
+      action: () => setShowCityMenu(!showCityMenu),
       icon: (
         <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
-            d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
+            d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+          />
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.5}
+            d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
           />
         </svg>
       ),
     },
     {
       href: '/sale',
-      label: 'Продажа',
+      label: 'Каталог',
       icon: (
         <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path
@@ -54,7 +73,7 @@ const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
     },
     {
       label: 'Позвонить',
-      action: onCallbackRequest, // Используем переданную функцию
+      action: onCallbackRequest,
       icon: (
         <svg className='w-6 h-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
           <path
@@ -70,8 +89,46 @@ const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
   ]
 
   return (
-    <div className='block lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-t border-zinc-800 shadow-[0_-4px_10px_rgba(0,0,0,0.1)]'>
-      <nav className='flex justify-around items-center h-16 px-2'>
+    <>
+      {/* Меню выбора города */}
+      {showCityMenu && (
+        <div className='block lg:hidden fixed bottom-16 left-0 right-0 z-50 bg-zinc-900/98 backdrop-blur-lg border-t border-zinc-800 shadow-[0_-4px_10px_rgba(0,0,0,0.3)]'>
+          <div className='p-4'>
+            <h3 className='text-white font-semibold mb-3 text-center'>Выберите город</h3>
+            <div className='space-y-2'>
+              {Object.values(CITIES).map(city => (
+                <Link
+                  key={city.id}
+                  href={cityHref(city)}
+                  onClick={() => setShowCityMenu(false)}
+                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                    currentCity.id === city.id
+                      ? 'bg-[#FFD700] text-black font-semibold'
+                      : 'bg-zinc-800 text-white hover:bg-zinc-700'
+                  }`}
+                >
+                  <div className='flex items-center justify-between'>
+                    <span>{city.name}</span>
+                    {currentCity.id === city.id && (
+                      <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>
+                        <path
+                          fillRule='evenodd'
+                          d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
+                          clipRule='evenodd'
+                        />
+                      </svg>
+                    )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Основная навигация */}
+      <div className='block lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-t border-zinc-800 shadow-[0_-4px_10px_rgba(0,0,0,0.1)]'>
+        <nav className='flex justify-around items-center h-16 px-2'>
         {navItems.map((item, index) => {
           // Для элементов с ссылкой
           if (item.href) {
@@ -123,8 +180,9 @@ const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
             </button>
           )
         })}
-      </nav>
-    </div>
+        </nav>
+      </div>
+    </>
   )
 }
 
