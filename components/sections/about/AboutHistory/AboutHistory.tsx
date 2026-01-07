@@ -2,13 +2,11 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import { COMPANY_HISTORY } from '@/components/shared/constants'
 
-interface AboutHistoryProps {
-  city?: 'khabarovsk' | 'irkutsk'
-}
-
-const AboutHistory = ({ city = 'khabarovsk' }: AboutHistoryProps) => {
+const AboutHistory = () => {
+  const city = useCityDetection()
   const isIrkutsk = city === 'irkutsk'
 
   const fixText = (s: string) => {

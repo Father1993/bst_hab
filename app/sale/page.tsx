@@ -47,6 +47,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function ModulesPage({ city = 'khabarovsk' }: { city?: 'khabarovsk' | 'irkutsk' }) {
-  return <SaleBuildings city={city} />
+export default function ModulesPage() {
+  return <SaleBuildings />
 }

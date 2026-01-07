@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import { CITIES } from '@/components/shared/constants'
 
 interface MobileBottomNavProps {
@@ -18,7 +19,8 @@ const MobileBottomNav = ({ onCallbackRequest }: MobileBottomNavProps) => {
     setIsLocalDev(host === 'localhost' || host === '127.0.0.1')
   }, [])
 
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const detectedCity = useCityDetection()
+  const isIrkutsk = detectedCity === 'irkutsk'
   const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
   const cityHref = (city: (typeof CITIES)[keyof typeof CITIES]) => (isLocalDev ? city.localUrl : city.url)
 

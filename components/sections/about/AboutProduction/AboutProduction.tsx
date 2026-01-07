@@ -13,11 +13,7 @@ interface FeatureItem {
   description: string
 }
 
-interface AboutProductionProps {
-  city?: 'khabarovsk' | 'irkutsk'
-}
-
-const AboutProduction = ({ city: _city = 'khabarovsk' }: AboutProductionProps) => {
+const AboutProduction = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
