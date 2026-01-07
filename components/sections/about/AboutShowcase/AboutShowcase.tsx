@@ -9,7 +9,7 @@ interface AboutShowcaseProps {
   city?: 'khabarovsk' | 'irkutsk'
 }
 
-const AboutShowcase = ({ city = 'khabarovsk' }: AboutShowcaseProps) => {
+const AboutShowcase = ({ city: _city = 'khabarovsk' }: AboutShowcaseProps) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
