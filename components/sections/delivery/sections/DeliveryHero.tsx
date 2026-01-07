@@ -2,15 +2,13 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 
 interface DeliveryHeroProps {
   onCallbackRequest: () => void
+  isIrkutsk?: boolean
 }
 
-const DeliveryHero = ({ onCallbackRequest }: DeliveryHeroProps) => {
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
+const DeliveryHero = ({ onCallbackRequest, isIrkutsk = false }: DeliveryHeroProps) => {
   const cityWhere = isIrkutsk ? 'Иркутске' : 'Хабаровске'
   const cityGen = isIrkutsk ? 'Иркутска' : 'Хабаровска'
   const region = isIrkutsk ? 'Иркутской области' : 'Хабаровского края'

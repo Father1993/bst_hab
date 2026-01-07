@@ -116,10 +116,10 @@ export default async function IrkutskCatchAllPage({ params }: Props) {
   const { path: parts } = await params
   const p = parts.join('/')
 
-  if (p === 'about') return <AboutPage />
-  if (p === 'delivery') return <DeliveryPage />
-  if (p === 'rent') return <RentPage />
-  if (p === 'sale') return <SalePage />
+  if (p === 'about') return <AboutPage city='irkutsk' />
+  if (p === 'delivery') return <DeliveryPage city='irkutsk' />
+  if (p === 'rent') return <RentPage city='irkutsk' />
+  if (p === 'sale') return <SalePage city='irkutsk' />
   if (p === 'privacy') return <PrivacyPage />
   if (p === 'privacy-policy') return <PrivacyPolicyPage />
 

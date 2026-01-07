@@ -3,11 +3,13 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { COMPANY_HISTORY } from '@/components/shared/constants'
-import { usePathname } from 'next/navigation'
 
-const AboutHistory = () => {
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
+interface AboutHistoryProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const AboutHistory = ({ city = 'khabarovsk' }: AboutHistoryProps) => {
+  const isIrkutsk = city === 'irkutsk'
 
   const fixText = (s: string) => {
     if (!isIrkutsk) return s
@@ -60,8 +62,7 @@ const AboutHistory = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className='text-gray-400 max-w-2xl mx-auto'
           >
-            Путь от небольшого производства до лидера рынка модульного строительства на Дальнем
-            Востоке
+            Путь от небольшого производства до лидера рынка модульного строительства {isIrkutsk ? 'в Иркутской области' : 'на Дальнем Востоке'}
           </motion.p>
         </div>
 

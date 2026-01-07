@@ -4,12 +4,15 @@ import { motion } from 'framer-motion'
 import { COMPANY_STATS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
-const AboutHero = () => {
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
+interface AboutHeroProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const AboutHero = ({ city = 'khabarovsk' }: AboutHeroProps) => {
+  const isIrkutsk = city === 'irkutsk'
   const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
+  const regionName = isIrkutsk ? 'Иркутской области' : 'Дальнего Востока'
 
   const stats = [
     {
@@ -109,7 +112,7 @@ const AboutHero = () => {
                 <span className='text-[#FFD700] mt-1'>✓</span>
                 <span>
                   <span className='text-[#FFD700] font-medium'>Всегда в наличии</span> — готовые
-                  модули для продажи и аренды, быстрая доставка в любую точку Дальнего Востока
+                  модули для продажи и аренды, быстрая доставка в любую точку {regionName}
                 </span>
               </li>
               <li className='flex items-start gap-2'>

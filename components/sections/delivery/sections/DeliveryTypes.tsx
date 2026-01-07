@@ -1,11 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
 
-const DeliveryTypes = () => {
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
+interface DeliveryTypesProps {
+  isIrkutsk?: boolean
+}
+
+const DeliveryTypes = ({ isIrkutsk = false }: DeliveryTypesProps) => {
   const city = isIrkutsk ? 'Иркутску' : 'Хабаровску'
   const region = isIrkutsk ? 'Иркутской области' : 'Хабаровскому краю'
 

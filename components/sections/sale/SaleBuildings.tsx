@@ -7,13 +7,15 @@ import CallbackForm from '@/components/features/CallbackForm'
 import FAQ from '../home/FAQ/FAQ'
 import Features from '../home/Features/Features'
 import VideoReviews from './VideoReviews'
-import { usePathname } from 'next/navigation'
 
-const SaleBuildings = () => {
+interface SaleBuildingsProps {
+  city?: 'khabarovsk' | 'irkutsk'
+}
+
+const SaleBuildings = ({ city = 'khabarovsk' }: SaleBuildingsProps) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
-  const city = isIrkutsk ? 'Иркутске' : 'Хабаровске'
+  const isIrkutsk = city === 'irkutsk'
+  const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
   const region = isIrkutsk ? 'Иркутской области' : 'Дальнему Востоку'
 
   // Обработчик открытия формы обратного звонка
@@ -44,7 +46,7 @@ const SaleBuildings = () => {
                 под ключ
               </span>
               <span className='block text-2xl md:text-3xl font-semibold text-zinc-300 mt-3'>
-                в {city}
+                в {cityName}
               </span>
             </h1>
             <p className='text-xl md:text-2xl text-zinc-300 max-w-3xl mx-auto mb-12'>
@@ -81,7 +83,7 @@ const SaleBuildings = () => {
               вашего проекта
             </p>
           </div>
-          <ContactForm />
+          <ContactForm city={city} />
         </div>
       </section>
 

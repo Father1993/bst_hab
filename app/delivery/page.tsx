@@ -33,6 +33,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function DeliveryPage() {
-  return <DeliveryContent />
+export default function DeliveryPage({ city = 'khabarovsk' }: { city?: 'khabarovsk' | 'irkutsk' }) {
+  return <DeliveryContent city={city} />
 }

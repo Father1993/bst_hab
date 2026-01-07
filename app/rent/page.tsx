@@ -57,6 +57,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Rent() {
-  return <RentPage />
+export default function Rent({ city = 'khabarovsk' }: { city?: 'khabarovsk' | 'irkutsk' }) {
+  return <RentPage city={city} />
 }
