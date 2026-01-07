@@ -4,17 +4,15 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import rentData from '@/data/rent_data.json'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
 import VideoReviews from '@/components/sections/sale/VideoReviews'
 
-interface RentPageProps {
-  city?: 'khabarovsk' | 'irkutsk'
-}
-
-const RentPage = ({ city = 'khabarovsk' }: RentPageProps) => {
+const RentPage = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
+  const city = useCityDetection()
   const isIrkutsk = city === 'irkutsk'
   const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
   const region = isIrkutsk ? 'Иркутской области' : 'Дальнему Востоку'

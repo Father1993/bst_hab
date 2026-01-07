@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { submitForm } from '@/services/formService'
 import toast from 'react-hot-toast'
 import { getActiveMetrikaId } from '@/components/shared/metrika'
-import { usePathname } from 'next/navigation'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 
 type FormData = {
   name: string
@@ -27,9 +27,8 @@ interface ContactFormProps {
 }
 
 const ContactForm = ({ city, metrikaGoalId }: ContactFormProps) => {
-  const pathname = usePathname()
-  const activeCity: 'khabarovsk' | 'irkutsk' =
-    city || (pathname?.startsWith('/irkutsk') ? 'irkutsk' : 'khabarovsk')
+  const detectedCity = useCityDetection()
+  const activeCity: 'khabarovsk' | 'irkutsk' = city || detectedCity
 
   const [formData, setFormData] = useState<FormData>({
     name: '',

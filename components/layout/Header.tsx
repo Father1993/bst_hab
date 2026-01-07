@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import MobileBottomNav from './MobileBottomNav'
 import CallbackForm from '@/components/features/CallbackForm'
 import { CITIES, COMPANY_INFO, IRKUTSK_OFFICE } from '@/components/shared/constants'
@@ -15,9 +16,10 @@ const Header = ({ initialCity = 'khabarovsk' }: { initialCity?: 'khabarovsk' | '
   const [showCityMenu, setShowCityMenu] = useState(false)
   const [isLocalDev, setIsLocalDev] = useState(false)
   const pathname = usePathname()
+  const detectedCity = useCityDetection()
 
   // Определяем текущий город
-  const isIrkutsk = initialCity === 'irkutsk' || pathname.startsWith('/irkutsk')
+  const isIrkutsk = initialCity === 'irkutsk' || detectedCity === 'irkutsk'
   const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
   const currentInfo = isIrkutsk ? IRKUTSK_OFFICE : COMPANY_INFO
 

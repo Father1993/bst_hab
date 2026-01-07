@@ -1,15 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import { COMPANY_STATS } from '@/components/shared/constants'
 import { ICONS } from '@/components/shared/icon'
 import Link from 'next/link'
 
-interface AboutHeroProps {
-  city?: 'khabarovsk' | 'irkutsk'
-}
-
-const AboutHero = ({ city = 'khabarovsk' }: AboutHeroProps) => {
+const AboutHero = () => {
+  const city = useCityDetection()
   const isIrkutsk = city === 'irkutsk'
   const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
   const regionName = isIrkutsk ? 'Иркутской области' : 'Дальнего Востока'

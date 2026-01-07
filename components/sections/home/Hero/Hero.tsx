@@ -3,21 +3,22 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import { COMPANY_FEATURES, COMPANY_STATS, CITIES } from '@/components/shared/constants'
 
 interface HeroProps {
   city?: 'khabarovsk' | 'irkutsk'
 }
 
-const Hero = ({ city }: HeroProps = {}) => {
+const Hero = ({ city: cityProp }: HeroProps = {}) => {
   const [isMounted, setIsMounted] = useState(false)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const pathname = usePathname()
+  const detectedCity = useCityDetection()
 
-  // Определяем город: сначала из prop, потом по URL
-  const isIrkutsk = city === 'irkutsk' || (!city && pathname.startsWith('/irkutsk'))
+  // Используем проп если передан, иначе определяем по hostname
+  const city = cityProp || detectedCity
+  const isIrkutsk = city === 'irkutsk'
   const currentCity = isIrkutsk ? CITIES.irkutsk : CITIES.khabarovsk
   const cityName = currentCity.name
 

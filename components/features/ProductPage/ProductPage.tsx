@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
-import { usePathname } from 'next/navigation'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 
 interface ProductPageProps {
   product: any // В реальном проекте здесь должен быть правильный тип
@@ -150,8 +150,8 @@ const ProductImageSlider = ({ images, productName }: { images: string[]; product
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
-  const pathname = usePathname()
-  const isIrkutsk = pathname?.startsWith('/irkutsk')
+  const city = useCityDetection()
+  const isIrkutsk = city === 'irkutsk'
 
   const localize = (value: unknown) => {
     if (!isIrkutsk || typeof value !== 'string') return value

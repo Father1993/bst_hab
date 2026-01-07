@@ -2,18 +2,16 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import ContactForm from '@/components/features/ContactForm'
 import CallbackForm from '@/components/features/CallbackForm'
 import FAQ from '../home/FAQ/FAQ'
 import Features from '../home/Features/Features'
 import VideoReviews from './VideoReviews'
 
-interface SaleBuildingsProps {
-  city?: 'khabarovsk' | 'irkutsk'
-}
-
-const SaleBuildings = ({ city = 'khabarovsk' }: SaleBuildingsProps) => {
+const SaleBuildings = () => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
+  const city = useCityDetection()
   const isIrkutsk = city === 'irkutsk'
   const cityName = isIrkutsk ? 'Иркутске' : 'Хабаровске'
   const region = isIrkutsk ? 'Иркутской области' : 'Дальнему Востоку'

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { useCityDetection } from '@/components/hooks/useCityDetection'
 import Creator from './Creator'
 import CallbackForm from '@/components/features/CallbackForm'
 import useBreakpoint from '@/components/hooks/useBreakpoint'
@@ -12,11 +12,11 @@ import { COMPANY_INFO, IRKUTSK_OFFICE, CITIES } from '@/components/shared/consta
 const Footer = ({ initialCity = 'khabarovsk' }: { initialCity?: 'khabarovsk' | 'irkutsk' }) => {
   const [showCallbackForm, setShowCallbackForm] = useState(false)
   const { isMobile } = useBreakpoint()
-  const pathname = usePathname()
   const logoSize = isMobile ? 230 : 170
+  const detectedCity = useCityDetection()
 
-  // Определяем город по URL
-  const isIrkutsk = initialCity === 'irkutsk' || pathname.startsWith('/irkutsk')
+  // Определяем город
+  const isIrkutsk = initialCity === 'irkutsk' || detectedCity === 'irkutsk'
   const office = isIrkutsk ? IRKUTSK_OFFICE : COMPANY_INFO
   const cityName = isIrkutsk ? CITIES.irkutsk.name : CITIES.khabarovsk.name
   const regionName = isIrkutsk ? CITIES.irkutsk.region : CITIES.khabarovsk.region

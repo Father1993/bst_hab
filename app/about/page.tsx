@@ -43,13 +43,13 @@ export const metadata: Metadata = {
   },
 }
 
-export default function About({ city = 'khabarovsk' }: { city?: 'khabarovsk' | 'irkutsk' }) {
+export default function About() {
   return (
     <div className='flex flex-col'>
-      <AboutHero city={city} />
-      <AboutProduction city={city} />
-      <AboutShowcase city={city} />
-      <AboutHistory city={city} />
+      <AboutHero />
+      <AboutProduction />
+      <AboutShowcase />
+      <AboutHistory />
     </div>
   )
 }
