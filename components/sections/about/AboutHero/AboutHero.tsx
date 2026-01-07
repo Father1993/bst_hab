@@ -67,7 +67,7 @@ const AboutHero = () => {
             transition={{ duration: 0.6 }}
             className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'
           >
-            Производство и <span className='text-[#FFD700]'>аренда модульных конструкций</span> в
+            Производство и <span className='text-[#FFD700]'>аренда модульных конструкций</span> в{' '}
             {cityName}
           </motion.h1>
 
